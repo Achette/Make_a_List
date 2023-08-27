@@ -11,7 +11,7 @@ import {
   DrawerCloseButton,
 } from '@chakra-ui/react'
 
-export const LateralDrawew = () => {
+export const LateralDrawer = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
 
   return (

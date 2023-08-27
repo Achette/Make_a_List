@@ -1,11 +1,10 @@
 import React from 'react'
-import './App.css'
-import { LateralDrawew } from './components'
+import { LateralDrawer } from './components'
 
 function App() {
   return (
     <div>
-      <LateralDrawew />
+      <LateralDrawer />
     </div>
   )
 }
