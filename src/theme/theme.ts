@@ -12,6 +12,9 @@ export const theme = extendTheme({
     },
     white: {
         400: '#D9D9E3'
+    },
+    orange: {
+      100: '#F0CCB6'
     }
   },
   components: {
