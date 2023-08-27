@@ -4,6 +4,9 @@ export const theme = extendTheme({
   config: {
     initialColorMode: 'ligth',
   },
+  fonts: {
+    body: `'Raleway', 'sans-serif'`,
+  },
   colors: {
     blue: {
       50: '#7DC4E4',
@@ -11,11 +14,11 @@ export const theme = extendTheme({
       900: '#27488F',
     },
     white: {
-        400: '#D9D9E3'
+      400: '#D9D9E3',
     },
     orange: {
-      100: '#F0CCB6'
-    }
+      100: '#F0CCB6',
+    },
   },
   components: {
     Drawer: {
