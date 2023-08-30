@@ -1,5 +1,7 @@
 import React from 'react'
 import { Logo } from '../Logo'
+import { useMedia } from '../../hooks/useMedia'
+import { ArrowBackIcon, HamburgerIcon, Icon } from '@chakra-ui/icons'
 import {
   MdBookmarkBorder,
   MdDeleteOutline,
@@ -10,7 +12,6 @@ import {
   MdOutlineSettings,
   MdPowerSettingsNew,
 } from 'react-icons/md'
-import { ArrowBackIcon, HamburgerIcon, Icon } from '@chakra-ui/icons'
 import {
   Box,
   IconButton,
@@ -26,18 +27,23 @@ import {
   DrawerFooter,
 } from '@chakra-ui/react'
 
+
 export const LateralDrawer = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
+
+  const { isDesktop } = useMedia()
 
   return (
     <>
       <Box w="fit-content">
-        <IconButton
-          bg="transparent"
-          aria-label="hamburguer"
-          onClick={onOpen}
-          icon={<HamburgerIcon />}
-        />
+        {!isDesktop ? (
+          <IconButton
+            bg="transparent"
+            aria-label="hamburguer"
+            onClick={onOpen}
+            icon={<HamburgerIcon />}
+          />
+        ) : null}
 
         <Drawer
           isOpen={isOpen}
@@ -101,12 +107,12 @@ export const LateralDrawer = () => {
             </DrawerBody>
 
             <DrawerFooter placeContent="flex-start">
-            <HStack gap={4}>
-                  <Icon as={MdPowerSettingsNew} color="white" w={8} h={8} />
-                  <Text color="white" fontSize="xl">
-                    Sair da Conta
-                  </Text>
-                </HStack>
+              <HStack gap={4}>
+                <Icon as={MdPowerSettingsNew} color="white" w={8} h={8} />
+                <Text color="white" fontSize="xl">
+                  Sair da Conta
+                </Text>
+              </HStack>
             </DrawerFooter>
           </DrawerContent>
         </Drawer>
