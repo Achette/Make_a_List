@@ -1,11 +1,16 @@
 import React from 'react'
-import { LateralDrawer } from './components'
+import { Home } from './routes'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 function App() {
   return (
-    <div>
-      <LateralDrawer />
-    </div>
+    <BrowserRouter>
+    <Routes>
+      <Route path='/'>
+        <Route index element={<Home />} />
+      </Route>
+    </Routes>
+    </BrowserRouter>
   )
 }
 
