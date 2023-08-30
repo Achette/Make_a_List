@@ -19,6 +19,9 @@ export const theme = extendTheme({
     orange: {
       100: '#F0CCB6',
     },
+    gray: {
+      100: "#D9D9E3"
+    }
   },
   components: {
     Drawer: {
