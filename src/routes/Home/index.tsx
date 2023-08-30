@@ -1,10 +1,9 @@
 import React from 'react'
-import { Logo, MySlider } from '../../components'
-import { Box, Button, HStack, Text, VStack } from '@chakra-ui/react'
 import { useMedia } from '../../hooks/useMedia'
+import { Logo, BenefitsSlider } from '../../components'
+import { Box, Button, HStack, Text, VStack } from '@chakra-ui/react'
 
 export const Home = () => {
-
   const { isDesktop } = useMedia()
 
   return (
@@ -14,7 +13,7 @@ export const Home = () => {
       w="100%"
       overflowX="hidden"
     >
-      <VStack p="8rem 0" mb={isDesktop ? '8rem' : '2.5rem'}>
+      <VStack p="7.5rem 0 0 0">
         <Logo />
 
         <Text
@@ -52,8 +51,19 @@ export const Home = () => {
             Entrar
           </Button>
         </HStack>
+        <Text
+        color="gray.100"
+          mt={isDesktop ? "13.5rem" : "10.75rem"}
+          mb="-1.75rem"
+          fontSize="0.8125rem"
+          fontWeight={500}
+          lineHeight="1rem"
+          letterSpacing="-0.081px"
+        >
+          Vantagens
+        </Text>
       </VStack>
-      <MySlider />
+      <BenefitsSlider />
     </Box>
   )
 }

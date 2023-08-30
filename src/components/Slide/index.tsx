@@ -6,7 +6,7 @@ type SlideProps = {
   content: string
 }
 
-export const Slide = ({ title, content }: SlideProps) => {
+export const SlideCard = ({ title, content }: SlideProps) => {
   return (
     <VStack
       w="100%"

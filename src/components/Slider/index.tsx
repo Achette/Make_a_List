@@ -1,13 +1,13 @@
 import React from 'react'
 import Slider from 'react-slick'
-import { Slide } from '../Slide'
+import { SlideCard } from '../Slide'
 import { Box } from '@chakra-ui/react'
 import { slider } from '../../mock/sliderMock'
 
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 
-export const MySlider = () => {
+export const BenefitsSlider = () => {
   const data = slider
 
   const settings = {
@@ -38,7 +38,7 @@ export const MySlider = () => {
     >
       <Slider {...settings}>
         {data.map((item, index) => (
-          <Slide key={index} title={item.title} content={item.content} />
+          <SlideCard key={index} title={item.title} content={item.content} />
         ))}
       </Slider>
     </Box>
