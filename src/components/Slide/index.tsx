@@ -16,10 +16,10 @@ export const Slide = ({ title, content }: SlideProps) => {
       justifyContent="center"
     >
       <VStack w="22rem" alignContent="center" justifyContent="center" px={10}>
-        <Heading as="h3" fontSize="2xl" mb={2}>
+        <Heading as="h3" fontSize="2xl" textAlign="center" mb={2} color="gray.100">
           {title}
         </Heading>
-        <Text color="black" fontSize="md" textAlign="center">
+        <Text fontSize="md" textAlign="center" color="gray.100">
           {content}
         </Text>
       </VStack>
