@@ -1,10 +1,11 @@
 import React from 'react'
 import Slider from 'react-slick'
 import { Slide } from '../Slide'
+import { Box } from '@chakra-ui/react'
 import { slider } from '../../mock/sliderMock'
+
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
-import { Box } from '@chakra-ui/react'
 
 export const MySlider = () => {
   const data = slider
@@ -21,7 +22,20 @@ export const MySlider = () => {
   }
 
   return (
-    <Box>
+    <Box
+      sx={{
+        '.slick-dots li button': {
+          _before: {
+            w: '0.5rem',
+            h: '0.5rem',
+            transition: '0.2s',
+            content: "''",
+            borderRadius: '100%',
+            background: 'gray.100',
+          },
+        },
+      }}
+    >
       <Slider {...settings}>
         {data.map((item, index) => (
           <Slide key={index} title={item.title} content={item.content} />
