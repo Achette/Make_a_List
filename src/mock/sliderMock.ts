@@ -2,7 +2,7 @@ export const slider = [
   {
     title: 'Compartilhe suas listas',
     content:
-      'Convide amigos e familiares para listas compartilhadas e permita que todos adicionem os itens necessários.',
+      'Convide amigos e familiares para listas compartilhadas e permita que todos adicionem novos itens',
   },
   {
     title: 'Listas recorrentes',
