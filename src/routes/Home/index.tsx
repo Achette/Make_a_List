@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { useMedia } from '../../hooks/useMedia'
 import { Logo, BenefitsSlider } from '../../components'
 import { Box, Button, HStack, Text, VStack } from '@chakra-ui/react'
@@ -28,32 +29,37 @@ export const Home = () => {
         </Text>
 
         <HStack>
-          <Button
-            w={40}
-            borderRadius="0.625rem"
-            color="blue.900"
-            fontSize="md"
-            fontWeight={500}
-            lineHeight="1.375rem"
-            letterSpacing="-0.41px"
-          >
-            Criar Conta
-          </Button>
-          <Button
-            w={40}
-            borderRadius="0.625rem"
-            color="blue.900"
-            fontSize="md"
-            fontWeight={500}
-            lineHeight="1.375rem"
-            letterSpacing="-0.41px"
-          >
-            Entrar
-          </Button>
+          <Link to="signin">
+            <Button
+              w={40}
+              borderRadius="0.625rem"
+              color="blue.900"
+              fontSize="md"
+              fontWeight={500}
+              lineHeight="1.375rem"
+              letterSpacing="-0.41px"
+            >
+              Criar Conta
+            </Button>
+          </Link>
+
+          <Link to="login">
+            <Button
+              w={40}
+              borderRadius="0.625rem"
+              color="blue.900"
+              fontSize="md"
+              fontWeight={500}
+              lineHeight="1.375rem"
+              letterSpacing="-0.41px"
+            >
+              Entrar
+            </Button>
+          </Link>
         </HStack>
         <Text
-        color="gray.100"
-          mt={isDesktop ? "13.5rem" : "10.75rem"}
+          color="gray.100"
+          mt={isDesktop ? '13.5rem' : '10.75rem'}
           mb="-1.75rem"
           fontSize="0.8125rem"
           fontWeight={500}
