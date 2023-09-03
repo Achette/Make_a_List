@@ -1,7 +1,7 @@
 import React from 'react'
 
-import { Button, Divider, Flex, Icon, Image } from '@chakra-ui/react'
 import { FaFacebookSquare, FaGoogle } from 'react-icons/fa'
+import { Button, Divider, Flex, Icon } from '@chakra-ui/react'
 
 export const ConnectBar = () => {
   return (
@@ -15,28 +15,28 @@ export const ConnectBar = () => {
       <Button
         w="100%"
         bg="transparent"
-        colorScheme='whiteAlpha'
+        colorScheme="whiteAlpha"
         fontSize="1rem"
         fontWeight={400}
         lineHeight="1.375rem"
         letterSpacing="-0.41px"
         borderRadius=" 0.625rem 0 0 0.625rem"
       >
-        <Icon as={FaGoogle} w="1.5rem" h="1.5rem" mr="0.25rem" />
+        <Icon as={FaGoogle} w="1.5rem" h="1.5rem" mr="0.5rem" />
         Google
       </Button>
       <Divider orientation="vertical" />
       <Button
         w="100%"
-        bg="transparent"        
-        colorScheme='whiteAlpha'
+        bg="transparent"
+        colorScheme="whiteAlpha"
         fontSize="1rem"
         fontWeight={400}
         lineHeight="1.375rem"
         letterSpacing="-0.41px"
         borderRadius="0 0.625rem 0.625rem 0"
       >
-        <Icon as={FaFacebookSquare} w="1.5rem" h="1.5rem" mr="0.25rem" />
+        <Icon as={FaFacebookSquare} w="1.5rem" h="1.5rem" mr="0.5rem" />
         Facebook
       </Button>
     </Flex>
