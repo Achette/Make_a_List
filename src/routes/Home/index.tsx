@@ -29,7 +29,7 @@ export const Home = () => {
         </Text>
 
         <HStack>
-          <Link to="signin">
+          <Link to="/account/signin">
             <Button
               w={40}
               borderRadius="0.625rem"
@@ -43,7 +43,7 @@ export const Home = () => {
             </Button>
           </Link>
 
-          <Link to="login">
+          <Link to="/account">
             <Button
               w={40}
               borderRadius="0.625rem"
