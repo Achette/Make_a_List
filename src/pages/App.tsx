@@ -1,5 +1,5 @@
 import React from 'react'
-import { Home, AccessAccount, Login, SignIn } from '../routes'
+import { Home, AccessAccount, Login, SignIn, Dashboard } from '../routes'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 function App() {
@@ -11,6 +11,7 @@ function App() {
           <Route index element={<Login />} />
           <Route path="signin" element={<SignIn />} />
         </Route>
+        <Route path="/dashboard" element={<Dashboard />} />
       </Routes>
     </BrowserRouter>
   )
