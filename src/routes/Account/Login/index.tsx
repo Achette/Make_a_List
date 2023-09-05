@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 import { Button, Flex, Heading, Input, Text, VStack } from '@chakra-ui/react'
 
 export const Login = () => {
+
+
   return (
     <VStack>
       <Heading
@@ -74,7 +76,7 @@ export const Login = () => {
         lineHeight="1.375rem"
         letterSpacing="-0.41px"
       >
-        Ainda não tem uma conta? <Link to="#">Cadastre-se</Link>
+        Ainda não tem uma conta? <Link to="/account/signin">Cadastre-se</Link>
       </Text>
     </VStack>
   )

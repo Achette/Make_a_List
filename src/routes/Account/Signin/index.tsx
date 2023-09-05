@@ -72,7 +72,7 @@ export const SignIn = () => {
           lineHeight="1.375rem"
           letterSpacing="-0.41px"
         >
-          Já possui uma conta? <Link to="#">Entrar</Link>
+          Já possui uma conta? <Link to="/account">Entrar</Link>
         </Text>
     </VStack>
   )
