@@ -18,7 +18,7 @@ type NavItemProps = {
 export const NavItem = ({ item, isActive, collapse }: NavItemProps) => {
   const { icon, label } = item
 
-  const {isDesktop} = useMedia()
+  const { isDesktop } = useMedia()
 
   return (
     <Box display="flex" alignItems="center" my={6} justifyContent="center">
@@ -33,8 +33,16 @@ export const NavItem = ({ item, isActive, collapse }: NavItemProps) => {
         color={isActive ? 'whiteAlpha.900' : 'white.400'}
         w="full"
         justifyContent={!collapse ? 'center' : ''}
+        title={label}
       >
-        <ListIcon mt={isDesktop ? "8rem" : 0} as={icon} color="white" w={8} h={8} m="0" />
+        <ListIcon
+          mt={isDesktop ? '8rem' : 0}
+          as={icon}
+          color="white"
+          w={8}
+          h={8}
+          m="0"
+        />
         {collapse && <Text fontSize="xl">{label}</Text>}
       </LinkChakra>
     </Box>
