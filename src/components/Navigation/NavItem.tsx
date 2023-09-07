@@ -1,7 +1,7 @@
 import React from 'react'
+import { useMedia } from '../../hooks'
 import { Link } from 'react-router-dom'
 import { IconType } from 'react-icons/lib'
-import { useMedia } from '../../hooks/useMedia'
 import { Box, Link as LinkChakra, ListIcon, Text } from '@chakra-ui/react'
 
 type NavItemProps = {

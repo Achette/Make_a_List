@@ -1,6 +1,6 @@
 import React from 'react'
+import { useMedia } from '../../hooks'
 import { Link } from 'react-router-dom'
-import { useMedia } from '../../hooks/useMedia'
 import { Logo, BenefitsSlider } from '../../components'
 import { Box, Button, HStack, Text, VStack } from '@chakra-ui/react'
 

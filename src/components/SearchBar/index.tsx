@@ -7,8 +7,7 @@ type SearchBarProps = {
   handleCollapse: () => void
 }
 
-export const SearchBar = ({ collapse, handleCollapse }: SearchBarProps) => {
-  console.log(collapse)
+export const SearchBar = ({ handleCollapse }: SearchBarProps) => {
 
   return (
     <Flex w="full" h="3.5rem" flexDir="row">

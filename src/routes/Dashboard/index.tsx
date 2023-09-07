@@ -1,7 +1,7 @@
 import React from 'react'
+import { useMedia } from '../../hooks'
 import { Logo } from '../../components'
 import { MdArrowBack } from 'react-icons/md'
-import { useMedia } from '../../hooks/useMedia'
 import { Sidebar } from '../../components/Sidebar'
 import { Flex, Icon, VStack } from '@chakra-ui/react'
 import { SearchBar } from '../../components/SearchBar'
