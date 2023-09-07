@@ -1,23 +1,29 @@
 import React from 'react'
 import { Logo } from '../../components'
+import { MdArrowBack } from 'react-icons/md'
 import { useMedia } from '../../hooks/useMedia'
 import { Sidebar } from '../../components/Sidebar'
-import { MdArrowBack, MdMenu } from 'react-icons/md'
+import { Flex, Icon, VStack } from '@chakra-ui/react'
+import { SearchBar } from '../../components/SearchBar'
 import { CollapsedLogo } from '../../components/CollapsedLogo'
 import { FooterNavigation } from '../../components/Navigation'
-import { Flex, Icon, IconButton, Text, VStack } from '@chakra-ui/react'
 
 export const Dashboard = () => {
   const [collapse, setCollapse] = React.useState(false)
 
   const { isMobile } = useMedia()
 
+
+  const handleCollapseComponent = () => {
+    setCollapse(() => !collapse)
+  }
+
   return (
     <Flex
       w="full"
       h="100vh"
       bg="white"
-      padding={isMobile ? 'none' : 2}
+      padding={isMobile ? 'none' : 1}
       position={'relative'}
       transition="ease-in-out .2s"
     >
@@ -61,24 +67,16 @@ export const Dashboard = () => {
         w="full"
         h="full"
         bg="white"
-        alignItems="center"
-        justifyContent="center"
-        flexDirection="column"
+        p="1.75rem"
+        flexDirection="row"
         position="relative"
         borderRadius="0.5rem"
+        border="1px solid orange"
       >
-        <IconButton
-          aria-label="Menu Colapse"
-          icon={<MdMenu />}
-          position="absolute"
-          top={6}
-          left={6}
-          onClick={() => setCollapse(!collapse)}
+        <SearchBar
+          collapse={collapse}
+          handleCollapse={handleCollapseComponent}
         />
-
-        <Text fontSize={100} color="gray.300">
-          Main
-        </Text>
       </Flex>
     </Flex>
   )
