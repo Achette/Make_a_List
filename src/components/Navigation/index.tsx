@@ -1,6 +1,6 @@
 import React from 'react'
 import { NavItem } from './NavItem'
-import { SidebarProps } from '../Sidebar'
+import { SidebarProps } from 'components/Sidebar'
 import { List, ListItem } from '@chakra-ui/react'
 import {
   MdBookmarkBorder,
@@ -18,19 +18,19 @@ const items = [
     type: 'link',
     label: 'Listas',
     icon: MdList,
-    path: '/',
+    path: '/lists',
   },
   {
     type: 'link',
     label: 'Grupos',
     icon: MdOutlineGroup,
-    path: '/',
+    path: '/groups',
   },
   {
     type: 'link',
     label: 'Modelos',
     icon: MdBookmarkBorder,
-    path: '/',
+    path: '/models',
   },
   {
     type: 'link',
@@ -42,19 +42,19 @@ const items = [
     type: 'link',
     label: 'Lixeira',
     icon: MdDeleteOutline,
-    path: '/',
+    path: '/deleted',
   },
   {
     type: 'link',
     label: 'Ajuda e Feedback',
     icon: MdHelpOutline,
-    path: '/',
+    path: '/feedback',
   },
   {
     type: 'link',
     label: 'Configurações',
     icon: MdOutlineSettings,
-    path: '/',
+    path: '/settings',
   },
 ]
 
@@ -63,7 +63,7 @@ const footer = [
     type: 'footer',
     label: 'Sair da Conta',
     icon: MdPowerSettingsNew,
-    path: '/',
+    path: '/logout',
   },
 ]
 

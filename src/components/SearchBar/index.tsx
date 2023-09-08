@@ -7,8 +7,7 @@ type SearchBarProps = {
   handleCollapse: () => void
 }
 
-export const SearchBar = ({ collapse, handleCollapse }: SearchBarProps) => {
-  console.log(collapse)
+export const SearchBar = ({ handleCollapse }: SearchBarProps) => {
 
   return (
     <Flex w="full" h="3.5rem" flexDir="row">
@@ -31,6 +30,8 @@ export const SearchBar = ({ collapse, handleCollapse }: SearchBarProps) => {
           border="none"
           placeholder="Procurar nas suas listas"
           outline="none"
+          color="blue.900"
+          fontWeight="600"
           _placeholder={{
             color: 'blue.900',
             fontWeight: '500',

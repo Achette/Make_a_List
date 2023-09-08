@@ -1,18 +1,20 @@
 import React from 'react'
-import { Logo } from '../../components'
+import { useMedia } from 'hooks'
 import { MdArrowBack } from 'react-icons/md'
-import { useMedia } from '../../hooks/useMedia'
-import { Sidebar } from '../../components/Sidebar'
 import { Flex, Icon, VStack } from '@chakra-ui/react'
-import { SearchBar } from '../../components/SearchBar'
-import { CollapsedLogo } from '../../components/CollapsedLogo'
-import { FooterNavigation } from '../../components/Navigation'
+import {
+  CollapsedLogo,
+  FooterNavigation,
+  Logo,
+  SearchBar,
+  Sidebar,
+} from 'components'
+
 
 export const Dashboard = () => {
   const [collapse, setCollapse] = React.useState(false)
 
   const { isMobile } = useMedia()
-
 
   const handleCollapseComponent = () => {
     setCollapse(() => !collapse)
@@ -77,6 +79,7 @@ export const Dashboard = () => {
           collapse={collapse}
           handleCollapse={handleCollapseComponent}
         />
+
       </Flex>
     </Flex>
   )
