@@ -1,5 +1,5 @@
 import React from 'react'
-import { BREAKPOINTS, DeviceInfo, Devices } from '../utils'
+import { BREAKPOINTS, DeviceInfo, Devices } from 'utils'
 
 export const isServer = typeof window === 'undefined'
 
