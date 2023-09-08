@@ -23,7 +23,7 @@ export const NavItem = ({ item, isActive, collapse }: NavItemProps) => {
   return (
     <Box display="flex" alignItems="center" my={6} justifyContent="center">
       <LinkChakra
-        href=""
+        to={item.path}
         as={Link}
         gap={4}
         display="flex"
