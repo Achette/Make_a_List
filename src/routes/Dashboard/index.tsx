@@ -9,6 +9,7 @@ import {
   SearchBar,
   Sidebar,
 } from 'components'
+import { ColorSelect } from 'components/ColorSelect'
 
 export const Dashboard = () => {
   const [collapse, setCollapse] = React.useState(false)
@@ -78,6 +79,8 @@ export const Dashboard = () => {
           collapse={collapse}
           handleCollapse={handleCollapseComponent}
         />
+
+        <ColorSelect />
       </Flex>
     </Flex>
   )
