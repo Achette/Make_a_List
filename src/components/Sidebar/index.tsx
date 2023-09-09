@@ -1,6 +1,7 @@
 import React from 'react'
 import { VStack } from '@chakra-ui/react'
-import { Navigation } from '../Navigation'
+import { Navigation } from 'components/Navigation'
+
 
 export type SidebarProps = {
   collapse: boolean

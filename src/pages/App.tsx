@@ -1,5 +1,5 @@
 import React from 'react'
-import { Home, AccessAccount, Login, SignIn, Dashboard } from '../routes'
+import { Home, AccessAccount, Login, SignIn, Dashboard } from 'routes'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 function App() {

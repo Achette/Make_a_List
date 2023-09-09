@@ -30,6 +30,8 @@ export const SearchBar = ({ handleCollapse }: SearchBarProps) => {
           border="none"
           placeholder="Procurar nas suas listas"
           outline="none"
+          color="blue.900"
+          fontWeight="600"
           _placeholder={{
             color: 'blue.900',
             fontWeight: '500',

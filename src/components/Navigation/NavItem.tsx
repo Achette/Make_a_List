@@ -1,5 +1,5 @@
 import React from 'react'
-import { useMedia } from '../../hooks'
+import { useMedia } from 'hooks'
 import { Link } from 'react-router-dom'
 import { IconType } from 'react-icons/lib'
 import { Box, Link as LinkChakra, ListIcon, Text } from '@chakra-ui/react'
@@ -23,7 +23,7 @@ export const NavItem = ({ item, isActive, collapse }: NavItemProps) => {
   return (
     <Box display="flex" alignItems="center" my={6} justifyContent="center">
       <LinkChakra
-        href=""
+        to={item.path}
         as={Link}
         gap={4}
         display="flex"

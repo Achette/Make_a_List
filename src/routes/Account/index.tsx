@@ -1,7 +1,8 @@
 import React from 'react'
+import { ConnectBar } from 'components'
 import { Outlet } from 'react-router-dom'
-import { ConnectBar } from '../../components'
 import { Box, Flex, Text } from '@chakra-ui/react'
+
 
 export const AccessAccount = () => {
   return (
