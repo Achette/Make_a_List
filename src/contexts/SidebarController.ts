@@ -8,5 +8,5 @@ interface SidebarContextProps {
 export const SidebarContext = React.createContext<SidebarContextProps>({
   collapse: false,
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  setCollapse: function () {},
+  setCollapse: () => {},
 })
