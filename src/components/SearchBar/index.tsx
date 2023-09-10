@@ -18,6 +18,7 @@ export const SearchBar = () => {
       >
         <IconButton
           bg="transparent"
+          color="blue.900"
           aria-label="Menu Colapse"
           icon={<MdMenu />}
           onClick={() => setCollapse(!collapse)}
