@@ -68,10 +68,9 @@ export const Dashboard = () => {
         borderRadius="0.5rem"
         border="1px solid orange"
       >
-        {/*   <SearchBar
-          handleCollapse={handleCollapseComponent}
-        /> */}
+  
         <Outlet />
+  
       </Flex>
     </Flex>
   )
