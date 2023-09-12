@@ -1,6 +1,7 @@
 import React from 'react'
 import { useMedia } from 'hooks'
 import { Link } from 'react-router-dom'
+import { SidebarContext } from 'contexts'
 import { IconType } from 'react-icons/lib'
 import { Box, Link as LinkChakra, ListIcon, Text } from '@chakra-ui/react'
 
@@ -12,19 +13,20 @@ type NavItemProps = {
     path: string
   }
   isActive: boolean
-  collapse: boolean
 }
 
-export const NavItem = ({ item, isActive, collapse }: NavItemProps) => {
+export const NavItem = ({ item, isActive }: NavItemProps) => {
   const { icon, label } = item
+
+  const { collapse } = React.useContext(SidebarContext)
 
   const { isDesktop } = useMedia()
 
   return (
     <Box display="flex" alignItems="center" my={6} justifyContent="center">
       <LinkChakra
-        to={item.path}
         as={Link}
+        to={item.path}
         gap={4}
         display="flex"
         alignItems="center"
