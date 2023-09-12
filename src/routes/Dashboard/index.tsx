@@ -27,9 +27,7 @@ export const Dashboard = () => {
         w={isMobile ? '350px' : 'full'}
         bg="blue.900"
         alignItems="start"
-        padding={
-          !collapse ? '1.5rem 1.5rem 0 1rem' : '1.5rem 1.5rem 0 1.5rem'
-        }
+        padding={!collapse ? '1.5rem 1.5rem 0 1rem' : '1.5rem 1.5rem 0 1.5rem'}
         flexDirection="column"
         justifyContent="space-between"
         borderRadius="0.5rem"
@@ -62,15 +60,13 @@ export const Dashboard = () => {
         w="full"
         h="full"
         bg="white"
-        p="1.75rem"
+        p={isMobile ? '1rem' : '1.75rem'}
         flexDirection="row"
         position="relative"
         borderRadius="0.5rem"
         border="1px solid orange"
       >
-  
         <Outlet />
-  
       </Flex>
     </Flex>
   )
