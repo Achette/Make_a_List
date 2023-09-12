@@ -5,7 +5,6 @@ import {
   Collapse,
   Flex,
   Icon,
-  useDisclosure,
   Link as LinkChakra,
   VStack,
 } from '@chakra-ui/react'
@@ -17,7 +16,8 @@ import {
 } from 'react-icons/md'
 
 export const AddButton = () => {
-  const { isOpen, onToggle } = useDisclosure()
+  const [collapse, setCollapse] = React.useState<boolean>(false)
+
   const { isMobile } = useMedia()
 
   return (
@@ -28,7 +28,7 @@ export const AddButton = () => {
       flexDir="column"
       overflow="hidden"
     >
-      <Collapse in={isOpen} animateOpacity>
+      <Collapse in={collapse} animateOpacity>
         <VStack flexDir="column-reverse">
           <LinkChakra as={Link} title="Add group" order={4}>
             <Icon
@@ -54,7 +54,11 @@ export const AddButton = () => {
             />
           </LinkChakra>
 
-          <LinkChakra title="Close" order={2}>
+          <LinkChakra
+            title="Cancel and Close"
+            order={2}
+            onClick={() => setCollapse(false)}
+          >
             <Icon
               as={MdOutlineClose}
               w="3rem"
@@ -68,7 +72,12 @@ export const AddButton = () => {
         </VStack>
       </Collapse>
 
-      <LinkChakra title="Add" order={1} onClick={onToggle} mt="1rem">
+      <LinkChakra
+        title="Add"
+        order={1}
+        onClick={() => setCollapse(true)}
+        mt="1rem"
+      >
         <Icon
           as={MdAdd}
           w="3rem"
