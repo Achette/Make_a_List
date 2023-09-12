@@ -1,10 +1,13 @@
 import React from 'react'
 import { MdMenu } from 'react-icons/md'
-import { SidebarContext } from 'contexts'
 import { Avatar, Flex, HStack, IconButton, Input } from '@chakra-ui/react'
 
-export const SearchBar = () => {
-  const { collapse, setCollapse } = React.useContext(SidebarContext)
+type SearchBarProps = {
+  collapse: boolean
+  handleCollapse: () => void
+}
+
+export const SearchBar = ({ handleCollapse }: SearchBarProps) => {
 
   return (
     <Flex w="full" h="3.5rem" flexDir="row">
@@ -18,10 +21,9 @@ export const SearchBar = () => {
       >
         <IconButton
           bg="transparent"
-          color="blue.900"
           aria-label="Menu Colapse"
           icon={<MdMenu />}
-          onClick={() => setCollapse(!collapse)}
+          onClick={() => handleCollapse()}
         />
         <Input
           w="14rem"

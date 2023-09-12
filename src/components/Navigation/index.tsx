@@ -1,5 +1,6 @@
 import React from 'react'
 import { NavItem } from './NavItem'
+import { SidebarProps } from 'components/Sidebar'
 import { List, ListItem } from '@chakra-ui/react'
 import {
   MdBookmarkBorder,
@@ -17,7 +18,7 @@ const items = [
     type: 'link',
     label: 'Listas',
     icon: MdList,
-    path: '/dashboard',
+    path: '/lists',
   },
   {
     type: 'link',
@@ -35,7 +36,7 @@ const items = [
     type: 'link',
     label: 'Arquivadas',
     icon: MdOutlineArchive,
-    path: '/archived',
+    path: '/',
   },
   {
     type: 'link',
@@ -66,26 +67,22 @@ const footer = [
   },
 ]
 
-export const Navigation = () => {
-  return (
-    <List w="full">
-      {items.map((item, index) => (
-        <ListItem key={index}>
-          <NavItem item={item} isActive={index === 0} />
-        </ListItem>
-      ))}
-    </List>
-  )
-}
+export const Navigation = ({ collapse }: SidebarProps) => (
+  <List w="full">
+    {items.map((item, index) => (
+      <ListItem key={index}>
+        <NavItem item={item} isActive={index === 0} collapse={collapse} />
+      </ListItem>
+    ))}
+  </List>
+)
 
-export const FooterNavigation = () => {
-  return (
-    <List w="full">
-      {footer.map((item, index) => (
-        <ListItem key={index}>
-          <NavItem item={item} isActive={index === 0} />
-        </ListItem>
-      ))}
-    </List>
-  )
-}
+export const FooterNavigation = ({ collapse }: SidebarProps) => (
+  <List w="full" >
+    {footer.map((item, index) => (
+      <ListItem key={index}>
+        <NavItem item={item} isActive={index === 0} collapse={collapse} />
+      </ListItem>
+    ))}
+  </List>
+)
