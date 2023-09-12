@@ -1,10 +1,11 @@
 name: PR is up-to-date
 on:
-  pull_request_target:
-    branches: [ develop ]
-  push:
-    tags: [ latest ]
-
+    push:
+        tags: [ latest ]
+    pull_request:
+        branches:
+            - develop
+            - main
 jobs:
   check:
     name: Check
