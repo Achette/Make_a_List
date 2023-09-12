@@ -14,10 +14,11 @@ export const SearchBar = () => {
         bg="gray.100"
         borderRadius="62.5rem"
         justifyContent="space-between"
-        p="0 0.75rem"
+        p="0 1rem"
       >
         <IconButton
           bg="transparent"
+          borderRadius="full"
           color="blue.900"
           aria-label="Menu Colapse"
           icon={<MdMenu />}
