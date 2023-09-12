@@ -64,7 +64,7 @@ export const Dashboard = () => {
         flexDirection="row"
         position="relative"
         borderRadius="0.5rem"
-        border="1px solid orange"
+        border="1px solid orange" // não esquecer de remover esta linha
       >
         <Outlet />
       </Flex>
