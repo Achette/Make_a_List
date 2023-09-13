@@ -1,8 +1,8 @@
 import React from 'react'
 import { useMedia } from 'hooks'
-import { Link } from 'react-router-dom'
+import { Box, Flex, Text } from '@chakra-ui/react'
 import { AddButton, SearchBar, List, ListProps } from 'components'
-import { Box, Flex, Text, Link as LinkChakra } from '@chakra-ui/react'
+
 import { listMock } from 'mock/listmock' // será removido quando conectado ao backend
 
 export const Lists = () => {
@@ -28,14 +28,13 @@ export const Lists = () => {
       >
         {lists &&
           lists.map((item) => (
-            <LinkChakra key={item.id} as={Link} w="full">
-              <List
-                bgColor={item.bgColor}
-                icon={item.icon}
-                listName={item.listName}
-                shared={item.shared}
-              />
-            </LinkChakra>
+            <List
+              key={item.id}
+              bgColor={item.bgColor}
+              icon={item.icon}
+              listName={item.listName}
+              shared={item.shared}
+            />
           ))}
         {!lists.length && (
           <Text

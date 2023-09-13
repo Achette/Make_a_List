@@ -5,7 +5,7 @@ export const listMock: ListProps[] = [
   {
     id: 1,
     icon: FaShoppingBasket,
-    bgColor: 'blue.900',
+    bgColor: 'blue.600',
     listName: 'Compras',
     shared: ['Igor Achette', 'Raul Araújo'],
   },
@@ -25,7 +25,7 @@ export const listMock: ListProps[] = [
   {
     id: 3,
     icon: FaGamepad,
-    bgColor: 'green.500',
+    bgColor: 'green.600',
     listName: 'Gamezinho',
     shared: ['Gabriel Imenes', 'Duda Matos', 'João Paulo'],
   },
