@@ -1,5 +1,6 @@
 import React from 'react'
 import { useMedia } from 'hooks'
+import { Link } from 'react-router-dom'
 import { IconType } from 'react-icons/lib'
 import {
   Avatar,
@@ -8,6 +9,7 @@ import {
   HStack,
   Icon,
   Text,
+  Link as LinkChakra,
 } from '@chakra-ui/react'
 
 export type ListProps = {
@@ -20,11 +22,11 @@ export type ListProps = {
 
 export const List = ({ icon, bgColor, listName, shared }: ListProps) => {
   const { isMobile } = useMedia()
-  
+
   return (
     <HStack
       w="full"
-      h="4.25rem"
+      h={isMobile ? '3rem' : '4.25rem'}
       bg="gray.100"
       borderRadius="62.5rem"
       p={isMobile ? '1rem' : '2rem'}
@@ -32,15 +34,20 @@ export const List = ({ icon, bgColor, listName, shared }: ListProps) => {
     >
       <Flex alignItems="center">
         <Flex
-          h="2.5rem"
-          w="2.5rem"
+          h={isMobile ? '1.8rem' : '2.5rem'}
+          w={isMobile ? '1.8rem' : '2.5rem'}
           bg={bgColor}
           p=".75rem"
           borderRadius="full"
           alignItems="center"
           justifyContent="center"
         >
-          <Icon as={icon} h="1.5rem" w="1.5rem" color="whiteAlpha.900" />
+          <Icon
+            as={icon}
+            h={isMobile ? '1.15rem' : '1.5rem'}
+            w={isMobile ? '1.15rem' : '1.5rem'}
+            color="whiteAlpha.900"
+          />
         </Flex>
         <Text
           fontSize="1.0625rem"
@@ -50,20 +57,26 @@ export const List = ({ icon, bgColor, listName, shared }: ListProps) => {
           color="blue.900"
           ml="0.75rem"
         >
-          {listName}
+          <LinkChakra
+            as={Link}
+            _hover={{ color: 'blue.400', stroke: 'blue.400' }}
+          >
+            {listName}
+          </LinkChakra>
         </Text>
       </Flex>
 
       {shared && (
         <Flex>
           {shared.map((item, index) => (
-            <AvatarGroup key={index} ml="-0.35rem">
+            <AvatarGroup key={index} ml="-0.4rem">
               <Avatar
-                w="2.25rem"
-                h="2.25rem"
+                w={isMobile ? '2rem' : '2.25rem'}
+                h={isMobile ? '2rem' : '2.25rem'}
                 name={item}
                 color="whiteAlpha.900"
                 border="none"
+                title={item}
               />
             </AvatarGroup>
           ))}

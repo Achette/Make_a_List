@@ -2,9 +2,12 @@ import React from 'react'
 import { MdMenu } from 'react-icons/md'
 import { SidebarContext } from 'contexts'
 import { Avatar, Flex, HStack, IconButton, Input } from '@chakra-ui/react'
+import { useMedia } from 'hooks'
 
 export const SearchBar = () => {
   const { collapse, setCollapse } = React.useContext(SidebarContext)
+
+  const { isMobile } = useMedia()
 
   return (
     <Flex w="full" h="3.5rem" flexDir="row">
@@ -25,7 +28,7 @@ export const SearchBar = () => {
           onClick={() => setCollapse(!collapse)}
         />
         <Input
-          w="14rem"
+          maxW={isMobile ? '14rem' : '36rem'}
           border="none"
           placeholder="Procurar nas suas listas"
           outline="none"
@@ -35,6 +38,7 @@ export const SearchBar = () => {
             color: 'blue.900',
             fontWeight: '500',
             fontSize: '1rem',
+            textAlign: 'center',
           }}
           focusBorderColor="transparent"
         />
