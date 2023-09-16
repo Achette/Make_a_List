@@ -12,15 +12,15 @@ import {
   Link as LinkChakra,
 } from '@chakra-ui/react'
 
-export type ListProps = {
-  id?: number
-  icon: IconType
+type ListProps = {
+  id: number
+  icon?: IconType
   bgColor: string
   listName: string
   shared?: Array<string>
 }
 
-export const List = ({ icon, bgColor, listName, shared }: ListProps) => {
+export const List = ({ id, icon, bgColor, listName, shared }: ListProps) => {
   const { isMobile } = useMedia()
 
   return (
@@ -59,6 +59,7 @@ export const List = ({ icon, bgColor, listName, shared }: ListProps) => {
         >
           <LinkChakra
             as={Link}
+            to={`/lists/${id}`}
             _hover={{ color: 'blue.400', stroke: 'blue.400' }}
           >
             {listName}
