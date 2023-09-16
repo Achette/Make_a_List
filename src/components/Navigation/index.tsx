@@ -17,7 +17,7 @@ const items = [
     type: 'link',
     label: 'Listas',
     icon: MdList,
-    path: '/dashboard',
+    path: '/lists',
   },
   {
     type: 'link',
