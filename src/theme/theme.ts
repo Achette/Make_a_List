@@ -21,6 +21,9 @@ export const theme = extendTheme({
     },
     gray: {
       100: "#D9D9E3"
+    },
+    red: {
+      400: '#D23D33'
     }
   },
   components: {
