@@ -72,21 +72,23 @@ export const AddButton = () => {
         </VStack>
       </Collapse>
 
-      <LinkChakra
-        title="Add"
-        order={1}
-        onClick={() => setCollapse(true)}
-        mt="1rem"
-      >
-        <Icon
-          as={MdAdd}
-          w="3rem"
-          h="3rem"
-          bg="blue.50"
-          color="blue.900"
-          borderRadius="full"
-        />
-      </LinkChakra>
+      {!collapse && (
+        <LinkChakra
+          title="Add"
+          order={1}
+          onClick={() => setCollapse(true)}
+          mt="1rem"
+        >
+          <Icon
+            as={MdAdd}
+            w="3rem"
+            h="3rem"
+            bg="blue.50"
+            color="blue.900"
+            borderRadius="full"
+          />
+        </LinkChakra>
+      )}
     </Flex>
   )
 }
