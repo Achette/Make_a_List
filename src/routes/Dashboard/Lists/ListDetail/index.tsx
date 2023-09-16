@@ -24,7 +24,7 @@ export const ListDetail = () => {
   const { products } = list
 
   return (
-    <VStack w="full" px={isMobile ? '' : '3.5rem'}>
+    <VStack w="full" px={isMobile ? '' : '3rem'}>
       <Flex w="full" justifyContent="space-between">
         {isMobile && (
           <Flex w="full" justifyContent="space-between">
@@ -63,7 +63,7 @@ export const ListDetail = () => {
 
       <Flex w="full" h="auto" flexDir="column">
         {products.map((item, index) => (
-          <Box key={index} p="1rem" mb="1rem">
+          <Box key={index} p="0.5rem" mb="1rem">
             <Text mb="0.5rem">{item.category}</Text>
             <VStack alignItems="flex-start">
               {item.products.map((prod) => (
