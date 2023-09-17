@@ -1,10 +1,9 @@
 import React from 'react'
 import { useMedia } from 'hooks'
 import { listMock } from 'mock/listmock'
-import { HiDotsVertical } from 'react-icons/hi'
 import { MdOutlineArrowBackIos } from 'react-icons/md'
-import { ListDetailTopBar, ListItems } from 'components'
 import { Link, useNavigate, useParams } from 'react-router-dom'
+import { BottomDrawer, ListDetailTopBar, ListItems } from 'components'
 import {
   Box,
   Flex,
@@ -27,7 +26,7 @@ export const ListDetail = () => {
     <VStack w="full" px={isMobile ? '' : '3rem'}>
       <Flex w="full" justifyContent="space-between">
         {isMobile && (
-          <Flex w="full" justifyContent="space-between">
+          <Flex w="full" justifyContent="space-between" alignItems="center">
             <Flex>
               <Icon
                 as={MdOutlineArrowBackIos}
@@ -47,14 +46,9 @@ export const ListDetail = () => {
                 <Text>Listas</Text>
               </LinkChakra>
             </Flex>
-            <Box>
-              <Icon
-                as={HiDotsVertical}
-                w="1.5rem"
-                h="1.5rem"
-                color="blue.900"
-              />
-            </Box>
+
+            <BottomDrawer />
+
           </Flex>
         )}
       </Flex>
@@ -63,7 +57,7 @@ export const ListDetail = () => {
 
       <Flex w="full" h="auto" flexDir="column">
         {products.map((item, index) => (
-          <Box key={index} p="0.5rem" mb="1rem">
+          <Box key={index} p="0.5rem" mb="0.5rem">
             <Text mb="0.5rem">{item.category}</Text>
             <VStack alignItems="flex-start">
               {item.products.map((prod) => (
