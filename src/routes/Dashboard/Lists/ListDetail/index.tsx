@@ -3,7 +3,13 @@ import { useMedia } from 'hooks'
 import { listMock } from 'mock/listmock'
 import { MdOutlineArrowBackIos } from 'react-icons/md'
 import { Link, useNavigate, useParams } from 'react-router-dom'
-import { BottomDrawer, ListDetailTopBar, ListItems } from 'components'
+import {
+  BottomDrawer,
+  ListDetailTopBar,
+  ListItems,
+  TotalBar,
+  BottomOptionsBar,
+} from 'components'
 import {
   Box,
   Flex,
@@ -11,6 +17,7 @@ import {
   Text,
   VStack,
   Link as LinkChakra,
+  Divider,
 } from '@chakra-ui/react'
 
 export const ListDetail = () => {
@@ -48,7 +55,6 @@ export const ListDetail = () => {
             </Flex>
 
             <BottomDrawer />
-
           </Flex>
         )}
       </Flex>
@@ -73,6 +79,13 @@ export const ListDetail = () => {
           </Box>
         ))}
       </Flex>
+
+      <TotalBar>{list.total}</TotalBar>
+
+      <Box pos="absolute" bottom="4.5rem" w="90%">
+        <Divider orientation="horizontal" />
+      </Box>
+      {!isMobile && <BottomOptionsBar />}
     </VStack>
   )
 }
