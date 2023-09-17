@@ -1,7 +1,7 @@
 import React from 'react'
+import { useMedia } from 'hooks'
 import { RiDeleteBin6Fill } from 'react-icons/ri'
 import { Checkbox, Flex, HStack, Icon, Text, VStack } from '@chakra-ui/react'
-import { useMedia } from 'hooks'
 
 type ListItemsProps = {
   productName: string
@@ -17,6 +17,7 @@ export const ListItems = ({
   place,
 }: ListItemsProps) => {
   const { isMobile } = useMedia()
+
   return (
     <Flex w="full" justifyContent="space-between" alignItems="center">
       <HStack flex={1}>
@@ -59,7 +60,8 @@ export const ListItems = ({
         >
           {quantity}
         </Text>
-        <Icon as={RiDeleteBin6Fill} w="1rem" h="1.12688rem" color="red.400" />
+
+        <Icon as={RiDeleteBin6Fill} w="2rem" h="1.25rem" color="red.400" />
       </Flex>
     </Flex>
   )
