@@ -1,5 +1,5 @@
 import React from 'react'
-import { ColorSelect, IconSelect } from 'components'
+import { ColorSelect, IconSelect, NewProduct } from 'components'
 import { Box,  Flex,  Text, Input, Button } from '@chakra-ui/react'
 import { useMedia } from 'hooks'
 
@@ -10,7 +10,7 @@ export const NewList = () => {
     <Box padding={'16px'}>
       <Flex fontSize={'17px'} fontWeight={500} color="blue.900" justifyContent={'space-between'}><button type='button'>Cancelar</button> <button type='button'>Criar Lista</button></Flex>
         <Text color="blue.900" fontSize={'34px'} fontWeight={700}>Nova lista</Text>
-        <Input mt={5} variant='flushed' placeholder='Nome' color={'blue.900'} maxWidth={'400px'}  _placeholder={{ color: '#27488F', opacity:'0.6' }} required/>
+        <Input mt={5} variant='flushed' placeholder='Nome' color={'blue.900'} maxWidth={'400px'}  _placeholder={{ color: 'blue.900', opacity:'0.6' }} required/>
 
         <Flex flexDirection={isDesktop ? 'row' : 'column'}  justifyContent={isDesktop ? 'space-between' : 'center'} alignItems={'baseline'}>
             <Box>
@@ -33,6 +33,7 @@ export const NewList = () => {
         <Flex justifyContent={'center'} mt={5}> 
             <Button variant='link' color={'blue.900'} type='button'>Criar a partir de um modelo</Button>
         </Flex>
+        <NewProduct></NewProduct>
       
     </Box>
   )
