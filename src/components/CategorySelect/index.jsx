@@ -4,7 +4,7 @@ import { Flex, Text, Box } from '@chakra-ui/react'
 export const CategorySelect = () => {
   const [selectetCategory, setSelectetCategory] = useState({})
 
-  const categorys = [
+  const categories = [
     {name:'Açougue',color:'#D23D33'},
     {name:'Hortifruti',color:'#047C52'},
     {name:'Congelados',color:'#27488F'},
@@ -31,7 +31,7 @@ export const CategorySelect = () => {
           Categoria
         </Text>
         <Flex maxW="100%" flexWrap="wrap">
-          {categorys.map((category, index) => {
+          {categories.map((category, index) => {
             return (
               <Flex
                 key={index}

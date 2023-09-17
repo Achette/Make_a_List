@@ -28,7 +28,7 @@ function App() {
             <Route index element={<Lists />} />
             <Route path="/lists/:id" element={<ListDetail />} />
           </Route>
-          <Route path="/nova-lista" element={<NewList />} />
+          <Route path="/new-list" element={<NewList />} />
         </Routes>
       </BrowserRouter>
     </SidebarContext.Provider>

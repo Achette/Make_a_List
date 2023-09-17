@@ -26,12 +26,12 @@ export const NewProduct = () => {
         <Box padding={'16px'}>
             <Flex fontSize={'17px'} fontWeight={500} color="blue.900" justifyContent={'space-between'}><button type='button' onClick={onClose}>Cancelar</button> <button type='button'>Adicionar Produto</button></Flex>
                 <Text color="blue.900" fontSize={'34px'} fontWeight={700}>Novo produto</Text>
-                <Input mt={5} variant='flushed' placeholder='Nome do produto' color={'blue.900'} maxWidth={'400px'}  _placeholder={{ color: '#27488F', opacity:'0.6' }} required/>
-                <Input mt={5} variant='flushed' placeholder='Local da compra' color={'blue.900'} maxWidth={'400px'}  _placeholder={{ color: '#27488F', opacity:'0.6' }} />
+                <Input mt={5} variant='flushed' placeholder='Nome do produto' color={'blue.900'} maxWidth={'400px'}  _placeholder={{ color: 'blue.900', opacity:'0.6' }} required/>
+                <Input mt={5} variant='flushed' placeholder='Local da compra' color={'blue.900'} maxWidth={'400px'}  _placeholder={{ color: 'blue.900', opacity:'0.6' }} />
 
                 <Flex>
-                    <Input mt={5} variant='flushed' placeholder='Preço' color={'blue.900'} maxWidth={'400px'}  _placeholder={{ color: '#27488F', opacity:'0.6' }} />
-                     <Input mt={5} variant='flushed' placeholder='Quantidade' color={'blue.900'} maxWidth={'400px'}  _placeholder={{ color: '#27488F', opacity:'0.6' }}/>
+                    <Input mt={5} variant='flushed' placeholder='Preço' color={'blue.900'} maxWidth={'400px'}  _placeholder={{ color: 'blue.900', opacity:'0.6' }} />
+                     <Input mt={5} variant='flushed' placeholder='Quantidade' color={'blue.900'} maxWidth={'400px'}  _placeholder={{ color: 'blue.900', opacity:'0.6' }}/>
                 </Flex>
          </Box>
 
