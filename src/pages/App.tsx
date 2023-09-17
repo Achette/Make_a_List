@@ -9,6 +9,7 @@ import {
   Dashboard,
   Lists,
   ListDetail,
+  NewList
 } from 'routes'
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
             <Route index element={<Lists />} />
             <Route path="/lists/:id" element={<ListDetail />} />
           </Route>
+          <Route path="/new-list" element={<NewList />} />
         </Routes>
       </BrowserRouter>
     </SidebarContext.Provider>
