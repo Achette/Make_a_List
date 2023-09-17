@@ -1,6 +1,6 @@
 import React from 'react'
 import { useMedia } from 'hooks'
-import { Box, Button, Divider, Flex, HStack, Text } from '@chakra-ui/react'
+import { Button, Divider, Flex, HStack, Text } from '@chakra-ui/react'
 
 type AddProductButtonProps = {
   children: React.ReactNode

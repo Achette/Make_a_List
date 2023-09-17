@@ -50,7 +50,6 @@ export const IconSelect = () => {
               <Flex
                 key={index}
                 w='16.6%'
-                paddingY="0.3125rem"
                 justifyContent='center'
                 alignItems='center'
               >
