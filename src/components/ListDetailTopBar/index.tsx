@@ -1,5 +1,6 @@
 import React from 'react'
 import { useMedia } from 'hooks'
+import { useNavigate } from 'react-router-dom'
 import { Button, Divider, Flex, HStack, Text } from '@chakra-ui/react'
 
 type AddProductButtonProps = {
@@ -8,6 +9,7 @@ type AddProductButtonProps = {
 
 export const ListDetailTopBar = ({ children }: AddProductButtonProps) => {
   const { isMobile } = useMedia()
+  const navigate = useNavigate()
 
   return (
     <Flex w="full" justifyContent="space-between">
@@ -28,7 +30,6 @@ export const ListDetailTopBar = ({ children }: AddProductButtonProps) => {
           fontWeight={400}
           lineHeight="1.375rem"
           letterSpacing="-0.02563rem"
-          
         >
           Compartilhado com
         </Text>
@@ -64,6 +65,7 @@ export const ListDetailTopBar = ({ children }: AddProductButtonProps) => {
             fontWeight={500}
             lineHeight="1.375rem"
             letterSpacing="-0.02563rem"
+            onClick={() => navigate(-1)}
           >
             Fechar
           </Button>

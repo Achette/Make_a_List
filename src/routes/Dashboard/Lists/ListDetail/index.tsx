@@ -1,10 +1,15 @@
 import React from 'react'
 import { useMedia } from 'hooks'
 import { listMock } from 'mock/listmock'
-import { HiDotsVertical } from 'react-icons/hi'
 import { MdOutlineArrowBackIos } from 'react-icons/md'
-import { ListDetailTopBar, ListItems } from 'components'
 import { Link, useNavigate, useParams } from 'react-router-dom'
+import {
+  BottomDrawer,
+  ListDetailTopBar,
+  ListItems,
+  TotalBar,
+  BottomOptionsBar,
+} from 'components'
 import {
   Box,
   Flex,
@@ -12,6 +17,7 @@ import {
   Text,
   VStack,
   Link as LinkChakra,
+  Divider,
 } from '@chakra-ui/react'
 
 export const ListDetail = () => {
@@ -24,10 +30,10 @@ export const ListDetail = () => {
   const { products } = list
 
   return (
-    <VStack w="full" px={isMobile ? '' : '3.5rem'}>
+    <VStack w="full" px={isMobile ? '' : '3rem'}>
       <Flex w="full" justifyContent="space-between">
         {isMobile && (
-          <Flex w="full" justifyContent="space-between">
+          <Flex w="full" justifyContent="space-between" alignItems="center">
             <Flex>
               <Icon
                 as={MdOutlineArrowBackIos}
@@ -47,14 +53,8 @@ export const ListDetail = () => {
                 <Text>Listas</Text>
               </LinkChakra>
             </Flex>
-            <Box>
-              <Icon
-                as={HiDotsVertical}
-                w="1.5rem"
-                h="1.5rem"
-                color="blue.900"
-              />
-            </Box>
+
+            <BottomDrawer />
           </Flex>
         )}
       </Flex>
@@ -63,7 +63,7 @@ export const ListDetail = () => {
 
       <Flex w="full" h="auto" flexDir="column">
         {products.map((item, index) => (
-          <Box key={index} p="1rem" mb="1rem">
+          <Box key={index} p="0.5rem" mb="0.5rem">
             <Text mb="0.5rem">{item.category}</Text>
             <VStack alignItems="flex-start">
               {item.products.map((prod) => (
@@ -79,6 +79,13 @@ export const ListDetail = () => {
           </Box>
         ))}
       </Flex>
+
+      <TotalBar>{list.total}</TotalBar>
+
+      <Box pos="absolute" bottom="4.5rem" w="90%">
+        <Divider orientation="horizontal" />
+      </Box>
+      {!isMobile && <BottomOptionsBar />}
     </VStack>
   )
 }
