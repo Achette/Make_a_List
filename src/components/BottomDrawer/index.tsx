@@ -2,7 +2,6 @@ import React from 'react'
 import { DrawerNavigation } from './iconsList'
 import { HiDotsVertical } from 'react-icons/hi'
 import {
-  Box,
   Drawer,
   DrawerBody,
   DrawerContent,
@@ -29,13 +28,11 @@ export const BottomDrawer = () => {
         onClose={onClose}
         variant="primary"
       >
-        <Box bgColor="blue.900">
-          <DrawerContent>
-            <DrawerBody>
-              <DrawerNavigation />
-            </DrawerBody>
-          </DrawerContent>
-        </Box>
+        <DrawerContent>
+          <DrawerBody>
+            <DrawerNavigation />
+          </DrawerBody>
+        </DrawerContent>
       </Drawer>
     </Flex>
   )
