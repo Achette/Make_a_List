@@ -1,7 +1,11 @@
 import React from 'react'
 import { useMedia } from 'hooks'
+<<<<<<< HEAD
 import { useNavigate } from 'react-router-dom'
 import { Button, Divider, Flex, HStack, Text } from '@chakra-ui/react'
+=======
+import { Box, Button, Divider, Flex, HStack, Text } from '@chakra-ui/react'
+>>>>>>> e792c55d956b9a5f236d1d7671aab0aa73d05a44
 
 type AddProductButtonProps = {
   children: React.ReactNode
@@ -9,7 +13,10 @@ type AddProductButtonProps = {
 
 export const ListDetailTopBar = ({ children }: AddProductButtonProps) => {
   const { isMobile } = useMedia()
+<<<<<<< HEAD
   const navigate = useNavigate()
+=======
+>>>>>>> e792c55d956b9a5f236d1d7671aab0aa73d05a44
 
   return (
     <Flex w="full" justifyContent="space-between">
@@ -30,6 +37,10 @@ export const ListDetailTopBar = ({ children }: AddProductButtonProps) => {
           fontWeight={400}
           lineHeight="1.375rem"
           letterSpacing="-0.02563rem"
+<<<<<<< HEAD
+=======
+          
+>>>>>>> e792c55d956b9a5f236d1d7671aab0aa73d05a44
         >
           Compartilhado com
         </Text>
@@ -65,7 +76,10 @@ export const ListDetailTopBar = ({ children }: AddProductButtonProps) => {
             fontWeight={500}
             lineHeight="1.375rem"
             letterSpacing="-0.02563rem"
+<<<<<<< HEAD
             onClick={() => navigate(-1)}
+=======
+>>>>>>> e792c55d956b9a5f236d1d7671aab0aa73d05a44
           >
             Fechar
           </Button>

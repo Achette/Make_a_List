@@ -112,7 +112,11 @@ export const listMock: ListsProps = {
     },
     {
       id: 3,
+<<<<<<< HEAD
       name: 'Jogos',
+=======
+      name: 'Gamezinho',
+>>>>>>> e792c55d956b9a5f236d1d7671aab0aa73d05a44
       icon: FaGamepad,
       bgColor: 'green.600',
       total: 100.99,
