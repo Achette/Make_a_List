@@ -14,7 +14,7 @@ import {
 } from '@chakra-ui/react'
 
 export const NewProduct = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure()
+  const { isOpen, onClose } = useDisclosure()
   const { isDesktop } = useMedia()
 
   return (
