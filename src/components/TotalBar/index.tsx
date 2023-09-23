@@ -8,13 +8,13 @@ type TotalBarProps = {
 
 export const TotalBar = ({ children }: TotalBarProps) => {
 
-    const { isMobile } = useMedia()
+    const { isMobileOrTablet } = useMedia()
   return (
     <Box
-      w={isMobile ? "full" : "calc(100% - 11rem)"}
+      w={isMobileOrTablet ? "full" : "calc(100% - 11rem)"}
       h="4.3125rem"
       position="absolute"
-      bottom={isMobile ? "2rem" : "8rem"}
+      bottom={isMobileOrTablet ? "2rem" : "8rem"}
       bgColor="rgba(125, 196, 228, 0.30)"
       px="1.5rem"
     >

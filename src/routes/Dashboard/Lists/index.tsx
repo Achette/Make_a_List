@@ -31,7 +31,7 @@ export type ListsProps = {
 }
 
 export const Lists = () => {
-  const { isMobile } = useMedia()
+  const { isMobileOrTablet } = useMedia()
 
   const [lists, setLists] = React.useState<ListsProps>()
 
@@ -49,7 +49,7 @@ export const Lists = () => {
         flexDir="column"
         gap="0.75rem"
         py="1.87rem"
-        px={isMobile ? '0' : '4rem'}
+        px={isMobileOrTablet ? '0' : '4rem'}
       >
         {lists &&
           lists.productLists.map((item, index) => (
@@ -65,7 +65,7 @@ export const Lists = () => {
 
         {!lists?.productLists.length && (
           <Text
-            fontSize={isMobile ? '0.75rem' : '1rem'}
+            fontSize={isMobileOrTablet ? '0.75rem' : '1rem'}
             fontWeight={500}
             color="blue.50"
           >

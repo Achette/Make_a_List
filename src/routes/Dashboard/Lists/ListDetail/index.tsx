@@ -24,15 +24,15 @@ export const ListDetail = () => {
   const { id } = useParams()
   const navigate = useNavigate()
 
-  const { isMobile } = useMedia()
+  const { isMobileOrTablet } = useMedia()
 
   const list = listMock.productLists[Number(id)]
   const { products } = list
 
   return (
-    <VStack w="full" px={isMobile ? '' : '3rem'}>
+    <VStack w="full" px={isMobileOrTablet ? '' : '3rem'}>
       <Flex w="full" justifyContent="space-between">
-        {isMobile && (
+        {isMobileOrTablet && (
           <Flex w="full" justifyContent="space-between" alignItems="center">
             <Flex>
               <Icon
@@ -85,7 +85,7 @@ export const ListDetail = () => {
       <Box pos="absolute" bottom="4.5rem" w="90%">
         <Divider orientation="horizontal" />
       </Box>
-      {!isMobile && <BottomOptionsBar />}
+      {!isMobileOrTablet && <BottomOptionsBar />}
     </VStack>
   )
 }
