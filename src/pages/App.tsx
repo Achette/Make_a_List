@@ -9,7 +9,7 @@ import {
   Dashboard,
   Lists,
   ListDetail,
-  NewList
+  NewList,
 } from 'routes'
 
 function App() {
@@ -27,7 +27,7 @@ function App() {
           <Route path="/lists" element={<Dashboard />}>
             <Route index element={<Lists />} />
             <Route path="/lists/:id" element={<ListDetail />} />
-          <Route path="/lists/new-list" element={<NewList />} />
+            <Route path="/lists/new-list" element={<NewList />} />
           </Route>
         </Routes>
       </BrowserRouter>
