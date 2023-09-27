@@ -43,7 +43,11 @@ export const ListItems = ({
         </VStack>
       </HStack>
 
-      <Flex w="full" flex={isMobileOrTablet ? 1 : 2} justifyContent="space-between">
+      <Flex
+        w="full"
+        flex={isMobileOrTablet ? 1 : 2}
+        justifyContent="space-between"
+      >
         <Text
           fontSize="1rem"
           fontWeight={400}
