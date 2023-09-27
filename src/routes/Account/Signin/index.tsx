@@ -15,6 +15,7 @@ export type NewUserProps = {
   name: string
   email: string
   password: string
+  confirm_password: string
 }
 
 export const SignIn = () => {
@@ -112,6 +113,26 @@ export const SignIn = () => {
             visibility={errors.password ? 'visible' : 'hidden'}
           >
             Senha é obrigatório
+          </Text>
+
+          <Input
+            type="password"
+            id="confirm_password"
+            w="21.5rem"
+            h="3rem"
+            bg="linear-gradient(0deg, rgba(217, 217, 227, 0.40) 0%, rgba(217, 217, 227, 0.40) 100%), var(--dark-blue, #27488F)"
+            border="none"
+            placeholder="Confirme sua senha"
+            _placeholder={{ color: 'blue.900' }}
+            {...register('confirm_password', { required: true })}
+          />
+          <Text
+            fontSize="0.75rem"
+            color="white.400"
+            mt="-0.3rem"
+            visibility={errors.confirm_password ? 'visible' : 'hidden'}
+          >
+            Confirmação de senha é obrigatório
           </Text>
 
           <Button
