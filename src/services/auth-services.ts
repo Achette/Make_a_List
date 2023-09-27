@@ -5,11 +5,11 @@ import { NewUserProps, UserProps } from 'routes'
 
 export const UserApi = {
   newUser: async (data: NewUserProps) => {
-    const response = await axios.post(`${BASE_URL}/singup`, data)
+    const response = await axios.post(`${BASE_URL}/signup`, data)
     return response.data
   },
   login: async (data: UserProps) => {
-    const response = await axios.post(`${BASE_URL}/singin`, data)
+    const response = await axios.post(`${BASE_URL}/signin`, data)
     return response.data
   },
 }
