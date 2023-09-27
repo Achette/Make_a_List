@@ -1,6 +1,7 @@
 import React from 'react'
 import { useMedia } from 'hooks'
 import { IconType } from 'react-icons/lib'
+import { getLists } from 'services/list-services'
 import { Box, Flex, Text } from '@chakra-ui/react'
 import { SearchBar, List, AddButton } from 'components'
 
@@ -35,8 +36,10 @@ export const Lists = () => {
 
   const [lists, setLists] = React.useState<ListsProps>()
 
+
   React.useEffect(() => {
     setLists(listMock)
+    getLists.getAll().then(res => console.log(res))
   }, [])
 
   return (
