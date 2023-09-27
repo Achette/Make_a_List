@@ -1,7 +1,10 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import * as accessTokenRepository from 'hooks'
+import { UserApi } from 'services/auth-services'
+import { Link, useNavigate } from 'react-router-dom'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import {
+  Box,
   Button,
   Flex,
   FormControl,
@@ -17,6 +20,8 @@ export type UserProps = {
 }
 
 export const Login = () => {
+  const navigate = useNavigate()
+
   const {
     register,
     handleSubmit,
@@ -24,7 +29,14 @@ export const Login = () => {
   } = useForm<UserProps>()
 
   const onSubmit: SubmitHandler<UserProps> = async (data) => {
-    console.log(data)
+    try {
+      const response = await UserApi.login(data)
+      console.log(response)
+      accessTokenRepository.saveToken(response.token)
+      navigate('/lists')
+    } catch (e) {
+      console.error(e)
+    }
   }
 
   return (
@@ -53,13 +65,17 @@ export const Login = () => {
             _placeholder={{ color: 'blue.900' }}
             {...register('email', { required: true })}
           />
-          {errors.email && (
-            <Flex w="full" mt="-0.3rem" justifyContent="flex-start">
-              <Text fontSize="0.75rem" color="red.700">
-                Este campo é obrigatório
-              </Text>
-            </Flex>
-          )}
+
+          <Box w="full">
+            <Text
+              fontSize="0.75rem"
+              color="white.400"
+              mt="-0.3rem"
+              visibility={errors.email ? 'visible' : 'hidden'}
+            >
+              E-mail é obrigatório
+            </Text>
+          </Box>
 
           <Input
             w="21.5rem"
@@ -70,13 +86,16 @@ export const Login = () => {
             _placeholder={{ color: 'blue.900' }}
             {...register('password', { required: true })}
           />
-          {errors.password && (
-            <Flex w="full" mt="-0.3rem" justifyContent="flex-start">
-              <Text fontSize="0.75rem" color="red.700">
-                Este campo é obrigatório
-              </Text>
-            </Flex>
-          )}
+          <Box w="full">
+            <Text
+              fontSize="0.75rem"
+              color="white.400"
+              mt="-0.3rem"
+              visibility={errors.password ? 'visible' : 'hidden'}
+            >
+              Senha é obrigatório
+            </Text>
+          </Box>
 
           <Flex w="21.5rem" justifyContent={'flex-end'}>
             <Text
