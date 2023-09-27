@@ -57,11 +57,14 @@ export const Login = () => {
           </Heading>
 
           <Input
+            id="name"
             w="21.5rem"
             h="3rem"
             bg="linear-gradient(0deg, rgba(217, 217, 227, 0.40) 0%, rgba(217, 217, 227, 0.40) 100%), var(--dark-blue, #27488F)"
             border="none"
             placeholder="E-mail"
+            type="email"
+            color="white.400"
             _placeholder={{ color: 'blue.900' }}
             {...register('email', { required: true })}
           />
@@ -78,11 +81,14 @@ export const Login = () => {
           </Box>
 
           <Input
+            id="password"
             w="21.5rem"
             h="3rem"
             bg="linear-gradient(0deg, rgba(217, 217, 227, 0.40) 0%, rgba(217, 217, 227, 0.40) 100%), var(--dark-blue, #27488F)"
             border="none"
             placeholder="Senha"
+            type="password"
+            color="white.400"
             _placeholder={{ color: 'blue.900' }}
             {...register('password', { required: true })}
           />
