@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { UserApi } from 'services/auth-services'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import {
@@ -18,6 +18,8 @@ export type NewUserProps = {
 }
 
 export const SignIn = () => {
+  const navigate = useNavigate()
+
   const {
     register,
     handleSubmit,
@@ -25,9 +27,13 @@ export const SignIn = () => {
   } = useForm<NewUserProps>()
 
   const onSubmit: SubmitHandler<NewUserProps> = async (data) => {
-    UserApi.newUser(data)
-      .then((res) => console.log(res.data))
-      .catch((e) => console.log(e))
+    try {
+      const response = await UserApi.newUser(data)
+
+      if (response.success) navigate('/account')
+    } catch (e) {
+      console.error(e)
+    }
   }
 
   return (
@@ -59,11 +65,14 @@ export const SignIn = () => {
             _placeholder={{ color: 'blue.900' }}
             {...register('name', { required: true })}
           />
-          {errors.name && (
-            <Text fontSize="0.75rem" color="red.700" mt="-0.3rem">
-              Este campo é obrigatório
-            </Text>
-          )}
+          <Text
+            fontSize="0.75rem"
+            color="white.400"
+            mt="-0.3rem"
+            visibility={errors.name ? 'visible' : 'hidden'}
+          >
+            Nome é obrigatório
+          </Text>
 
           <Input
             type="email"
@@ -76,11 +85,14 @@ export const SignIn = () => {
             _placeholder={{ color: 'blue.900' }}
             {...register('email', { required: true })}
           />
-          {errors.email && (
-            <Text fontSize="0.75rem" color="red.700" mt="-0.3rem">
-              Este campo é obrigatório
-            </Text>
-          )}
+          <Text
+            fontSize="0.75rem"
+            color="white.400"
+            mt="-0.3rem"
+            visibility={errors.email ? 'visible' : 'hidden'}
+          >
+            E-mail é obrigatório
+          </Text>
 
           <Input
             type="password"
@@ -93,11 +105,14 @@ export const SignIn = () => {
             _placeholder={{ color: 'blue.900' }}
             {...register('password', { required: true })}
           />
-          {errors.password && (
-            <Text fontSize="0.75rem" color="red.700" mt="-0.3rem">
-              Este campo é obrigatório
-            </Text>
-          )}
+          <Text
+            fontSize="0.75rem"
+            color="white.400"
+            mt="-0.3rem"
+            visibility={errors.password ? 'visible' : 'hidden'}
+          >
+            Senha é obrigatório
+          </Text>
 
           <Button
             w="21.5rem"
