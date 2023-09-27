@@ -59,7 +59,7 @@ export const ListDetail = () => {
         )}
       </Flex>
 
-      <ListDetailTopBar>{list.name}</ListDetailTopBar>
+      <ListDetailTopBar shared={list.shared} >{list.name}</ListDetailTopBar>
 
       <Flex w="full" h="auto" flexDir="column">
         {products.map((item, index) => (
