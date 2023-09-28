@@ -6,6 +6,7 @@ import {
   Flex,
   Icon,
   Link as LinkChakra,
+  Text,
   VStack,
 } from '@chakra-ui/react'
 import {
@@ -30,28 +31,57 @@ export const AddButton = () => {
     >
       <Collapse in={collapse} animateOpacity>
         <VStack flexDir="column-reverse">
-          <LinkChakra as={Link} title="Add group" order={4}>
-            <Icon
-              as={MdGroupAdd}
-              w="3rem"
-              h="3rem"
-              p="0.7rem"
-              bg="blue.50"
-              color="blue.900"
-              borderRadius="full"
-            />
+          <LinkChakra
+            as={Link}
+            title="Add group"
+            order={4}
+            _hover={{ textDecoration: 'none' }}
+          >
+            <VStack>
+              <Icon
+                as={MdGroupAdd}
+                w="3rem"
+                h="3rem"
+                p="0.7rem"
+                bg="blue.50"
+                color="blue.900"
+                borderRadius="full"
+              />
+              <Text
+                color="blue.900"
+                fontSize="0.75rem"
+                fontWeight={500}
+                mt="-0.35rem"
+              >
+                Grupo
+              </Text>
+            </VStack>
           </LinkChakra>
 
-          <LinkChakra title="Add list" order={3}>
-            <Icon
-              as={MdPlaylistAdd}
-              w="3rem"
-              h="3rem"
-              p="0.7rem"
-              bg="blue.50"
-              color="blue.900"
-              borderRadius="full"
-            />
+          <LinkChakra
+            title="Add list"
+            order={3}
+            _hover={{ textDecoration: 'none' }}
+          >
+            <VStack>
+              <Icon
+                as={MdPlaylistAdd}
+                w="3rem"
+                h="3rem"
+                p="0.7rem"
+                bg="blue.50"
+                color="blue.900"
+                borderRadius="full"
+              />
+              <Text
+                color="blue.900"
+                fontSize="0.75rem"
+                fontWeight={500}
+                mt="-0.35rem"
+              >
+                Lista
+              </Text>
+            </VStack>
           </LinkChakra>
 
           <LinkChakra
