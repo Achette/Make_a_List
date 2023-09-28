@@ -113,7 +113,7 @@ export const Login = () => {
               lineHeight="1.375rem"
               letterSpacing="-0.41px"
             >
-              <Link to="#">Esqueceu sua senha?</Link>
+              <Link to="/account/new-password">Esqueceu sua senha?</Link>
             </Text>
           </Flex>
 
