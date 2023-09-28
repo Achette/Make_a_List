@@ -10,6 +10,7 @@ import {
   Lists,
   ListDetail,
   NewList,
+  NewPassword,
 } from 'routes'
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
           <Route path="/account" element={<AccessAccount />}>
             <Route index element={<Login />} />
             <Route path="signin" element={<SignIn />} />
+            <Route path="new-password" element={<NewPassword />} />
           </Route>
           <Route path="/lists" element={<Dashboard />}>
             <Route index element={<Lists />} />
