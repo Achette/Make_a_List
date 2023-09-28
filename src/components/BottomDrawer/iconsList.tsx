@@ -1,11 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import {
-  Flex,
-  Icon,
-  Link as LinkChakra,
-  Text,
-} from '@chakra-ui/react'
+import { Flex, Icon, Link as LinkChakra, Text } from '@chakra-ui/react'
 import {
   MdContentCopy,
   MdDeleteOutline,
@@ -37,7 +32,7 @@ const navigation = [
   },
 ]
 
-export const DrawerNavigation = () => {
+export const DrawerNavigation = React.memo(function DrawerNavigation() {
   return (
     <>
       {navigation.map((item, index) => (
@@ -56,9 +51,9 @@ export const DrawerNavigation = () => {
       ))}
     </>
   )
-}
+})
 
-export const BottomOptionsBar = () => {
+export const BottomOptionsBar = React.memo(function BottomOptionsBar() {
   return (
     <>
       <Flex w="full" position="absolute" bottom="1rem">
@@ -91,4 +86,4 @@ export const BottomOptionsBar = () => {
       </Flex>
     </>
   )
-}
+})
