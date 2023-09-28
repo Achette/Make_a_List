@@ -18,13 +18,13 @@ import {
 export const AddButton = () => {
   const [collapse, setCollapse] = React.useState<boolean>(false)
 
-  const { isMobile } = useMedia()
+  const { isMobileOrTablet } = useMedia()
 
   return (
     <Flex
       position="absolute"
-      right={isMobile ? 8 : 12}
-      bottom={isMobile ? 8 : 12}
+      right={isMobileOrTablet ? 8 : 12}
+      bottom={isMobileOrTablet ? 8 : 12}
       flexDir="column"
       overflow="hidden"
     >

@@ -21,21 +21,21 @@ type ListProps = {
 }
 
 export const List = ({ id, icon, bgColor, listName, shared }: ListProps) => {
-  const { isMobile } = useMedia()
+  const { isMobileOrTablet } = useMedia()
 
   return (
     <HStack
       w="full"
-      h={isMobile ? '3rem' : '4.25rem'}
+      h={isMobileOrTablet ? '3rem' : '4.25rem'}
       bg="gray.100"
       borderRadius="62.5rem"
-      p={isMobile ? '1rem' : '2rem'}
+      p={isMobileOrTablet ? '1rem' : '2rem'}
       justifyContent="space-between"
     >
       <Flex alignItems="center">
         <Flex
-          h={isMobile ? '1.8rem' : '2.5rem'}
-          w={isMobile ? '1.8rem' : '2.5rem'}
+          h={isMobileOrTablet ? '1.8rem' : '2.5rem'}
+          w={isMobileOrTablet ? '1.8rem' : '2.5rem'}
           bg={bgColor}
           p=".75rem"
           borderRadius="full"
@@ -44,8 +44,8 @@ export const List = ({ id, icon, bgColor, listName, shared }: ListProps) => {
         >
           <Icon
             as={icon}
-            h={isMobile ? '1.15rem' : '1.5rem'}
-            w={isMobile ? '1.15rem' : '1.5rem'}
+            h={isMobileOrTablet ? '1.15rem' : '1.5rem'}
+            w={isMobileOrTablet ? '1.15rem' : '1.5rem'}
             color="whiteAlpha.900"
           />
         </Flex>
@@ -72,8 +72,8 @@ export const List = ({ id, icon, bgColor, listName, shared }: ListProps) => {
           {shared.map((item, index) => (
             <AvatarGroup key={index} ml="-0.4rem">
               <Avatar
-                w={isMobile ? '2rem' : '2.25rem'}
-                h={isMobile ? '2rem' : '2.25rem'}
+                w={isMobileOrTablet ? '2rem' : '2.25rem'}
+                h={isMobileOrTablet ? '2rem' : '2.25rem'}
                 name={item}
                 color="whiteAlpha.900"
                 border="none"

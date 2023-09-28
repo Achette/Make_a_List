@@ -7,7 +7,7 @@ import { useMedia } from 'hooks'
 export const SearchBar = () => {
   const { collapse, setCollapse } = React.useContext(SidebarContext)
 
-  const { isMobile } = useMedia()
+  const { isMobileOrTablet } = useMedia()
 
   return (
     <Flex w="full" h="3.5rem" flexDir="row">
@@ -28,7 +28,7 @@ export const SearchBar = () => {
           onClick={() => setCollapse(!collapse)}
         />
         <Input
-          maxW={isMobile ? '14rem' : '36rem'}
+          maxW={isMobileOrTablet ? '14rem' : '36rem'}
           border="none"
           placeholder="Procurar nas suas listas"
           outline="none"

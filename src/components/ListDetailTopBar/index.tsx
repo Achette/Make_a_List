@@ -8,7 +8,7 @@ type AddProductButtonProps = {
 }
 
 export const ListDetailTopBar = ({ children }: AddProductButtonProps) => {
-  const { isMobile } = useMedia()
+  const { isMobileOrTablet } = useMedia()
   const navigate = useNavigate()
 
   return (
@@ -39,25 +39,25 @@ export const ListDetailTopBar = ({ children }: AddProductButtonProps) => {
 
       <HStack
         w="fit-content"
-        justifyContent={isMobile ? 'flex-start' : 'flex-end'}
+        justifyContent={isMobileOrTablet ? 'flex-start' : 'flex-end'}
         alignItems="center"
         flexDirection="column"
       >
         <Button
-          px={isMobile ? '0' : '1rem'}
-          fontSize={isMobile ? '1rem' : '1.0625rem'}
+          px={isMobileOrTablet ? '0' : '1rem'}
+          fontSize={isMobileOrTablet ? '1rem' : '1.0625rem'}
           fontWeight={500}
           lineHeight="1.375rem"
           letterSpacing="-0.02563rem"
-          bgColor={isMobile ? 'transparent' : 'blue.900'}
-          color={isMobile ? 'blue.900' : 'white'}
+          bgColor={isMobileOrTablet ? 'transparent' : 'blue.900'}
+          color={isMobileOrTablet ? 'blue.900' : 'white'}
           borderRadius="0.625rem"
-          _hover={{ bgColor: isMobile ? 'transparent' : 'blue.500' }}
+          _hover={{ bgColor: isMobileOrTablet ? 'transparent' : 'blue.500' }}
         >
           Adicionar Produtos
         </Button>
 
-        {!isMobile && (
+        {!isMobileOrTablet && (
           <Button
             bgColor="transparent"
             color="red.400"
