@@ -31,7 +31,12 @@ export const AddButton = () => {
     >
       <Collapse in={collapse} animateOpacity>
         <VStack flexDir="column-reverse">
-          <LinkChakra as={Link} title="Add group" order={4}>
+          <LinkChakra
+            as={Link}
+            title="Add group"
+            order={4}
+            _hover={{ textDecoration: 'none' }}
+          >
             <VStack>
               <Icon
                 as={MdGroupAdd}
@@ -53,7 +58,11 @@ export const AddButton = () => {
             </VStack>
           </LinkChakra>
 
-          <LinkChakra title="Add list" order={3} >
+          <LinkChakra
+            title="Add list"
+            order={3}
+            _hover={{ textDecoration: 'none' }}
+          >
             <VStack>
               <Icon
                 as={MdPlaylistAdd}
