@@ -153,7 +153,7 @@ export const SignIn = () => {
       </FormControl>
 
       <Text
-        m="2.5rem 0 7.75rem 0"
+        m="2.5rem 0 0 0"
         textAlign="center"
         color="white.400"
         fontSize="md"
