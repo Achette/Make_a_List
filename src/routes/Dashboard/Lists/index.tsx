@@ -1,5 +1,6 @@
 import React from 'react'
 import { useMedia } from 'hooks'
+import { stringToIcon } from 'utils'
 import { IconType } from 'react-icons/lib'
 import { getLists } from 'services/list-services'
 import { Box, Flex, Text } from '@chakra-ui/react'
@@ -7,11 +8,12 @@ import { SearchBar, List, AddButton } from 'components'
 
 import { listMock } from 'mock/listmock' // será removido quando conectado ao backend
 
+
 export type ListsProps = {
   id: number
   productLists: {
     id: number
-    icon: IconType
+    icon: IconType | string
     name: string
     bgColor: string
     total: number
@@ -39,7 +41,7 @@ export const Lists = () => {
 
   React.useEffect(() => {
     setLists(listMock)
-    getLists.getAll().then(res => console.log(res))
+    getLists.getAll().then((res) => console.log(res.data.list))
   }, [])
 
   return (
@@ -55,11 +57,11 @@ export const Lists = () => {
         px={isMobileOrTablet ? '0' : '4rem'}
       >
         {lists &&
-          lists.productLists.map((item, index) => (
+          lists.productLists.map((item) => (
             <List
-              key={index}
+              key={item.id}
               bgColor={item.bgColor}
-              icon={item.icon}
+              icon={stringToIcon(item.icon) ?? undefined}
               listName={item.name}
               shared={item.shared}
               id={item.id - 1}

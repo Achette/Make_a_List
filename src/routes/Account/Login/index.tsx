@@ -31,7 +31,6 @@ export const Login = () => {
   const onSubmit: SubmitHandler<UserProps> = async (data) => {
     try {
       const response = await UserApi.login(data)
-      console.log(response)
       accessTokenRepository.saveToken(response.token)
       navigate('/lists')
     } catch (e) {
@@ -132,7 +131,7 @@ export const Login = () => {
           </Button>
 
           <Text
-            m="1.5rem 0 7.75rem 0"
+            m="1.5rem 0 0 0"
             textAlign="center"
             color="white.400"
             fontSize="md"

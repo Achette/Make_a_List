@@ -6,7 +6,7 @@ export const getLists = {
     const config: AxiosRequestConfig = {
       method: 'GET',
       url: '/purchase-list',
-      signal: AbortSignal.timeout(5000),
+
     }
 
     return requestBackend(config)
