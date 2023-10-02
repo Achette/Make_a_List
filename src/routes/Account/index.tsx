@@ -1,7 +1,6 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
-import { ConnectBar } from '../../components'
-import { Box, Flex, Text } from '@chakra-ui/react'
+import { Box, Flex } from '@chakra-ui/react'
 
 export const AccessAccount = () => {
   return (
@@ -13,19 +12,6 @@ export const AccessAccount = () => {
         flexDirection="column"
       >
         <Outlet />
-
-        <Text
-          mb="1.25rem"
-          textAlign="center"
-          color="white.400"
-          fontSize="md"
-          fontWeight={400}
-          lineHeight="1.25rem"
-          letterSpacing="-0.24px"
-        >
-          ou entre com
-        </Text>
-        <ConnectBar />
       </Flex>
     </Box>
   )

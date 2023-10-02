@@ -1,0 +1,76 @@
+import React from 'react'
+import { useMedia } from 'hooks'
+import { useNavigate } from 'react-router-dom'
+import { Button, Divider, Flex, HStack, Text } from '@chakra-ui/react'
+
+type AddProductButtonProps = {
+  children: React.ReactNode
+}
+
+export const ListDetailTopBar = ({ children }: AddProductButtonProps) => {
+  const { isMobileOrTablet } = useMedia()
+  const navigate = useNavigate()
+
+  return (
+    <Flex w="full" justifyContent="space-between">
+      <Flex w="full" justifyContent="space-between" flexDirection="column">
+        <Text
+          fontSize="2.125rem"
+          fontWeight={700}
+          lineHeight="2.5625rem"
+          letterSpacing="0.025rem"
+          color="blue.900"
+        >
+          {children}
+        </Text>
+
+        <Text
+          fontSize="1.0625rem"
+          color="gray.400"
+          fontWeight={400}
+          lineHeight="1.375rem"
+          letterSpacing="-0.02563rem"
+        >
+          Compartilhado com
+        </Text>
+
+        <Divider />
+      </Flex>
+
+      <HStack
+        w="fit-content"
+        justifyContent={isMobileOrTablet ? 'flex-start' : 'flex-end'}
+        alignItems="center"
+        flexDirection="column"
+      >
+        <Button
+          px={isMobileOrTablet ? '0' : '1rem'}
+          fontSize={isMobileOrTablet ? '1rem' : '1.0625rem'}
+          fontWeight={500}
+          lineHeight="1.375rem"
+          letterSpacing="-0.02563rem"
+          bgColor={isMobileOrTablet ? 'transparent' : 'blue.900'}
+          color={isMobileOrTablet ? 'blue.900' : 'white'}
+          borderRadius="0.625rem"
+          _hover={{ bgColor: isMobileOrTablet ? 'transparent' : 'blue.500' }}
+        >
+          Adicionar Produtos
+        </Button>
+
+        {!isMobileOrTablet && (
+          <Button
+            bgColor="transparent"
+            color="red.400"
+            fontSize="1.0625rem"
+            fontWeight={500}
+            lineHeight="1.375rem"
+            letterSpacing="-0.02563rem"
+            onClick={() => navigate(-1)}
+          >
+            Fechar
+          </Button>
+        )}
+      </HStack>
+    </Flex>
+  )
+}
