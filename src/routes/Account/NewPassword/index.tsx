@@ -65,7 +65,7 @@ export const NewPassword = () => {
               mt="-0.3rem"
               visibility={errors.email ? 'visible' : 'hidden'}
             >
-              Nova senha é obrigatório
+              E-mail do usuário é obrigatório
             </Text>
           </Box>
 

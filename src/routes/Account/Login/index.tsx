@@ -12,6 +12,7 @@ import {
   Input,
   Text,
   VStack,
+  Link as LinkChakra
 } from '@chakra-ui/react'
 
 export type UserProps = {
@@ -140,7 +141,7 @@ export const Login = () => {
             letterSpacing="-0.41px"
           >
             Ainda não tem uma conta?{' '}
-            <Link to="/account/signin">Cadastre-se</Link>
+            <LinkChakra as={Link} to="/account/signin" fontWeight={700}>Cadastre-se</LinkChakra>
           </Text>
         </VStack>
       </FormControl>
