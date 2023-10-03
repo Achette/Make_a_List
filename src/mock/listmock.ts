@@ -1,5 +1,4 @@
 import { ListsProps } from 'routes'
-import { FaGamepad, FaGift, FaShoppingBasket, FaWineGlassAlt } from 'react-icons/fa'
 
 export const listMock: ListsProps = {
   id: 1,
@@ -7,7 +6,7 @@ export const listMock: ListsProps = {
     {
       id: 1,
       name: 'Compras',
-      icon: FaShoppingBasket,
+      icon: 'shopping',
       bgColor: 'blue.600',
       total: 100.99,
       concluded: false,
@@ -57,7 +56,7 @@ export const listMock: ListsProps = {
     {
       id: 2,
       name: 'Aniversário',
-      icon: FaGift,
+      icon: 'gift',
       bgColor: 'red.500',
       total: 100.99,
       concluded: false,
@@ -113,7 +112,7 @@ export const listMock: ListsProps = {
     {
       id: 3,
       name: 'Jogos',
-      icon: FaGamepad,
+      icon: 'gamepad',
       bgColor: 'green.600',
       total: 100.99,
       concluded: true,
@@ -163,7 +162,7 @@ export const listMock: ListsProps = {
     {
       id: 4,
       name: 'Churrasco',
-      icon: FaWineGlassAlt,
+      icon: 'glass',
       bgColor: 'purple.600',
       total: 100.99,
       concluded: true,
@@ -208,7 +207,7 @@ export const listMock: ListsProps = {
           ],
         },
       ],
-      shared: ['Gabriel Imenes', 'Raul', 'Duda', 'João Paulo',  'Igor'],
+      shared: ['Gabriel Imenes', 'Raul', 'Duda', 'João Paulo', 'Igor'],
     },
   ],
 }

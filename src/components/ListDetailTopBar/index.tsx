@@ -10,7 +10,7 @@ interface AddProductButtonProps {
 }
 
 export const ListDetailTopBar = ({ children, shared }: AddProductButtonProps) => {
-  const { isMobile } = useMedia()
+  const { isMobileOrTablet } = useMedia()
   const navigate = useNavigate()
 
   return (
@@ -28,25 +28,25 @@ export const ListDetailTopBar = ({ children, shared }: AddProductButtonProps) =>
 
         <HStack
           w="fit-content"
-          justifyContent={isMobile ? 'flex-start' : 'flex-end'}
+          justifyContent={isMobileOrTablet ? 'flex-start' : 'flex-end'}
           alignItems="center"
           flexDirection="row"
         >
           <Button
-            px={isMobile ? '0' : '1rem'}
-            fontSize={isMobile ? '1rem' : '1.0625rem'}
+            px={isMobileOrTablet ? '0' : '1rem'}
+            fontSize={isMobileOrTablet ? '1rem' : '1.0625rem'}
             fontWeight={500}
             lineHeight="1.375rem"
             letterSpacing="-0.02563rem"
-            bgColor={isMobile ? 'transparent' : 'blue.900'}
-            color={isMobile ? 'blue.900' : 'white'}
+            bgColor={isMobileOrTablet ? 'transparent' : 'blue.900'}
+            color={isMobileOrTablet ? 'blue.900' : 'white'}
             borderRadius="0.625rem"
-            _hover={{ bgColor: isMobile ? 'transparent' : 'blue.500' }}
+            _hover={{ bgColor: isMobileOrTablet ? 'transparent' : 'blue.500' }}
           >
             Adicionar Produtos
           </Button>
 
-          {!isMobile && (
+          {!isMobileOrTablet && (
             <Button
               bgColor="transparent"
               color="red.400"
@@ -83,8 +83,8 @@ export const ListDetailTopBar = ({ children, shared }: AddProductButtonProps) =>
             {shared.slice(0, 5).map((item, index) => (
               <Avatar
                 key={index}
-                w={isMobile ? '2rem' : '2.25rem'}
-                h={isMobile ? '2rem' : '2.25rem'}
+                w={isMobileOrTablet ? '2rem' : '2.25rem'}
+                h={isMobileOrTablet ? '2rem' : '2.25rem'}
                 name={item}
                 color="whiteAlpha.900"
                 border="none"

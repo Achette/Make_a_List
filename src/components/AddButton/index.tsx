@@ -1,11 +1,12 @@
 import React from 'react'
 import { useMedia } from 'hooks'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import {
   Collapse,
   Flex,
   Icon,
   Link as LinkChakra,
+  Text,
   VStack,
 } from '@chakra-ui/react'
 import {
@@ -16,42 +17,73 @@ import {
 } from 'react-icons/md'
 
 export const AddButton = () => {
+  const navigate = useNavigate()
+
   const [collapse, setCollapse] = React.useState<boolean>(false)
 
-  const { isMobile } = useMedia()
+  const { isMobileOrTablet } = useMedia()
 
   return (
     <Flex
       position="absolute"
-      right={isMobile ? 8 : 12}
-      bottom={isMobile ? 8 : 12}
+      right={isMobileOrTablet ? 8 : 12}
+      bottom={isMobileOrTablet ? 8 : 12}
       flexDir="column"
       overflow="hidden"
     >
       <Collapse in={collapse} animateOpacity>
         <VStack flexDir="column-reverse">
-          <LinkChakra as={Link} title="Add group" order={4}>
-            <Icon
-              as={MdGroupAdd}
-              w="3rem"
-              h="3rem"
-              p="0.7rem"
-              bg="blue.50"
-              color="blue.900"
-              borderRadius="full"
-            />
+          <LinkChakra
+            as={Link}
+            title="Add group"
+            order={4}
+            _hover={{ textDecoration: 'none' }}
+          >
+            <VStack>
+              <Icon
+                as={MdGroupAdd}
+                w="3rem"
+                h="3rem"
+                p="0.7rem"
+                bg="blue.50"
+                color="blue.900"
+                borderRadius="full"
+              />
+              <Text
+                color="blue.900"
+                fontSize="0.75rem"
+                fontWeight={500}
+                mt="-0.35rem"
+              >
+                Grupo
+              </Text>
+            </VStack>
           </LinkChakra>
 
-          <LinkChakra title="Add list" order={3}>
-            <Icon
-              as={MdPlaylistAdd}
-              w="3rem"
-              h="3rem"
-              p="0.7rem"
-              bg="blue.50"
-              color="blue.900"
-              borderRadius="full"
-            />
+          <LinkChakra
+            title="Add list"
+            order={3}
+            _hover={{ textDecoration: 'none' }}
+          >
+            <VStack onClick={() => navigate('/lists/new-list')}>
+              <Icon
+                as={MdPlaylistAdd}
+                w="3rem"
+                h="3rem"
+                p="0.7rem"
+                bg="blue.50"
+                color="blue.900"
+                borderRadius="full"
+              />
+              <Text
+                color="blue.900"
+                fontSize="0.75rem"
+                fontWeight={500}
+                mt="-0.35rem"
+              >
+                Lista
+              </Text>
+            </VStack>
           </LinkChakra>
 
           <LinkChakra

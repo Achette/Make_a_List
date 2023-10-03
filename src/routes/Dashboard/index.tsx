@@ -9,22 +9,22 @@ import { CollapsedLogo, FooterNavigation, Logo, Sidebar } from 'components'
 export const Dashboard = () => {
   const { collapse, setCollapse } = React.useContext(SidebarContext)
 
-  const { isMobile } = useMedia()
+  const { isMobileOrTablet } = useMedia()
 
   return (
     <Flex
       w="full"
       h="100vh"
       bg="white"
-      padding={isMobile ? 'none' : 1}
+      padding={isMobileOrTablet ? 'none' : 1}
       position={'relative'}
       transition="ease-in-out .2s"
     >
       <Flex
         as="aside"
         h="full"
-        maxW={!isMobile ? (collapse ? 350 : 100) : 350}
-        w={isMobile ? '350px' : 'full'}
+        maxW={!isMobileOrTablet ? (collapse ? 350 : 100) : 350}
+        w={isMobileOrTablet ? '350px' : 'full'}
         bg="blue.900"
         alignItems="start"
         padding={!collapse ? '1.5rem 1.5rem 0 1rem' : '1.5rem 1.5rem 0 1.5rem'}
@@ -32,13 +32,13 @@ export const Dashboard = () => {
         justifyContent="space-between"
         borderRadius="0.5rem"
         mr="0.5rem"
-        position={isMobile ? 'absolute' : 'inherit'}
-        display={isMobile && !collapse ? 'none' : 'inherit'}
+        position={isMobileOrTablet ? 'absolute' : 'inherit'}
+        display={isMobileOrTablet && !collapse ? 'none' : 'inherit'}
         zIndex={1}
         transition="ease-in-out .2s"
       >
-        <VStack h="100%" gap={6} paddingTop={isMobile ? 0 : 6}>
-          {isMobile && (
+        <VStack h="100%" gap={6} paddingTop={isMobileOrTablet ? 0 : 6}>
+          {isMobileOrTablet && (
             <Flex w="full" justifyContent={'flex-end'}>
               <Icon
                 as={MdArrowBack}
@@ -60,7 +60,7 @@ export const Dashboard = () => {
         w="full"
         h="full"
         bg="white"
-        p={isMobile ? '1rem' : '1.75rem'}
+        p={isMobileOrTablet ? '1rem' : '1.75rem'}
         flexDirection="row"
         position="relative"
         borderRadius="0.5rem"

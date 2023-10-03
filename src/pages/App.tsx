@@ -9,7 +9,8 @@ import {
   Dashboard,
   Lists,
   ListDetail,
-  NewList
+  NewList,
+  NewPassword,
 } from 'routes'
 
 function App() {
@@ -23,12 +24,13 @@ function App() {
           <Route path="/account" element={<AccessAccount />}>
             <Route index element={<Login />} />
             <Route path="signin" element={<SignIn />} />
+            <Route path="new-password" element={<NewPassword />} />
           </Route>
           <Route path="/lists" element={<Dashboard />}>
             <Route index element={<Lists />} />
             <Route path="/lists/:id" element={<ListDetail />} />
+            <Route path="/lists/new-list" element={<NewList />} />
           </Route>
-          <Route path="/new-list" element={<NewList />} />
         </Routes>
       </BrowserRouter>
     </SidebarContext.Provider>
