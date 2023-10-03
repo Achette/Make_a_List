@@ -1,6 +1,6 @@
-import { ListsProps } from 'routes'
+// import { ListsProps } from 'routes'
 
-export const listMock: ListsProps = {
+export const listMock = {
   id: 1,
   productLists: [
     {
