@@ -1,6 +1,6 @@
 import React from 'react'
 import { useMedia } from 'hooks'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import {
   Collapse,
   Flex,
@@ -17,6 +17,8 @@ import {
 } from 'react-icons/md'
 
 export const AddButton = () => {
+  const navigate = useNavigate()
+
   const [collapse, setCollapse] = React.useState<boolean>(false)
 
   const { isMobileOrTablet } = useMedia()
@@ -63,7 +65,7 @@ export const AddButton = () => {
             order={3}
             _hover={{ textDecoration: 'none' }}
           >
-            <VStack>
+            <VStack onClick={() => navigate('/lists/new-list')}>
               <Icon
                 as={MdPlaylistAdd}
                 w="3rem"

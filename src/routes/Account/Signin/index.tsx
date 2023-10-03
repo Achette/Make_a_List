@@ -9,6 +9,7 @@ import {
   Input,
   Text,
   VStack,
+  Link as LinkChakra,
 } from '@chakra-ui/react'
 
 export type NewUserProps = {
@@ -61,7 +62,7 @@ export const SignIn = () => {
             h="3rem"
             bg="linear-gradient(0deg, rgba(217, 217, 227, 0.40) 0%, rgba(217, 217, 227, 0.40) 100%), var(--dark-blue, #27488F)"
             border="none"
-            color="whiteAlpha.900"
+            color="white.400"
             placeholder="Nome"
             _placeholder={{ color: 'blue.900' }}
             {...register('name', { required: true })}
@@ -83,6 +84,7 @@ export const SignIn = () => {
             bg="linear-gradient(0deg, rgba(217, 217, 227, 0.40) 0%, rgba(217, 217, 227, 0.40) 100%), var(--dark-blue, #27488F)"
             border={'none'}
             placeholder="E-mail"
+            color="white.400"
             _placeholder={{ color: 'blue.900' }}
             {...register('email', { required: true })}
           />
@@ -103,6 +105,7 @@ export const SignIn = () => {
             bg="linear-gradient(0deg, rgba(217, 217, 227, 0.40) 0%, rgba(217, 217, 227, 0.40) 100%), var(--dark-blue, #27488F)"
             border="none"
             placeholder="Senha"
+            color="white.400"
             _placeholder={{ color: 'blue.900' }}
             {...register('password', { required: true })}
           />
@@ -123,6 +126,7 @@ export const SignIn = () => {
             bg="linear-gradient(0deg, rgba(217, 217, 227, 0.40) 0%, rgba(217, 217, 227, 0.40) 100%), var(--dark-blue, #27488F)"
             border="none"
             placeholder="Confirme sua senha"
+            color="white.400"
             _placeholder={{ color: 'blue.900' }}
             {...register('confirm_password', { required: true })}
           />
@@ -161,7 +165,10 @@ export const SignIn = () => {
         lineHeight="1.375rem"
         letterSpacing="-0.41px"
       >
-        Já possui uma conta? <Link to="/account">Entrar</Link>
+        Já possui uma conta?{' '}
+        <LinkChakra as={Link} to="/account" fontWeight={700}>
+          Entrar
+        </LinkChakra>
       </Text>
     </VStack>
   )
