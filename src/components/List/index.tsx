@@ -4,16 +4,12 @@ import { Link } from 'react-router-dom'
 import { IconType } from 'react-icons/lib'
 import {
   Avatar,
-  AvatarGroup,
   Flex,
   HStack,
   Icon,
   Text,
-  IconButton,
-  Tooltip,
   Link as LinkChakra,
 } from '@chakra-ui/react'
-import { ExternalLinkIcon } from '@chakra-ui/icons'
 
 type ListProps = {
   id: number
@@ -68,15 +64,17 @@ export const List = ({ id, icon, bgColor, listName, shared }: ListProps) => {
             ml="0.75rem"
           >
             {listName}
-
           </Text>
         </Flex>
 
         {shared && (
-          <Flex align="start" style={{ position: "relative", height: '30px', width: '130px', }}>
+          <Flex
+            align="start"
+            style={{ position: 'relative', height: '30px', width: '130px' }}
+          >
             {shared.slice(0, 5).map((item, index) => (
               <Avatar
-                key={index}
+                key={item}
                 w={isMobileOrTablet ? '2rem' : '2.25rem'}
                 h={isMobileOrTablet ? '2rem' : '2.25rem'}
                 name={item}
@@ -84,17 +82,15 @@ export const List = ({ id, icon, bgColor, listName, shared }: ListProps) => {
                 border="none"
                 title={item}
                 style={{
-                  position: "absolute",
+                  position: 'absolute',
                   right: `${index * 22}px`,
                   zIndex: index,
                 }}
               />
             ))}
           </Flex>
-
         )}
       </HStack>
     </LinkChakra>
-
   )
 }
