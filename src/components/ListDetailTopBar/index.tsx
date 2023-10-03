@@ -5,11 +5,11 @@ import { Button, Divider, Flex, HStack, Text, Avatar } from '@chakra-ui/react'
 
 
 interface AddProductButtonProps {
-  children: React.ReactNode;
-  shared: Array<string>;
+  name: string;
+  shared?: Array<string>;
 }
 
-export const ListDetailTopBar = ({ children, shared }: AddProductButtonProps) => {
+export const ListDetailTopBar = ({ name, shared }: AddProductButtonProps) => {
   const { isMobileOrTablet } = useMedia()
   const navigate = useNavigate()
 
@@ -23,7 +23,7 @@ export const ListDetailTopBar = ({ children, shared }: AddProductButtonProps) =>
           letterSpacing="0.025rem"
           color="blue.900"
         >
-          {children}
+          {name}
         </Text>
 
         <HStack
