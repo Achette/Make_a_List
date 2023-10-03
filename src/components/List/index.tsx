@@ -9,8 +9,11 @@ import {
   HStack,
   Icon,
   Text,
+  IconButton,
+  Tooltip,
   Link as LinkChakra,
 } from '@chakra-ui/react'
+import { ExternalLinkIcon } from '@chakra-ui/icons'
 
 type ListProps = {
   id: number
@@ -25,10 +28,11 @@ export const List = ({ id, icon, bgColor, listName, shared }: ListProps) => {
 
   return (
     <LinkChakra
+      w="full"
+      h={isMobileOrTablet ? '3rem' : '4.25rem'}
       as={Link}
       to={`/lists/${id}`}
-      w="full"
-      _hover={{ textDecoration: 'none' }}
+      _hover={{ color: 'blue.400', stroke: 'blue.400' }}
     >
       <HStack
         w="full"
@@ -63,33 +67,34 @@ export const List = ({ id, icon, bgColor, listName, shared }: ListProps) => {
             color="blue.900"
             ml="0.75rem"
           >
-            <LinkChakra
-              as={Link}
-              to={`/lists/${id}`}
-              _hover={{ color: 'blue.400', stroke: 'blue.400' }}
-            >
-              {listName}
-            </LinkChakra>
+            {listName}
+
           </Text>
         </Flex>
 
         {shared && (
-          <Flex>
-            {shared.map((item, index) => (
-              <AvatarGroup key={index} ml="-0.4rem">
-                <Avatar
-                  w={isMobileOrTablet ? '2rem' : '2.25rem'}
-                  h={isMobileOrTablet ? '2rem' : '2.25rem'}
-                  name={item}
-                  color="whiteAlpha.900"
-                  border="none"
-                  title={item}
-                />
-              </AvatarGroup>
+          <Flex align="start" style={{ position: "relative", height: '30px', width: '130px', }}>
+            {shared.slice(0, 5).map((item, index) => (
+              <Avatar
+                key={index}
+                w={isMobileOrTablet ? '2rem' : '2.25rem'}
+                h={isMobileOrTablet ? '2rem' : '2.25rem'}
+                name={item}
+                color="whiteAlpha.900"
+                border="none"
+                title={item}
+                style={{
+                  position: "absolute",
+                  right: `${index * 22}px`,
+                  zIndex: index,
+                }}
+              />
             ))}
           </Flex>
+
         )}
       </HStack>
     </LinkChakra>
+
   )
 }
