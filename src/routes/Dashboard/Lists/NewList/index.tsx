@@ -1,25 +1,66 @@
 import React from 'react'
 import { useMedia } from 'hooks'
+import { useNavigate } from 'react-router-dom'
 import { ColorSelect, IconSelect, NewProduct } from 'components'
-import { Box, Flex, Text, Input, Button } from '@chakra-ui/react'
+import { Box, Flex, Text, Input, Button, Divider } from '@chakra-ui/react'
 
 export const NewList = () => {
-  const { isDesktop } = useMedia()
+  const navigate = useNavigate()
+  const { isDesktop, isMobileOrTablet, isTablet } = useMedia()
 
   return (
-    <Box padding="1rem">
+    <Box
+      padding="0.75rem"
+      margin={isDesktop || isTablet ? 'auto auto' : '0 auto'}
+      maxW="56rem"
+    >
       <Flex
+        w="full"
         fontSize="1.0625rem"
         fontWeight={500}
         color="blue.900"
-        justifyContent="space-between"
+        justifyContent={isDesktop ? 'space-between' : 'space-between'}
+        alignItems={isDesktop ? 'center' : 'unset'}
+        flexDirection={isMobileOrTablet ? 'column-reverse' : 'row'}
       >
-        <button type="button">Cancelar</button>{' '}
-        <button type="button">Criar Lista</button>
+        <Text color="blue.900" fontSize="2.215rem" fontWeight={700}>
+          Nova lista
+        </Text>
+        <Flex
+          flexDirection={isDesktop ? 'column-reverse' : 'row'}
+          justifyContent={isDesktop ? 'flex-end' : 'space-between'}
+          alignItems={isDesktop ? 'center' : 'unset'}
+          gap="0.625rem"
+        >
+          <Button
+            type="button"
+            bgColor="transparent"
+            color={isMobileOrTablet ? 'blue.900' : 'red.400'}
+            fontSize="1.0625rem"
+            fontWeight={500}
+            lineHeight="1.375rem"
+            letterSpacing="-0.02563rem"
+            px="0"
+            onClick={() => navigate(-1)}
+          >
+            Cancelar
+          </Button>{' '}
+          <Button
+            type="button"
+            w={isDesktop ? '10rem' : 'auto'}
+            bgColor={isDesktop ? 'blue.900' : 'transparent'}
+            color={isDesktop ? 'whiteAlpha.900' : 'blue.900'}
+            fontSize="1.0625rem"
+            fontWeight={500}
+            lineHeight="1.375rem"
+            letterSpacing="-0.02563rem"
+            px="0"
+          >
+            Criar Lista
+          </Button>
+        </Flex>
       </Flex>
-      <Text color="blue.900" fontSize="2.215rem" fontWeight={700}>
-        Nova lista
-      </Text>
+
       <Input
         mt={5}
         variant="flushed"
@@ -31,9 +72,11 @@ export const NewList = () => {
       />
 
       <Flex
+        w="full"
         flexDirection={isDesktop ? 'row' : 'column'}
         justifyContent={isDesktop ? 'space-between' : 'center'}
         alignItems="baseline"
+        gap={isMobileOrTablet ? '1rem' : '2.5rem'}
       >
         <Box>
           <Box mt={5}>
@@ -48,7 +91,7 @@ export const NewList = () => {
         </Box>
       </Flex>
 
-      <hr />
+      <Divider orientation="horizontal" />
 
       <Text mt={5} textAlign="center" color="blue.900">
         ou
