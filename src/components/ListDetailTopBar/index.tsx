@@ -3,9 +3,8 @@ import { useMedia } from 'hooks'
 import { useNavigate } from 'react-router-dom'
 import { Button, Divider, Flex, HStack, Text, Avatar } from '@chakra-ui/react'
 
-
 interface ListDetailTopBarProps {
-  name: string;
+  name: string
   shared?: { id: string; name: string; email: string }[]
 }
 
@@ -62,9 +61,13 @@ export const ListDetailTopBar = ({ name, shared }: ListDetailTopBarProps) => {
         </HStack>
       </Flex>
 
-
-
-      <Flex w="full" align='center' justifyContent="space-between" flexDirection="row">
+      <Flex
+        w="full"
+        align="center"
+        justifyContent="space-between"
+        flexDirection="row"
+        gap="0.5rem"
+      >
         <Text
           whiteSpace="nowrap"
           fontSize="1.0625rem"
@@ -79,7 +82,11 @@ export const ListDetailTopBar = ({ name, shared }: ListDetailTopBarProps) => {
         <Divider />
 
         {shared && (
-          <Flex align="start" h="30px" style={{ position: "relative" }}>
+          <Flex
+            align="start"
+            h="1.875rem"
+            position="relative"
+          >
             {shared.slice(0, 5).map((item, index) => (
               <Avatar
                 key={index}
@@ -89,17 +96,14 @@ export const ListDetailTopBar = ({ name, shared }: ListDetailTopBarProps) => {
                 color="whiteAlpha.900"
                 border="none"
                 title={item.name}
-                style={{
-                  position: "absolute",
-                  right: `${index * 22}px`,
-                  zIndex: index,
-                }}
+                position="absolute"
+                right={`${(index * 22) / 16}rem`}
+                zIndex="index"
               />
             ))}
           </Flex>
-
         )}
-      </Flex >
+      </Flex>
     </>
   )
 }
