@@ -6,7 +6,7 @@ Descreva de forma resumida o que foi feito na tarefa
 
 ## Card no Jira
 
-[TAG-XXXX](https://jira.viavarejo.com.br/secure/RapidBoard.jspa?rapidView=3843&projectKey=TAG)
+[TAG-XXXX](Link do card aqui)
 
 ## Autoria
 
