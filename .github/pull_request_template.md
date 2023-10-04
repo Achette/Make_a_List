@@ -30,6 +30,3 @@ Por favor, busque verificar o maior número possível de itens para garantir a q
 - [ ] Meu código não possui comentários e logs
 - [ ] Evitei hardcoding em textos e números
 - [ ] Minha compilação não gera novos warnings
-- [ ] Atentei à acessibilidade
-
-
