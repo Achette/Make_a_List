@@ -2,46 +2,32 @@ import React from 'react'
 import { useMedia } from 'hooks'
 import { stringToIcon } from 'utils'
 import { IconType } from 'react-icons/lib'
-import { getLists } from 'services/list-services'
+import { getAll } from 'services/list-services'
 import { Box, Flex, Text } from '@chakra-ui/react'
 import { SearchBar, List, AddButton } from 'components'
 
-import { listMock } from 'mock/listmock' // será removido quando conectado ao backend
-
-
 export type ListsProps = {
-  id: number
-  productLists: {
-    id: number
-    icon: IconType | string
-    name: string
-    bgColor: string
-    total: number
-    concluded: boolean
-    delete: boolean
-    products: {
-      category: string
-      products: {
-        id: number
-        productName: string
-        place: string
-        price: number
-        quantity: number
-      }[]
-    }[]
-    shared: string[]
-  }[]
+  id: string
+  color: string
+  icon: IconType | string
+  created_at: string
+  created_by: { id: string; name: string; email: string }
+  name: string
+  shared: { id: string; name: string; email: string }[]
+  total: number
+  updated_at: string
 }
 
 export const Lists = () => {
   const { isMobileOrTablet } = useMedia()
 
-  const [lists, setLists] = React.useState<ListsProps>()
-
+  const [lists, setLists] = React.useState<ListsProps[]>()
 
   React.useEffect(() => {
-    setLists(listMock)
-    getLists.getAll().then((res) => console.log(res.data.list))
+    //setLists(listMock)
+    getAll().then((res) => {
+      setLists(res.data.list)
+    })
   }, [])
 
   return (
@@ -50,25 +36,25 @@ export const Lists = () => {
       <Flex
         h="calc(100% - 3.5rem)"
         alignItems="center"
-        justifyContent={lists?.productLists.length ? '' : 'center'}
+        justifyContent={lists?.length ? '' : 'center'}
         flexDir="column"
         gap="0.75rem"
         py="1.87rem"
         px={isMobileOrTablet ? '0' : '4rem'}
       >
         {lists &&
-          lists.productLists.map((item) => (
+          lists.map((item) => (
             <List
               key={item.id}
-              bgColor={item.bgColor}
+              bgColor={item.color}
               icon={stringToIcon(item.icon) ?? undefined}
-              listName={item.name}
+              name={item.name}
               shared={item.shared}
-              id={item.id - 1}
+              id={item.id}
             />
           ))}
 
-        {!lists?.productLists.length && (
+        {!lists?.length && (
           <Text
             fontSize={isMobileOrTablet ? '0.75rem' : '1rem'}
             fontWeight={500}

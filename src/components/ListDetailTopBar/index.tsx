@@ -3,13 +3,12 @@ import { useMedia } from 'hooks'
 import { useNavigate } from 'react-router-dom'
 import { Button, Divider, Flex, HStack, Text, Avatar } from '@chakra-ui/react'
 
-
-interface AddProductButtonProps {
-  children: React.ReactNode;
-  shared: Array<string>;
+interface ListDetailTopBarProps {
+  name: string
+  shared?: { id: string; name: string; email: string }[]
 }
 
-export const ListDetailTopBar = ({ children, shared }: AddProductButtonProps) => {
+export const ListDetailTopBar = ({ name, shared }: ListDetailTopBarProps) => {
   const { isMobileOrTablet } = useMedia()
   const navigate = useNavigate()
 
@@ -23,7 +22,7 @@ export const ListDetailTopBar = ({ children, shared }: AddProductButtonProps) =>
           letterSpacing="0.025rem"
           color="blue.900"
         >
-          {children}
+          {name}
         </Text>
 
         <HStack
@@ -62,9 +61,13 @@ export const ListDetailTopBar = ({ children, shared }: AddProductButtonProps) =>
         </HStack>
       </Flex>
 
-
-
-      <Flex w="full" align='center' justifyContent="space-between" flexDirection="row">
+      <Flex
+        w="full"
+        align="center"
+        justifyContent="space-between"
+        flexDirection="row"
+        gap="0.5rem"
+      >
         <Text
           whiteSpace="nowrap"
           fontSize="1.0625rem"
@@ -79,27 +82,28 @@ export const ListDetailTopBar = ({ children, shared }: AddProductButtonProps) =>
         <Divider />
 
         {shared && (
-          <Flex align="start" h="30px" style={{ position: "relative" }}>
+          <Flex
+            align="start"
+            h="1.875rem"
+            position="relative"
+          >
             {shared.slice(0, 5).map((item, index) => (
               <Avatar
                 key={index}
                 w={isMobileOrTablet ? '2rem' : '2.25rem'}
                 h={isMobileOrTablet ? '2rem' : '2.25rem'}
-                name={item}
+                name={item.name}
                 color="whiteAlpha.900"
                 border="none"
-                title={item}
-                style={{
-                  position: "absolute",
-                  right: `${index * 22}px`,
-                  zIndex: index,
-                }}
+                title={item.name}
+                position="absolute"
+                right={`${(index * 22) / 16}rem`}
+                zIndex="index"
               />
             ))}
           </Flex>
-
         )}
-      </Flex >
+      </Flex>
     </>
   )
 }
