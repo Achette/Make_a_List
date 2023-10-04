@@ -38,7 +38,10 @@ type ListDetailProps = {
 
 export const ListDetail = () => {
   const { id } = useParams()
+
   const navigate = useNavigate()
+
+  const { isMobileOrTablet } = useMedia()
 
   const [listDetails, setListDetails] = React.useState<ListDetailProps>({
     name: '',
@@ -47,13 +50,9 @@ export const ListDetail = () => {
     productsList: [],
   })
 
-  const { isMobileOrTablet } = useMedia()
-
   React.useEffect(() => {
     getListById(id).then((res) => setListDetails(res.data.list))
   }, [])
-
-  const { name, total, shared, productsList } = listDetails
 
   return (
     <VStack w="full" px={isMobileOrTablet ? '' : '3rem'}>
@@ -85,11 +84,11 @@ export const ListDetail = () => {
         )}
       </Flex>
 
-      <ListDetailTopBar name={name} shared={shared} />
+      <ListDetailTopBar name={listDetails.name} shared={listDetails.shared} />
 
       <Flex w="full" h="auto" flexDir="column">
-        {productsList &&
-          productsList.map((prod) => (
+        {listDetails.productsList &&
+          listDetails.productsList.map((prod) => (
             <Box key={prod.category} p="0.5rem" mb="0.5rem">
               <Text mb="0.5rem">{prod.category}</Text>
               <VStack alignItems="flex-start">
@@ -107,7 +106,7 @@ export const ListDetail = () => {
           ))}
       </Flex>
 
-      <TotalBar>{total}</TotalBar>
+      <TotalBar>{listDetails.total}</TotalBar>
 
       <Box pos="absolute" bottom="4.5rem" w="90%">
         <Divider orientation="horizontal" />
