@@ -10,7 +10,6 @@ import {
   Text,
   Link as LinkChakra,
 } from '@chakra-ui/react'
-import { ListNameContext } from 'contexts'
 
 export type ListProps = {
   id: string
@@ -22,8 +21,6 @@ export type ListProps = {
 
 export const List = ({ id, icon, bgColor, name, shared }: ListProps) => {
   const { isMobileOrTablet } = useMedia()
-  const { setListName } = React.useContext(ListNameContext)
-  setListName(name)
 
   return (
     <LinkChakra
