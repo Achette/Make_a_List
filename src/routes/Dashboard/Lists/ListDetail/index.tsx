@@ -25,8 +25,14 @@ type ListDetailProps = {
   total: number
   shared: { id: string; name: string; email: string }[]
   productsList: {
-    category: string;
-    products: { id: string; name: string; place: string; price: number; quantity: number; }[]
+    category: string
+    products: {
+      id: string
+      name: string
+      place: string
+      price: number
+      quantity: number
+    }[]
   }[]
 }
 
@@ -38,7 +44,7 @@ export const ListDetail = () => {
     name: '',
     total: 0,
     shared: [],
-    productsList: []
+    productsList: [],
   })
 
   const { isMobileOrTablet } = useMedia()
@@ -47,7 +53,7 @@ export const ListDetail = () => {
     getListById(id).then((res) => setListDetails(res.data.list))
   }, [])
 
-  const { name, total, shared, productsList } = listDetails;
+  const { name, total, shared, productsList } = listDetails
 
   return (
     <VStack w="full" px={isMobileOrTablet ? '' : '3rem'}>
@@ -100,7 +106,7 @@ export const ListDetail = () => {
             </Box>
           ))}
       </Flex>
-      
+
       <TotalBar>{total}</TotalBar>
 
       <Box pos="absolute" bottom="4.5rem" w="90%">
