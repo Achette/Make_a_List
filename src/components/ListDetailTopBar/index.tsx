@@ -4,12 +4,12 @@ import { useNavigate } from 'react-router-dom'
 import { Button, Divider, Flex, HStack, Text, Avatar } from '@chakra-ui/react'
 
 
-interface AddProductButtonProps {
+interface ListDetailTopBarProps {
   name: string;
   shared?: { id: string; name: string; email: string }[]
 }
 
-export const ListDetailTopBar = ({ name, shared }: AddProductButtonProps) => {
+export const ListDetailTopBar = ({ name, shared }: ListDetailTopBarProps) => {
   const { isMobileOrTablet } = useMedia()
   const navigate = useNavigate()
 
