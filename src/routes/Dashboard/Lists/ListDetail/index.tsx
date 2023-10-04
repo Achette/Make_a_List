@@ -19,38 +19,35 @@ import {
   Link as LinkChakra,
   Divider,
 } from '@chakra-ui/react'
-import { ListNameContext } from 'contexts'
 
 type ListDetailProps = {
-  list: {
-    category: string
-    name: string
-    total: number
-    shared: { id: string; name: string; email: string }[]
-    productList: {
-      id: string
-      name: string
-      place: string
-      price: number
-      quantity: number
-    }[]
-  }
+  name: string
+  total: number
+  shared: { id: string; name: string; email: string }[]
+  productsList: {
+    category: string;
+    products: { id: string; name: string; place: string; price: number; quantity: number; }[]
+  }[]
 }
 
 export const ListDetail = () => {
   const { id } = useParams()
   const navigate = useNavigate()
 
-  const [products, setProducts] = React.useState<ListDetailProps[]>()
+  const [listDetails, setListDetails] = React.useState<ListDetailProps>({
+    name: '',
+    total: 0,
+    shared: [],
+    productsList: []
+  })
 
   const { isMobileOrTablet } = useMedia()
-  const { listName } = React.useContext(ListNameContext)
 
   React.useEffect(() => {
-    getListById(id).then((res) => setProducts(res.data.list))
+    getListById(id).then((res) => setListDetails(res.data.list))
   }, [])
 
-  const { name } = products
+  const { name, total, shared, productsList } = listDetails;
 
   return (
     <VStack w="full" px={isMobileOrTablet ? '' : '3rem'}>
@@ -82,11 +79,11 @@ export const ListDetail = () => {
         )}
       </Flex>
 
-      <ListDetailTopBar name={name} />
+      <ListDetailTopBar name={name} shared={shared} />
 
       <Flex w="full" h="auto" flexDir="column">
-        {products &&
-          products.map((prod) => (
+        {productsList &&
+          productsList.map((prod) => (
             <Box key={prod.category} p="0.5rem" mb="0.5rem">
               <Text mb="0.5rem">{prod.category}</Text>
               <VStack alignItems="flex-start">
@@ -103,8 +100,8 @@ export const ListDetail = () => {
             </Box>
           ))}
       </Flex>
-
-      <TotalBar>100.99</TotalBar>
+      
+      <TotalBar>{total}</TotalBar>
 
       <Box pos="absolute" bottom="4.5rem" w="90%">
         <Divider orientation="horizontal" />

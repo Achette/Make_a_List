@@ -6,7 +6,7 @@ import { Button, Divider, Flex, HStack, Text, Avatar } from '@chakra-ui/react'
 
 interface AddProductButtonProps {
   name: string;
-  shared?: Array<string>;
+  shared?: { id: string; name: string; email: string }[]
 }
 
 export const ListDetailTopBar = ({ name, shared }: AddProductButtonProps) => {
@@ -85,10 +85,10 @@ export const ListDetailTopBar = ({ name, shared }: AddProductButtonProps) => {
                 key={index}
                 w={isMobileOrTablet ? '2rem' : '2.25rem'}
                 h={isMobileOrTablet ? '2rem' : '2.25rem'}
-                name={item}
+                name={item.name}
                 color="whiteAlpha.900"
                 border="none"
-                title={item}
+                title={item.name}
                 style={{
                   position: "absolute",
                   right: `${index * 22}px`,
