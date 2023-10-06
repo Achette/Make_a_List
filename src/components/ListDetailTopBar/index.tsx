@@ -1,14 +1,21 @@
 import React from 'react'
 import { useMedia } from 'hooks'
 import { useNavigate } from 'react-router-dom'
+import { NewProduct } from 'components/NewProduct'
 import { Button, Divider, Flex, HStack, Text, Avatar } from '@chakra-ui/react'
 
 interface ListDetailTopBarProps {
   name: string
   shared?: { id: string; name: string; email: string }[]
+  fetchList: () => Promise<void>
 }
 
-export const ListDetailTopBar = ({ name, shared }: ListDetailTopBarProps) => {
+export const ListDetailTopBar = ({
+  name,
+  shared,
+  fetchList,
+}: ListDetailTopBarProps) => {
+  const [modal, setModal] = React.useState<boolean>(false)
   const { isMobileOrTablet } = useMedia()
   const navigate = useNavigate()
 
@@ -41,9 +48,12 @@ export const ListDetailTopBar = ({ name, shared }: ListDetailTopBarProps) => {
             color={isMobileOrTablet ? 'blue.900' : 'white'}
             borderRadius="0.625rem"
             _hover={{ bgColor: isMobileOrTablet ? 'transparent' : 'blue.500' }}
+            onClick={() => setModal(true)}
           >
             Adicionar Produtos
           </Button>
+
+          <NewProduct modal={modal} setModal={setModal} fetchList={fetchList} />
 
           {!isMobileOrTablet && (
             <Button
@@ -53,7 +63,7 @@ export const ListDetailTopBar = ({ name, shared }: ListDetailTopBarProps) => {
               fontWeight={500}
               lineHeight="1.375rem"
               letterSpacing="-0.02563rem"
-              onClick={() => navigate(-1)}
+              onClick={() => navigate('/lists')}
             >
               Fechar
             </Button>
@@ -82,11 +92,7 @@ export const ListDetailTopBar = ({ name, shared }: ListDetailTopBarProps) => {
         <Divider />
 
         {shared && (
-          <Flex
-            align="start"
-            h="1.875rem"
-            position="relative"
-          >
+          <Flex align="start" h="1.875rem" position="relative">
             {shared.slice(0, 5).map((item, index) => (
               <Avatar
                 key={index}
