@@ -1,12 +1,36 @@
 import React from 'react'
 import { useMedia } from 'hooks'
+import { iconToString } from 'utils'
 import { useNavigate } from 'react-router-dom'
-import { ColorSelect, IconSelect, NewProduct } from 'components'
+import { newList } from 'services/list-services'
+import { ColorSelect, IconSelect } from 'components'
 import { Box, Flex, Text, Input, Button, Divider } from '@chakra-ui/react'
 
 export const NewList = () => {
   const navigate = useNavigate()
   const { isDesktop, isMobileOrTablet, isTablet } = useMedia()
+
+  const [name, setListName] = React.useState<string>('')
+  const [color, setColor] = React.useState<string>('')
+  const [icon, setIcon] = React.useState<string>('')
+
+  const handleGetColor = (color: string) => {
+    setColor(color)
+  }
+
+  const handleGetIcon = (icon?: number) => {
+    const parsedIcon = iconToString(icon)
+    if (parsedIcon) return setIcon(parsedIcon)
+  }
+
+  const handleCreateList = async () => {
+    try {
+      await newList(name, color, icon)
+      navigate('/lists')
+    } catch (e) {
+      console.error(e)
+    }
+  }
 
   return (
     <Box
@@ -35,7 +59,7 @@ export const NewList = () => {
           <Button
             type="button"
             bgColor="transparent"
-            color={isMobileOrTablet ? 'blue.900' : 'red.400'}
+            color="red.400"
             fontSize="1.0625rem"
             fontWeight={500}
             lineHeight="1.375rem"
@@ -55,6 +79,7 @@ export const NewList = () => {
             lineHeight="1.375rem"
             letterSpacing="-0.02563rem"
             px="0"
+            onClick={() => handleCreateList()}
           >
             Criar Lista
           </Button>
@@ -68,6 +93,8 @@ export const NewList = () => {
         color="blue.900"
         maxWidth="25rem"
         _placeholder={{ color: 'blue.900', opacity: '0.6' }}
+        value={name}
+        onChange={(e) => setListName(e.target.value)}
         required
       />
 
@@ -80,13 +107,13 @@ export const NewList = () => {
       >
         <Box>
           <Box mt={5}>
-            <ColorSelect />
+            <ColorSelect getColor={handleGetColor} />
           </Box>
         </Box>
 
         <Box>
           <Box my={5}>
-            <IconSelect />
+            <IconSelect getIcon={handleGetIcon} />
           </Box>
         </Box>
       </Flex>
@@ -102,7 +129,6 @@ export const NewList = () => {
           Criar a partir de um modelo
         </Button>
       </Flex>
-      <NewProduct />
     </Box>
   )
 }
