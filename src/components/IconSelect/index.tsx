@@ -15,8 +15,17 @@ import {
   FaGraduationCap,
 } from 'react-icons/fa'
 
-export const IconSelect = () => {
+type IconSelectProps = {
+  getIcon: (icon: number) => void
+}
+
+export const IconSelect = ({ getIcon }: IconSelectProps) => {
   const [selectetIconIndex, setSelectetIconIndex] = useState<number>()
+
+  const handleSetIcon = (icon: number) => {
+    setSelectetIconIndex(icon)
+    getIcon(icon)
+  }
 
   const icons = [
     FaShoppingBasket,
@@ -35,46 +44,46 @@ export const IconSelect = () => {
 
   return (
     <>
-      <Flex flexDirection='column' maxW="25rem" w='100%'>
+      <Flex flexDirection="column" maxW="25rem" w="100%">
         <Text
           paddingLeft="1rem"
           fontSize="1.0625rem"
           fontWeight={400}
-          color='blue.900'
+          color="blue.900"
         >
           Ícones
         </Text>
-        <Flex maxW='100%' flexWrap='wrap'>
+        <Flex maxW="100%" flexWrap="wrap">
           {icons.map((icon, index) => {
             return (
               <Flex
                 key={index}
-                w='16.6%'
-                justifyContent='center'
-                alignItems='center'
+                w="16.6%"
+                justifyContent="center"
+                alignItems="center"
               >
                 <Flex
                   onClick={() => {
-                    setSelectetIconIndex(index)
+                    handleSetIcon(index)
                   }}
-                  justifyContent='center'
-                  alignItems='center'
+                  justifyContent="center"
+                  alignItems="center"
                   border={index === selectetIconIndex ? '2px' : 'unset'}
-                  borderColor='#27488F4D'
-                  cursor='pointer'
+                  borderColor="#27488F4D"
+                  cursor="pointer"
                   w="2.625rem"
                   h="2.625rem"
-                  borderRadius='full'
+                  borderRadius="full"
                 >
                   <Flex
-                    bg='#E5E5E5'
-                    borderRadius='full'
+                    bg="#E5E5E5"
+                    borderRadius="full"
                     w="2.0625rem"
                     h="2.0625rem"
-                    justifyContent='center'
-                    alignItems='center'
+                    justifyContent="center"
+                    alignItems="center"
                   >
-                    <Icon as={icon} color="blackAlpha.700" w='100%'></Icon>
+                    <Icon as={icon} color="blackAlpha.700" w="100%"></Icon>
                   </Flex>
                 </Flex>
               </Flex>
