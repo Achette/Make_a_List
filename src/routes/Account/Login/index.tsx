@@ -33,6 +33,7 @@ export const Login = () => {
     try {
       const response = await UserApi.login(data)
       accessTokenRepository.saveToken(response.token)
+      accessTokenRepository.saveUser(response.user.name)
       navigate('/lists')
     } catch (e) {
       console.error(e)

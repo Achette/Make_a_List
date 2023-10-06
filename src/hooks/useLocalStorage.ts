@@ -1,4 +1,4 @@
-import { TOKEN_KEY } from 'constants/system'
+import { TOKEN_KEY, USER_KEY } from 'constants/system'
 /* 
     TOKEN
 */
@@ -13,4 +13,16 @@ export const getToken = (): string | null => {
 
 export const removeToken = () => {
   localStorage.removeItem(TOKEN_KEY)
+}
+
+/*
+    USER
+*/
+
+export const saveUser = (token: string) => {
+  localStorage.setItem(USER_KEY, token)
+}
+
+export const getUser = (): string | null => {
+  return localStorage.getItem(USER_KEY)
 }

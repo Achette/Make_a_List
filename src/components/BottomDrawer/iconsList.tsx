@@ -6,7 +6,6 @@ import {
   MdDeleteOutline,
   MdOutlineArchive,
   MdOutlineBookmarkAdd,
-  MdOutlineShare,
 } from 'react-icons/md'
 
 const navigation = [
@@ -25,10 +24,6 @@ const navigation = [
   {
     name: 'Criar Cópia',
     icon: MdContentCopy,
-  },
-  {
-    name: 'Compartilhar',
-    icon: MdOutlineShare,
   },
 ]
 

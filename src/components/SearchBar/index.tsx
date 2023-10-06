@@ -4,7 +4,11 @@ import { SidebarContext } from 'contexts'
 import { Avatar, Flex, HStack, IconButton, Input } from '@chakra-ui/react'
 import { useMedia } from 'hooks'
 
-export const SearchBar = () => {
+type SearchBarProps = {
+  user: string
+}
+
+export const SearchBar = ({ user }: SearchBarProps) => {
   const { collapse, setCollapse } = React.useContext(SidebarContext)
 
   const { isMobileOrTablet } = useMedia()
@@ -42,7 +46,7 @@ export const SearchBar = () => {
           }}
           focusBorderColor="transparent"
         />
-        <Avatar name="Igor Achette" w="1.75rem" h="1.75rem" />
+        <Avatar name={user} w="1.75rem" h="1.75rem" color="white" />
       </HStack>
     </Flex>
   )

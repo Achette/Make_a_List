@@ -1,6 +1,6 @@
 import React from 'react'
-import { useMedia } from 'hooks'
 import { stringToIcon } from 'utils'
+import { getUser, useMedia } from 'hooks'
 import { IconType } from 'react-icons/lib'
 import { getAll } from 'services/list-services'
 import { Box, Flex, Text } from '@chakra-ui/react'
@@ -23,8 +23,9 @@ export const Lists = () => {
 
   const [lists, setLists] = React.useState<ListsProps[]>()
 
+  const user = getUser()
+
   React.useEffect(() => {
-    //setLists(listMock)
     getAll().then((res) => {
       setLists(res.data.list)
     })
@@ -32,15 +33,18 @@ export const Lists = () => {
 
   return (
     <Box w="full" h="full">
-      <SearchBar />
+      <SearchBar user={user ?? ''} />
       <Flex
-        h="calc(100% - 3.5rem)"
+        mt="1rem"
+        maxH="calc(100% - 13vh)"
+        h="100%"
         alignItems="center"
         justifyContent={lists?.length ? '' : 'center'}
         flexDir="column"
         gap="0.75rem"
         py="1.87rem"
         px={isMobileOrTablet ? '0' : '4rem'}
+        overflow="auto"
       >
         {lists &&
           lists.map((item) => (

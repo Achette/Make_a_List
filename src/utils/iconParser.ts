@@ -66,10 +66,10 @@ const icons = [
   },
 ]
 
-export const iconToString = (icon: string | IconType) => {
-  const findIcon = icons.find((i) => i.icon === icon)
+export const iconToString = (index = 0) => {
+  const findIcon = icons.at(index)
 
-  if (!findIcon) return null
+  if (!findIcon) return undefined
 
   return findIcon.name
 }
@@ -77,7 +77,7 @@ export const iconToString = (icon: string | IconType) => {
 export const stringToIcon = (icon: string | IconType) => {
   const findIcon = icons.find((i) => i.name === icon)
 
-  if (!findIcon) return null
+  if (!findIcon) return undefined
 
   return findIcon.icon
 }
