@@ -1,11 +1,22 @@
 import React, { useState } from 'react'
 import { Flex, Text, Box } from '@chakra-ui/react'
 
-export const CategorySelect = () => {
+type CategorySelectProps = {
+  getCategory: (arg: string) => void
+}
+
+export const CategorySelect = ({ getCategory }: CategorySelectProps) => {
   const [selectetCategory, setSelectetCategory] = useState({
     name: '',
     color: '',
   })
+
+  const handleSetCategory = (
+    category: React.SetStateAction<{ name: string; color: string }>
+  ) => {
+    setSelectetCategory(category)
+    getCategory(category.name)
+  }
 
   const categories = [
     { name: 'Açougue', color: '#D23D33' },
@@ -26,7 +37,7 @@ export const CategorySelect = () => {
     <>
       <Flex flexDirection="column" w="100%">
         <Text
-          paddingLeft="1rem"
+          paddingLeft="0.5rem"
           fontSize="1.0625rem"
           fontWeight={400}
           color="blue.900"
@@ -34,17 +45,17 @@ export const CategorySelect = () => {
           Categoria
         </Text>
         <Flex maxW="100%" flexWrap="wrap">
-          {categories.map((category, index) => {
+          {categories.map((category) => {
             return (
               <Flex
-                key={index}
+                key={category.name}
                 w="25%"
                 paddingY="0.3125rem"
                 justifyContent="center"
                 alignItems="center"
               >
                 <Flex
-                  onClick={() => setSelectetCategory(category)}
+                  onClick={() => handleSetCategory(category)}
                   justifyContent="space-evenly"
                   alignItems="center"
                   cursor="pointer"
@@ -52,7 +63,7 @@ export const CategorySelect = () => {
                 >
                   <Box
                     borderRadius="full"
-                    padding='.1rem'
+                    padding=".1rem"
                     border={
                       category.name === selectetCategory.name ? '2px' : 'unset'
                     }
