@@ -11,15 +11,15 @@ import {
   Link as LinkChakra,
 } from '@chakra-ui/react'
 
-type ListProps = {
-  id: number
+export type ListProps = {
+  id: string
   icon?: IconType
   bgColor: string
-  listName: string
-  shared?: Array<string>
+  name: string
+  shared?: { id: string; name: string; email: string }[]
 }
 
-export const List = ({ id, icon, bgColor, listName, shared }: ListProps) => {
+export const List = ({ id, icon, bgColor, name, shared }: ListProps) => {
   const { isMobileOrTablet } = useMedia()
 
   return (
@@ -63,7 +63,7 @@ export const List = ({ id, icon, bgColor, listName, shared }: ListProps) => {
             color="blue.900"
             ml="0.75rem"
           >
-            {listName}
+            {name}
           </Text>
         </Flex>
 
@@ -74,13 +74,13 @@ export const List = ({ id, icon, bgColor, listName, shared }: ListProps) => {
           >
             {shared.slice(0, 5).map((item, index) => (
               <Avatar
-                key={item}
+                key={item.id}
                 w={isMobileOrTablet ? '2rem' : '2.25rem'}
                 h={isMobileOrTablet ? '2rem' : '2.25rem'}
-                name={item}
+                name={item.name}
                 color="whiteAlpha.900"
                 border="none"
-                title={item}
+                title={item.name}
                 style={{
                   position: 'absolute',
                   right: `${index * 22}px`,

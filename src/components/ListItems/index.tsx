@@ -1,22 +1,32 @@
 import React from 'react'
 import { useMedia } from 'hooks'
 import { RiDeleteBin6Fill } from 'react-icons/ri'
+import { deleteProduct } from 'services/list-services'
 import { Checkbox, Flex, HStack, Icon, Text, VStack } from '@chakra-ui/react'
 
 type ListItemsProps = {
+  id: string
   productName: string
   price: number
   place: string
   quantity: number
+  fetchList: () => Promise<void>
 }
 
 export const ListItems = ({
+  id,
   productName,
   price,
   quantity,
   place,
+  fetchList,
 }: ListItemsProps) => {
   const { isMobileOrTablet } = useMedia()
+
+  const handleDeleteProduct = async (id: string) => {
+    await deleteProduct(id)
+    fetchList()
+  }
 
   return (
     <Flex w="full" justifyContent="space-between" alignItems="center">
@@ -65,7 +75,15 @@ export const ListItems = ({
           {quantity}
         </Text>
 
-        <Icon as={RiDeleteBin6Fill} w="2rem" h="1.25rem" color="red.400" />
+        <Icon
+          as={RiDeleteBin6Fill}
+          w="2rem"
+          h="1.25rem"
+          color="red.400"
+          cursor="pointer"
+          title="excluir produto"
+          onClick={() => handleDeleteProduct(id)}
+        />
       </Flex>
     </Flex>
   )

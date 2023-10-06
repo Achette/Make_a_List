@@ -1,8 +1,17 @@
 import React, { useState } from 'react'
 import { Flex, Text, Box } from '@chakra-ui/react'
 
-export const ColorSelect = () => {
+type ColorSelecProps = {
+  getColor: (arg: string) => void
+}
+
+export const ColorSelect = ({ getColor }: ColorSelecProps) => {
   const [selectetColor, setSelectetColor] = useState<string>()
+
+  const handleSetColor = (color: string) => {
+    setSelectetColor(color)
+    getColor(color)
+  }
 
   const colors = [
     '#27488F',
@@ -41,7 +50,7 @@ export const ColorSelect = () => {
                 alignItems="center"
               >
                 <Flex
-                  onClick={() => setSelectetColor(color)}
+                  onClick={() => handleSetColor(color)}
                   justifyContent="center"
                   alignItems="center"
                   border={color === selectetColor ? '2px' : 'unset'}
