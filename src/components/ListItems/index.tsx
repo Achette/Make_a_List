@@ -19,7 +19,7 @@ export const ListItems = ({
   price,
   quantity,
   place,
-  fetchList
+  fetchList,
 }: ListItemsProps) => {
   const { isMobileOrTablet } = useMedia()
 
@@ -75,7 +75,15 @@ export const ListItems = ({
           {quantity}
         </Text>
 
-        <Icon as={RiDeleteBin6Fill} w="2rem" h="1.25rem" color="red.400" onClick={() => handleDeleteProduct(id)} />
+        <Icon
+          as={RiDeleteBin6Fill}
+          w="2rem"
+          h="1.25rem"
+          color="red.400"
+          cursor="pointer"
+          title="excluir produto"
+          onClick={() => handleDeleteProduct(id)}
+        />
       </Flex>
     </Flex>
   )
