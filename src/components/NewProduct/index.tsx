@@ -116,6 +116,7 @@ export const NewProduct = ({ modal, setModal, fetchList }: NewProductProps) => {
                 lineHeight="1.375rem"
                 letterSpacing="-0.02563rem"
                 bg={isDesktop ? 'blue.900' : 'none'}
+                _hover={{ bgColor: !isDesktop ? 'transparent' : 'blue.500' }}
                 px="0"
                 onClick={() => handleAddNewProduct()}
               >

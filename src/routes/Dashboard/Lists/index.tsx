@@ -22,6 +22,7 @@ export const Lists = () => {
   const { isMobileOrTablet } = useMedia()
 
   const [lists, setLists] = React.useState<ListsProps[]>()
+  const controller = new AbortController()
 
   const user = getUser()
 
@@ -29,6 +30,8 @@ export const Lists = () => {
     getAll().then((res) => {
       setLists(res.data.list)
     })
+
+    return () => controller.abort()
   }, [])
 
   return (
