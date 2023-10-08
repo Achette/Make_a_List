@@ -68,10 +68,7 @@ export const List = ({ id, icon, bgColor, name, shared }: ListProps) => {
         </Flex>
 
         {shared && (
-          <Flex
-            align="start"
-            style={{ position: 'relative', height: '30px', width: '130px' }}
-          >
+          <Flex align="start" position="relative" h="1.875rem" w="8.125rem">
             {shared.slice(0, 5).map((item, index) => (
               <Avatar
                 key={item.id}
@@ -81,11 +78,9 @@ export const List = ({ id, icon, bgColor, name, shared }: ListProps) => {
                 color="whiteAlpha.900"
                 border="none"
                 title={item.name}
-                style={{
-                  position: 'absolute',
-                  right: `${index * 22}px`,
-                  zIndex: index,
-                }}
+                position="absolute"
+                right={`${index * 22}px`}
+                zIndex={0}
               />
             ))}
           </Flex>

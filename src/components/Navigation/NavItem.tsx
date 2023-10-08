@@ -18,7 +18,7 @@ type NavItemProps = {
 export const NavItem = ({ item, isActive }: NavItemProps) => {
   const { icon, label } = item
 
-  const { collapse } = React.useContext(SidebarContext)
+  const { collapse, setCollapse } = React.useContext(SidebarContext)
 
   const { isDesktop } = useMedia()
 
@@ -36,6 +36,7 @@ export const NavItem = ({ item, isActive }: NavItemProps) => {
         w="full"
         justifyContent={!collapse ? 'center' : ''}
         title={label}
+        onClick={() => setCollapse(false)}
       >
         <ListIcon
           mt={isDesktop ? '8rem' : 0}
