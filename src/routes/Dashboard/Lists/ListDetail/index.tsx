@@ -146,7 +146,7 @@ export const ListDetail = () => {
       <Box pos="absolute" bottom="4.5rem" w="90%">
         <Divider orientation="horizontal" />
       </Box>
-      {!isMobileOrTablet && <BottomOptionsBar />}
+      {!isMobileOrTablet && <BottomOptionsBar id={id} />}
     </VStack>
   )
 }
