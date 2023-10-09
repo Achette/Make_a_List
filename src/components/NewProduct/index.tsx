@@ -58,9 +58,9 @@ export const NewProduct = ({ modal, setModal, fetchList }: NewProductProps) => {
       await addNewProduct(
         id!,
         newProduct.name,
-        Number(newProduct.quantity),
+        +newProduct.quantity,
         category,
-        Number(newProduct.price),
+        +newProduct.price,
         newProduct.place
       )
 
@@ -171,6 +171,7 @@ export const NewProduct = ({ modal, setModal, fetchList }: NewProductProps) => {
                 />
                 <Input
                   mt={5}
+                  type="number"
                   name="quantity"
                   value={newProduct.quantity}
                   onChange={(e) => handleGetNewProduct(e)}
