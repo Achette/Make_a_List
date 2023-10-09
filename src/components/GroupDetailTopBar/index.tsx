@@ -4,17 +4,17 @@ import { useNavigate } from 'react-router-dom'
 import { NewProduct } from 'components/NewProduct'
 import { Button, Divider, Flex, HStack, Text, Avatar } from '@chakra-ui/react'
 
-interface ListDetailTopBarProps {
+interface GroupDetailTopBarProps {
   name: string
   shared?: { id: string; name: string; email: string }[]
   fetchList: () => Promise<void>
 }
 
-export const ListDetailTopBar = ({
+export const GroupDetailTopBar = ({
   name,
   shared,
   fetchList,
-}: ListDetailTopBarProps) => {
+}: GroupDetailTopBarProps) => {
   const [modal, setModal] = React.useState<boolean>(false)
   const { isMobileOrTablet } = useMedia()
   const navigate = useNavigate()
@@ -50,7 +50,7 @@ export const ListDetailTopBar = ({
             _hover={{ bgColor: isMobileOrTablet ? 'transparent' : 'blue.500' }}
             onClick={() => setModal(true)}
           >
-            Adicionar Produtos
+            Adicionar listas
           </Button>
 
           <NewProduct modal={modal} setModal={setModal} fetchList={fetchList} />
@@ -86,7 +86,7 @@ export const ListDetailTopBar = ({
           lineHeight="1.375rem"
           letterSpacing="-0.02563rem"
         >
-          Compartilhado com
+          Membros
         </Text>
 
         <Divider />
