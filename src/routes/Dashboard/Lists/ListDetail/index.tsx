@@ -61,8 +61,12 @@ export const ListDetail = () => {
     }
   }, [setListDetails])
 
+  const controller = new AbortController()
+
   React.useEffect(() => {
     fetchListDetails()
+
+    return () => controller.abort()
   }, [fetchListDetails])
 
   return (
