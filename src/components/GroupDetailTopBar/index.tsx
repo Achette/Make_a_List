@@ -1,7 +1,7 @@
 import React from 'react'
 import { useMedia } from 'hooks'
 import { useNavigate } from 'react-router-dom'
-import { NewProduct } from 'components/NewProduct'
+import { AddListGroup } from 'components/AddListGroup'
 import { Button, Divider, Flex, HStack, Text, Avatar } from '@chakra-ui/react'
 
 interface GroupDetailTopBarProps {
@@ -10,11 +10,7 @@ interface GroupDetailTopBarProps {
   fetchList: () => Promise<void>
 }
 
-export const GroupDetailTopBar = ({
-  name,
-  shared,
-  fetchList,
-}: GroupDetailTopBarProps) => {
+export const GroupDetailTopBar = ({ name, shared, fetchList }: GroupDetailTopBarProps) => {
   const [modal, setModal] = React.useState<boolean>(false)
   const { isMobileOrTablet } = useMedia()
   const navigate = useNavigate()
@@ -53,7 +49,7 @@ export const GroupDetailTopBar = ({
             Adicionar listas
           </Button>
 
-          <NewProduct modal={modal} setModal={setModal} fetchList={fetchList} />
+          <AddListGroup modal={modal} setModal={setModal} />
 
           {!isMobileOrTablet && (
             <Button
