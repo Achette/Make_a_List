@@ -20,7 +20,7 @@ import {
   Divider,
 } from '@chakra-ui/react'
 
-type ListDetailProps = {
+export type ListDetailProps = {
   name: string
   total: number
   shared: { id: string; name: string; email: string }[]
@@ -61,8 +61,12 @@ export const ListDetail = () => {
     }
   }, [setListDetails])
 
+  const controller = new AbortController()
+
   React.useEffect(() => {
     fetchListDetails()
+
+    return () => controller.abort()
   }, [fetchListDetails])
 
   return (
@@ -146,7 +150,7 @@ export const ListDetail = () => {
       <Box pos="absolute" bottom="4.5rem" w="90%">
         <Divider orientation="horizontal" />
       </Box>
-      {!isMobileOrTablet && <BottomOptionsBar />}
+      {!isMobileOrTablet && <BottomOptionsBar id={id} />}
     </VStack>
   )
 }

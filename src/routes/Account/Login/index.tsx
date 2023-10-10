@@ -12,7 +12,8 @@ import {
   Input,
   Text,
   VStack,
-  Link as LinkChakra
+  Link as LinkChakra,
+  useToast,
 } from '@chakra-ui/react'
 
 export type UserProps = {
@@ -22,6 +23,7 @@ export type UserProps = {
 
 export const Login = () => {
   const navigate = useNavigate()
+  const toast = useToast()
 
   const {
     register,
@@ -34,9 +36,22 @@ export const Login = () => {
       const response = await UserApi.login(data)
       accessTokenRepository.saveToken(response.token)
       accessTokenRepository.saveUser(response.user.name)
+      toast({
+        description: `Bem-vindo ${response.user.name}!`,
+        containerStyle: { color: 'white' },
+        position: 'top',
+        isClosable: true,
+      })
+
       navigate('/lists')
-    } catch (e) {
-      console.error(e)
+    } catch (e: unknown) {
+      toast({
+        description: `E-mail ou senha incorretos!`,
+        status: 'error',
+        containerStyle: { color: 'white' },
+        position: 'top',
+        isClosable: true,
+      })
     }
   }
 
@@ -142,7 +157,9 @@ export const Login = () => {
             letterSpacing="-0.41px"
           >
             Ainda não tem uma conta?{' '}
-            <LinkChakra as={Link} to="/account/signin" fontWeight={700}>Cadastre-se</LinkChakra>
+            <LinkChakra as={Link} to="/account/signin" fontWeight={700}>
+              Cadastre-se
+            </LinkChakra>
           </Text>
         </VStack>
       </FormControl>

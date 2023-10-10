@@ -79,7 +79,7 @@ export const List = ({ id, icon, bgColor, name, shared }: ListProps) => {
                 border="none"
                 title={item.name}
                 position="absolute"
-                right={`${index * 22}px`}
+                right={`${index * 1.375}rem`}
                 zIndex={0}
               />
             ))}

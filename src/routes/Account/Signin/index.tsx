@@ -10,6 +10,7 @@ import {
   Text,
   VStack,
   Link as LinkChakra,
+  useToast,
 } from '@chakra-ui/react'
 
 export type NewUserProps = {
@@ -21,6 +22,7 @@ export type NewUserProps = {
 
 export const SignIn = () => {
   const navigate = useNavigate()
+  const toast = useToast()
 
   const {
     register,
@@ -32,9 +34,23 @@ export const SignIn = () => {
     try {
       const response = await UserApi.newUser(data)
 
-      if (response.success) navigate('/account')
-    } catch (e) {
-      console.error(e)
+      if (response.success) {
+        toast({
+          description: `Conta cadastrada com sucesso!`,
+          containerStyle: { color: 'white' },
+          position: 'top',
+          isClosable: true,
+        })
+        navigate('/account')
+      }
+    } catch (e: unknown) {
+      toast({
+        description: `E-mail informado já cadastrado`,
+        status: 'error',
+        containerStyle: { color: 'white' },
+        position: 'top',
+        isClosable: true,
+      })
     }
   }
 

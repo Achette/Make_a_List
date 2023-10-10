@@ -1,5 +1,7 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { deleteList } from 'services/list-services'
+import { Link, useNavigate } from 'react-router-dom'
 import { Flex, Icon, Link as LinkChakra, Text } from '@chakra-ui/react'
 import {
   MdContentCopy,
@@ -8,76 +10,105 @@ import {
   MdOutlineBookmarkAdd,
 } from 'react-icons/md'
 
-const navigation = [
-  {
-    name: 'Excluir',
-    icon: MdDeleteOutline,
-  },
-  {
-    name: 'Arquivar',
-    icon: MdOutlineArchive,
-  },
-  {
-    name: 'Salvar como modelo',
-    icon: MdOutlineBookmarkAdd,
-  },
-  {
-    name: 'Criar Cópia',
-    icon: MdContentCopy,
-  },
-]
+type BottomOptionsBarProps = {
+  id?: string
+}
 
-export const DrawerNavigation = React.memo(function DrawerNavigation() {
-  return (
-    <>
-      {navigation.map((item, index) => (
-        <Flex key={index} w="full" alignItems="center" m="1.25rem 0">
-          <Icon as={item.icon} w="2rem" h="1.5rem" color="gray.100" />
-          <LinkChakra
-            as={Link}
-            _hover={{ textDecoration: 'none' }}
-            _focus={{ border: 'none' }}
-          >
-            <Text fontSize="1rem" color="gray.100" fontWeight={500} ml="1rem">
-              {item.name}
-            </Text>
-          </LinkChakra>
-        </Flex>
-      ))}
-    </>
-  )
-})
+export const BottomOptionsBar = React.memo(function BottomOptionsBar({
+  id,
+}: BottomOptionsBarProps) {
+  const navigate = useNavigate()
 
-export const BottomOptionsBar = React.memo(function BottomOptionsBar() {
+  const deleteListById = async (id: string) => {
+    try {
+      await deleteList(id)
+      navigate(-1)
+    } catch (e) {
+      console.error(e)
+    }
+  }
+
   return (
     <>
       <Flex w="full" position="absolute" bottom="1rem">
-        {navigation.map((item, index) => (
-          <Flex
-            key={index}
-            w="full"
-            alignItems="center"
-            justifyContent="center"
-          >
-            <Flex>
-              <Icon as={item.icon} w="2rem" h="1.5rem" color="blue.900" />
-              <LinkChakra
-                as={Link}
-                _hover={{ textDecoration: 'none' }}
-                _focus={{ border: 'none' }}
+        <Flex w="full" alignItems="center" justifyContent="space-around">
+          <Flex onClick={() => deleteListById(id!)}>
+            <Icon as={MdDeleteOutline} w="2rem" h="1.5rem" color="blue.900" />
+            <LinkChakra
+              as={Link}
+              _hover={{ textDecoration: 'none' }}
+              _focus={{ border: 'none' }}
+            >
+              <Text
+                fontSize="1rem"
+                color="blue.900"
+                fontWeight={500}
+                ml="0.25rem"
               >
-                <Text
-                  fontSize="1rem"
-                  color="blue.900"
-                  fontWeight={500}
-                  ml="1rem"
-                >
-                  {item.name}
-                </Text>
-              </LinkChakra>
-            </Flex>
+                Excluir
+              </Text>
+            </LinkChakra>
           </Flex>
-        ))}
+
+          <Flex>
+            <Icon as={MdOutlineArchive} w="2rem" h="1.5rem" color="blue.900" />
+            <LinkChakra
+              as={Link}
+              _hover={{ textDecoration: 'none' }}
+              _focus={{ border: 'none' }}
+            >
+              <Text
+                fontSize="1rem"
+                color="blue.900"
+                fontWeight={500}
+                ml="0.25rem"
+              >
+                Arquivar
+              </Text>
+            </LinkChakra>
+          </Flex>
+
+          <Flex>
+            <Icon
+              as={MdOutlineBookmarkAdd}
+              w="2rem"
+              h="1.5rem"
+              color="blue.900"
+            />
+            <LinkChakra
+              as={Link}
+              _hover={{ textDecoration: 'none' }}
+              _focus={{ border: 'none' }}
+            >
+              <Text
+                fontSize="1rem"
+                color="blue.900"
+                fontWeight={500}
+                ml="0.25rem"
+              >
+                Salvar como modelo
+              </Text>
+            </LinkChakra>
+          </Flex>
+
+          <Flex>
+            <Icon as={MdContentCopy} w="2rem" h="1.5rem" color="blue.900" />
+            <LinkChakra
+              as={Link}
+              _hover={{ textDecoration: 'none' }}
+              _focus={{ border: 'none' }}
+            >
+              <Text
+                fontSize="1rem"
+                color="blue.900"
+                fontWeight={500}
+                ml="0.25rem"
+              >
+                Criar cópia
+              </Text>
+            </LinkChakra>
+          </Flex>
+        </Flex>
       </Flex>
     </>
   )
