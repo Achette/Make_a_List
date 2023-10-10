@@ -2,15 +2,11 @@ import React from 'react'
 import { useMedia } from 'hooks'
 import { useNavigate } from 'react-router-dom'
 import { AddListGroup } from 'components/AddListGroup'
+import { ListDetailTopBarProps } from 'components/ListDetailTopBar'
 import { Button, Divider, Flex, HStack, Text, Avatar } from '@chakra-ui/react'
 
-interface GroupDetailTopBarProps {
-  name: string
-  shared?: { id: string; name: string; email: string }[]
-  fetchList: () => Promise<void>
-}
 
-export const GroupDetailTopBar = ({ name, shared, fetchList }: GroupDetailTopBarProps) => {
+export const GroupDetailTopBar = ({ name, shared, fetchList }: ListDetailTopBarProps) => {
   const [modal, setModal] = React.useState<boolean>(false)
   const { isMobileOrTablet } = useMedia()
   const navigate = useNavigate()

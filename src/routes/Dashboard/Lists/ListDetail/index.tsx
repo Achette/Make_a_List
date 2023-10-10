@@ -20,7 +20,7 @@ import {
   Divider,
 } from '@chakra-ui/react'
 
-type ListDetailProps = {
+export type ListDetailProps = {
   name: string
   total: number
   shared: { id: string; name: string; email: string }[]

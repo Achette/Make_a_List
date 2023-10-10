@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { NewProduct } from 'components/NewProduct'
 import { Button, Divider, Flex, HStack, Text, Avatar } from '@chakra-ui/react'
 
-interface ListDetailTopBarProps {
+export interface ListDetailTopBarProps {
   name: string
   shared?: { id: string; name: string; email: string }[]
   fetchList: () => Promise<void>
