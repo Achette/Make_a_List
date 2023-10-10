@@ -26,3 +26,7 @@ export const saveUser = (token: string) => {
 export const getUser = (): string | null => {
   return localStorage.getItem(USER_KEY)
 }
+
+export const removeUser = () => {
+  localStorage.removeItem(USER_KEY)
+}

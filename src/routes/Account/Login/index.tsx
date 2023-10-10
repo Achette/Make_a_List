@@ -1,4 +1,5 @@
 import React from 'react'
+import { useMedia } from 'hooks'
 import * as accessTokenRepository from 'hooks'
 import { UserApi } from 'services/auth-services'
 import { Link, useNavigate } from 'react-router-dom'
@@ -25,6 +26,8 @@ export const Login = () => {
   const navigate = useNavigate()
   const toast = useToast()
 
+  const { isMobileOrTablet } = useMedia()
+
   const {
     register,
     handleSubmit,
@@ -39,7 +42,7 @@ export const Login = () => {
       toast({
         description: `Bem-vindo ${response.user.name}!`,
         containerStyle: { color: 'white' },
-        position: 'top',
+        position: isMobileOrTablet ? 'top' : 'bottom-right',
         isClosable: true,
       })
 
@@ -49,7 +52,7 @@ export const Login = () => {
         description: `E-mail ou senha incorretos!`,
         status: 'error',
         containerStyle: { color: 'white' },
-        position: 'top',
+        position: isMobileOrTablet ? 'top' : 'bottom-right',
         isClosable: true,
       })
     }

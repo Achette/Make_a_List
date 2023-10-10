@@ -1,4 +1,5 @@
 import React from 'react'
+import { useMedia } from 'hooks'
 import { UserApi } from 'services/auth-services'
 import { Link, useNavigate } from 'react-router-dom'
 import { useForm, SubmitHandler } from 'react-hook-form'
@@ -24,6 +25,8 @@ export const SignIn = () => {
   const navigate = useNavigate()
   const toast = useToast()
 
+  const { isMobileOrTablet } = useMedia()
+
   const {
     register,
     handleSubmit,
@@ -38,7 +41,7 @@ export const SignIn = () => {
         toast({
           description: `Conta cadastrada com sucesso!`,
           containerStyle: { color: 'white' },
-          position: 'top',
+          position: isMobileOrTablet ? 'top' : 'bottom-right',
           isClosable: true,
         })
         navigate('/account')
@@ -48,7 +51,7 @@ export const SignIn = () => {
         description: `E-mail informado já cadastrado`,
         status: 'error',
         containerStyle: { color: 'white' },
-        position: 'top',
+        position: isMobileOrTablet ? 'top' : 'bottom-right',
         isClosable: true,
       })
     }
