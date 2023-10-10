@@ -11,6 +11,8 @@ import {
   ListDetail,
   NewList,
   NewPassword,
+  Groups,
+  GroupDetail
 } from 'routes'
 
 function App() {
@@ -30,6 +32,10 @@ function App() {
             <Route index element={<Lists />} />
             <Route path="/lists/:id" element={<ListDetail />} />
             <Route path="/lists/new-list" element={<NewList />} />
+          </Route>
+          <Route path="/groups" element={<Dashboard />}>
+            <Route index element={<Groups />} />
+            <Route path="/groups/:id" element={<GroupDetail />} />
           </Route>
         </Routes>
       </BrowserRouter>
