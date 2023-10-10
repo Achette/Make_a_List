@@ -3,7 +3,6 @@ import React from 'react'
 import { useMedia } from 'hooks'
 import { getAll } from 'services/list-services'
 import { IconType } from 'react-icons/lib'
-import { useNavigate, useParams } from 'react-router-dom'
 import {
   Box,
   Flex,
@@ -13,15 +12,18 @@ import {
   ModalOverlay,
   ModalContent,
   ModalBody,
-  Button,
   HStack,
   Icon,
 } from '@chakra-ui/react'
 import { stringToIcon } from 'utils'
+import { MdClose } from 'react-icons/md'
+import { useParams } from 'react-router-dom'
+import { setList } from 'services/group-services'
 
 type AddListProps = {
   modal: boolean
   setModal: (arg: boolean) => void
+  fetchList: () => Promise<void>
 }
 
 export type ListsProps = {
@@ -36,15 +38,26 @@ export type ListsProps = {
   updated_at: string
 }
 
-export const AddListGroup = ({ modal, setModal }: AddListProps) => {
+export const AddListGroup = ({ modal, setModal, fetchList }: AddListProps) => {
   const { onClose, onOpen } = useDisclosure()
   const { isDesktop } = useMedia()
-  // const { id } = useParams()
+  const { id } = useParams()
   // const navigate = useNavigate()
 
   const { isMobileOrTablet } = useMedia()
 
   const [lists, setLists] = React.useState<ListsProps[]>()
+
+  const handleSelectList = async (item: ListsProps) => {
+    try {
+      await setList(id, item.id)
+
+      fetchList()
+      setModal(false)
+    } catch (e) {
+      console.error(e)
+    }
+  }
 
   React.useEffect(() => {
     getAll().then((res) => {
@@ -59,14 +72,27 @@ export const AddListGroup = ({ modal, setModal }: AddListProps) => {
         <ModalBody border="1px solid teal">
           <Flex flexDirection="column">
             <Box p="0.5rem" order={isDesktop ? 1 : 2}>
-              <Text
-                color="blue.900"
-                fontSize="2.125rem"
-                fontWeight={700}
-                onClick={onOpen}
-              >
-                Adicionar lista
-              </Text>
+              <Flex w="full" justifyContent="space-between" alignItems="center">
+                <Text
+                  color="blue.900"
+                  fontSize="2.125rem"
+                  fontWeight={700}
+                  onClick={onOpen}
+                >
+                  Adicionar lista
+                </Text>
+
+                <Icon
+                  type="button"
+                  as={MdClose}
+                  w="1.3125rem"
+                  h="1.3125rem"
+                  color="blue.900"
+                  cursor="pointer"
+                  onClick={() => setModal(false)}
+                />
+              </Flex>
+
               <Text
                 color="blue.900"
                 fontSize="1.0rem"
@@ -96,6 +122,8 @@ export const AddListGroup = ({ modal, setModal }: AddListProps) => {
                       borderRadius="62.5rem"
                       p={isMobileOrTablet ? '1rem' : '2rem'}
                       justifyContent="space-between"
+                      cursor="pointer"
+                      onClick={() => handleSelectList(item)}
                     >
                       <Flex alignItems="center">
                         <Flex

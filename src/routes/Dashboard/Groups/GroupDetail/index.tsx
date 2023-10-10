@@ -56,6 +56,10 @@ export const GroupDetail = () => {
         fetchListDetails()
     }, [fetchListDetails])
 
+    const handleMouseDown = () => {
+        console.log('teste')
+    };
+
     return (
         <VStack w="full" px={isMobileOrTablet ? '' : '3rem'}>
             <Flex w="full" justifyContent="space-between">

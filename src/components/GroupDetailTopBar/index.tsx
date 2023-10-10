@@ -49,7 +49,7 @@ export const GroupDetailTopBar = ({ name, shared, fetchList }: GroupDetailTopBar
             Adicionar listas
           </Button>
 
-          <AddListGroup modal={modal} setModal={setModal} />
+          <AddListGroup modal={modal} setModal={setModal} fetchList={fetchList} />
 
           {!isMobileOrTablet && (
             <Button
