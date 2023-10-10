@@ -1,5 +1,6 @@
 import React from 'react'
 import { NavItem } from './NavItem'
+import * as accessTokenRepository from 'hooks'
 import { List, ListItem } from '@chakra-ui/react'
 import {
   MdBookmarkBorder,
@@ -57,14 +58,12 @@ const items = [
   },
 ]
 
-const footer = [
-  {
-    type: 'footer',
-    label: 'Sair da Conta',
-    icon: MdPowerSettingsNew,
-    path: '/logout',
-  },
-]
+const footer = {
+  type: 'footer',
+  label: 'Sair da Conta',
+  icon: MdPowerSettingsNew,
+  path: '/',
+}
 
 export const Navigation = () => {
   return (
@@ -81,11 +80,14 @@ export const Navigation = () => {
 export const FooterNavigation = () => {
   return (
     <List w="full">
-      {footer.map((item, index) => (
-        <ListItem key={index}>
-          <NavItem item={item} isActive={index === 0} />
-        </ListItem>
-      ))}
+      <ListItem
+        onClick={() => {
+          accessTokenRepository.removeToken()
+          accessTokenRepository.removeUser()
+        }}
+      >
+        <NavItem item={footer} isActive={false} />
+      </ListItem>
     </List>
   )
 }
