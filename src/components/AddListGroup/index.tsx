@@ -1,8 +1,12 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import React from 'react'
 import { useMedia } from 'hooks'
+import { ListsProps } from 'routes'
+import { stringToIcon } from 'utils'
+import { MdClose } from 'react-icons/md'
+import { useParams } from 'react-router-dom'
 import { getAll } from 'services/list-services'
-import { IconType } from 'react-icons/lib'
+import { setList } from 'services/group-services'
 import {
   Box,
   Flex,
@@ -15,27 +19,11 @@ import {
   HStack,
   Icon,
 } from '@chakra-ui/react'
-import { stringToIcon } from 'utils'
-import { MdClose } from 'react-icons/md'
-import { useParams } from 'react-router-dom'
-import { setList } from 'services/group-services'
 
 type AddListProps = {
   modal: boolean
   setModal: (arg: boolean) => void
   fetchList: () => Promise<void>
-}
-
-export type ListsProps = {
-  id: string
-  color: string
-  icon: IconType | string
-  created_at: string
-  created_by: { id: string; name: string; email: string }
-  name: string
-  shared: { id: string; name: string; email: string }[]
-  total: number
-  updated_at: string
 }
 
 export const AddListGroup = ({ modal, setModal, fetchList }: AddListProps) => {

@@ -12,7 +12,7 @@ import {
   NewList,
   NewPassword,
   Groups,
-  GroupDetail
+  GroupDetail,
 } from 'routes'
 
 function App() {

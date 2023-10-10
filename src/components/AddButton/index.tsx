@@ -39,7 +39,7 @@ export const AddButton = () => {
             order={4}
             _hover={{ textDecoration: 'none' }}
           >
-            <VStack>
+            <VStack onClick={() => navigate('/groups/new-group')}>
               <Icon
                 as={MdGroupAdd}
                 w="3rem"
