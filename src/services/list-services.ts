@@ -56,3 +56,13 @@ export const deleteProduct = async (id: string) => {
   }
   return requestBackend(config)
 }
+
+export const deleteList = async (id: string) => {
+  const config: AxiosRequestConfig = {
+    method: 'DELETE',
+    url: `/purchase-list?id=${id}`,
+    signal: AbortSignal.timeout(5000),
+  }
+
+  return requestBackend(config)
+}
