@@ -47,8 +47,10 @@ export const SignIn = () => {
         navigate('/account')
       }
     } catch (e: unknown) {
+      const errorMessage = (e as any).response?.data?.error || 'Ocorreu um erro desconhecido';
+
       toast({
-        description: `E-mail informado já cadastrado`,
+        description: errorMessage,
         status: 'error',
         containerStyle: { color: 'white' },
         position: isMobileOrTablet ? 'top' : 'bottom-right',
