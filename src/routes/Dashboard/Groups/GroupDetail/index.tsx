@@ -5,8 +5,7 @@ import { getGroupById } from 'services/group-services'
 import { MdOutlineArrowBackIos } from 'react-icons/md'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import {
-  BottomDrawer,
-  List,
+  GroupList,
   GroupDetailTopBar,
   DeleteGroupButton,
 } from 'components'
@@ -62,11 +61,11 @@ export const GroupDetail = () => {
     } catch (e) {
       console.error(e)
     }
-  }, [setGroupDetails])
+  }, [])
 
   React.useEffect(() => {
     fetchListDetails()
-  }, [fetchListDetails])
+  }, [])
 
   return (
     <VStack w="full" px={isMobileOrTablet ? '' : '3rem'}>
@@ -92,8 +91,6 @@ export const GroupDetail = () => {
                 <Text>Listas</Text>
               </LinkChakra>
             </Flex>
-
-            <BottomDrawer />
           </Flex>
         )}
       </Flex>
@@ -119,13 +116,14 @@ export const GroupDetail = () => {
         >
           {groupDetails.purchase_list &&
             groupDetails.purchase_list.map((item) => (
-              <List
+              <GroupList
                 key={item.id}
+                idList={item.id}
                 bgColor={item.color}
                 icon={stringToIcon(item.icon) ?? undefined}
                 name={item.name}
                 shared={item.shared}
-                id={item.id}
+                fetchList={fetchListDetails}
               />
             ))}
 

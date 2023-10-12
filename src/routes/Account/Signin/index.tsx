@@ -47,7 +47,7 @@ export const SignIn = () => {
         navigate('/account')
       }
     } catch (e: unknown) {
-      const errorMessage = (e as any).response?.data?.error || 'Ocorreu um erro desconhecido';
+      const errorMessage = (e as any).response?.data?.error ?? 'Ocorreu um erro desconhecido';
 
       toast({
         description: errorMessage,

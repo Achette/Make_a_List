@@ -1,10 +1,11 @@
 import React from 'react'
-import { Box, Flex, HStack, Icon, Text, list, useToast } from '@chakra-ui/react'
+import { Box, Flex, HStack, Icon, Text, VStack, list, useToast } from '@chakra-ui/react'
 import { List, SearchBar } from 'components'
 import { getUser, useMedia } from 'hooks'
 import { stringToIcon } from 'utils'
 import { IconType } from 'react-icons/lib'
 import { deleteList, getAllDeleted, updateDeleteList } from 'services/list-services'
+import { MdDeleteOutline, MdRestore } from 'react-icons/md'
 
 export type DeleteListsProps = {
     id: string
@@ -100,46 +101,57 @@ export const Deleted = () => {
 
                 {lists &&
                     lists.map((item) => (
-                        <HStack
-                            key={item.id}
-                            w="full"
-                            h={isMobileOrTablet ? '3rem' : '4.25rem'}
-                            bg="gray.100"
-                            borderRadius="62.5rem"
-                            p={isMobileOrTablet ? '1rem' : '2rem'}
-                            justifyContent="space-between"
-                            cursor="pointer"
-                            onClick={() => restoreListById(item.id)}
-                        >
-                            <Flex alignItems="center">
-                                <Flex
-                                    h={isMobileOrTablet ? '1.8rem' : '2.5rem'}
-                                    w={isMobileOrTablet ? '1.8rem' : '2.5rem'}
-                                    bg={item.color}
-                                    p=".75rem"
-                                    borderRadius="full"
-                                    alignItems="center"
-                                    justifyContent="center"
-                                >
-                                    <Icon
-                                        as={stringToIcon(item.icon) ?? undefined}
-                                        h={isMobileOrTablet ? '1.15rem' : '1.5rem'}
-                                        w={isMobileOrTablet ? '1.15rem' : '1.5rem'}
-                                        color="whiteAlpha.900"
-                                    />
+                        <Flex key={item.id} w="full" alignItems="center">
+                            <HStack
+                                w="full"
+                                h={isMobileOrTablet ? '3rem' : '4.25rem'}
+                                bg="gray.100"
+                                borderRadius="62.5rem"
+                                p={isMobileOrTablet ? '1rem' : '2rem'}
+                                justifyContent="space-between"
+                            >
+                                <Flex alignItems="center">
+                                    <Flex
+                                        h={isMobileOrTablet ? '1.8rem' : '2.5rem'}
+                                        w={isMobileOrTablet ? '1.8rem' : '2.5rem'}
+                                        bg={item.color}
+                                        p=".75rem"
+                                        borderRadius="full"
+                                        alignItems="center"
+                                        justifyContent="center"
+                                    >
+                                        <Icon
+                                            as={stringToIcon(item.icon) ?? undefined}
+                                            h={isMobileOrTablet ? '1.15rem' : '1.5rem'}
+                                            w={isMobileOrTablet ? '1.15rem' : '1.5rem'}
+                                            color="whiteAlpha.900"
+                                        />
+                                    </Flex>
+                                    <Text
+                                        fontSize="1.0625rem"
+                                        fontWeight={500}
+                                        lineHeight="1.375rem"
+                                        letterSpacing="-0.02563rem"
+                                        color="blue.900"
+                                        ml="0.75rem"
+                                    >
+                                        {item.name}
+                                    </Text>
                                 </Flex>
-                                <Text
-                                    fontSize="1.0625rem"
-                                    fontWeight={500}
-                                    lineHeight="1.375rem"
-                                    letterSpacing="-0.02563rem"
-                                    color="blue.900"
-                                    ml="0.75rem"
-                                >
-                                    {item.name}
-                                </Text>
-                            </Flex>
-                        </HStack>
+                            </HStack>
+
+                            <VStack paddingLeft='1rem' cursor='pointer' onClick={() => restoreListById(item.id)}>
+                                <Icon
+                                    as={MdRestore}
+                                    w="3rem"
+                                    h="3rem"
+                                    p="0.7rem"
+                                    bg="blue.200"
+                                    color="blue.600"
+                                    borderRadius="full"
+                                />
+                            </VStack>
+                        </Flex>
                     ))}
 
                 {!lists?.length && (

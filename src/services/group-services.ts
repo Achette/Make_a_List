@@ -32,6 +32,17 @@ export const setList = async (id?: string, idList?: string) => {
   return requestBackend(config)
 }
 
+export const removeList = async (id?: string, idList?: string) => {
+  const config: AxiosRequestConfig = {
+    method: 'PUT',
+    url: `/groups/remove-purchase-list?id=${id}`,
+    signal: AbortSignal.timeout(5000),
+    data: { purchase_list_ids: idList },
+  }
+
+  return requestBackend(config)
+}
+
 export const deleteGroup = async (id: string) => {
   const config: AxiosRequestConfig = {
     method: 'DELETE',

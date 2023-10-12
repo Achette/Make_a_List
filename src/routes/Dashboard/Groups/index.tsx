@@ -48,7 +48,7 @@ export const Groups = () => {
             fontWeight={500}
             color="blue.50"
           >
-            Sem Listas
+            Sem grupos
           </Text>
         )}
       </SimpleGrid>

@@ -27,7 +27,7 @@ export const BottomOptionsBar = React.memo(function BottomOptionsBar({
       await updateDeleteList(id, true)
       navigate(-1)
     } catch (e: unknown) {
-      const errorMessage = (e as any).response?.data?.error || 'Ocorreu um erro desconhecido';
+      const errorMessage = (e as any).response?.data?.error ?? 'Ocorreu um erro desconhecido';
       toast({
         description: errorMessage,
         status: 'error',
