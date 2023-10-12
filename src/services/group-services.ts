@@ -31,3 +31,12 @@ export const setList = async (id?: string, idList?: string) => {
 
   return requestBackend(config)
 }
+
+export const deleteGroup = async (id: string) => {
+  const config: AxiosRequestConfig = {
+    method: 'DELETE',
+    url: `/groups?id=${id}`,
+    signal: AbortSignal.timeout(5000),
+  }
+  return requestBackend(config)
+}

@@ -21,6 +21,16 @@ export const getListById = async (id?: string) => {
   return requestBackend(config)
 }
 
+export const getAllDeleted = async () => {
+  const config: AxiosRequestConfig = {
+    method: 'GET',
+    url: '/purchase-list/deleted',
+    signal: AbortSignal.timeout(5000),
+  }
+
+  return requestBackend(config)
+}
+
 export const newList = async (name?: string, color?: string, icon?: string) => {
   const config: AxiosRequestConfig = {
     method: 'POST',
@@ -54,6 +64,19 @@ export const deleteProduct = async (id: string) => {
     url: `/products?id=${id}`,
     signal: AbortSignal.timeout(5000),
   }
+  return requestBackend(config)
+}
+
+export const updateDeleteList = async (id: string, destroy: boolean) => {
+  const config: AxiosRequestConfig = {
+    method: 'PUT',
+    url: `/purchase-list?id=${id}`,
+    signal: AbortSignal.timeout(5000),
+    data: {
+      delete: destroy
+    },
+  }
+
   return requestBackend(config)
 }
 

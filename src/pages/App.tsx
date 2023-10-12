@@ -13,6 +13,7 @@ import {
   NewPassword,
   Groups,
   GroupDetail,
+  Deleted
 } from 'routes'
 
 function App() {
@@ -36,6 +37,9 @@ function App() {
           <Route path="/groups" element={<Dashboard />}>
             <Route index element={<Groups />} />
             <Route path="/groups/:id" element={<GroupDetail />} />
+          </Route>
+          <Route path="/deleted" element={<Dashboard />}>
+            <Route index element={<Deleted />} />
           </Route>
         </Routes>
       </BrowserRouter>

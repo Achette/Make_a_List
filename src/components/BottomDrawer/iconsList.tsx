@@ -1,14 +1,15 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import React from 'react'
-import { deleteList } from 'services/list-services'
+import { updateDeleteList } from 'services/list-services'
 import { Link, useNavigate } from 'react-router-dom'
-import { Flex, Icon, Link as LinkChakra, Text } from '@chakra-ui/react'
+import { Flex, Icon, Link as LinkChakra, Text, useToast } from '@chakra-ui/react'
 import {
   MdContentCopy,
   MdDeleteOutline,
   MdOutlineArchive,
   MdOutlineBookmarkAdd,
 } from 'react-icons/md'
+import { useMedia } from 'hooks'
 
 type BottomOptionsBarProps = {
   id?: string
@@ -18,13 +19,22 @@ export const BottomOptionsBar = React.memo(function BottomOptionsBar({
   id,
 }: BottomOptionsBarProps) {
   const navigate = useNavigate()
+  const { isMobileOrTablet } = useMedia()
+  const toast = useToast()
 
   const deleteListById = async (id: string) => {
     try {
-      await deleteList(id)
+      await updateDeleteList(id, true)
       navigate(-1)
-    } catch (e) {
-      console.error(e)
+    } catch (e: unknown) {
+      const errorMessage = (e as any).response?.data?.error || 'Ocorreu um erro desconhecido';
+      toast({
+        description: errorMessage,
+        status: 'error',
+        containerStyle: { color: 'white' },
+        position: isMobileOrTablet ? 'top' : 'bottom-right',
+        isClosable: true,
+      })
     }
   }
 
