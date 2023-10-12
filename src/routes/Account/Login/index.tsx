@@ -1,4 +1,5 @@
 import React from 'react'
+import { useMedia } from 'hooks'
 import * as accessTokenRepository from 'hooks'
 import { UserApi } from 'services/auth-services'
 import { Link, useNavigate } from 'react-router-dom'
@@ -25,6 +26,8 @@ export const Login = () => {
   const navigate = useNavigate()
   const toast = useToast()
 
+  const { isMobileOrTablet } = useMedia()
+
   const {
     register,
     handleSubmit,
@@ -36,20 +39,22 @@ export const Login = () => {
       const response = await UserApi.login(data)
       accessTokenRepository.saveToken(response.token)
       accessTokenRepository.saveUser(response.user.name)
+      accessTokenRepository.saveUserId(response.user.id)
       toast({
         description: `Bem-vindo ${response.user.name}!`,
         containerStyle: { color: 'white' },
-        position: 'top',
+        position: isMobileOrTablet ? 'top' : 'bottom-right',
         isClosable: true,
       })
 
       navigate('/lists')
     } catch (e: unknown) {
+      const errorMessage = (e as any).response?.data?.error ?? 'Ocorreu um erro desconhecido';
       toast({
-        description: `E-mail ou senha incorretos!`,
+        description: errorMessage,
         status: 'error',
         containerStyle: { color: 'white' },
-        position: 'top',
+        position: isMobileOrTablet ? 'top' : 'bottom-right',
         isClosable: true,
       })
     }

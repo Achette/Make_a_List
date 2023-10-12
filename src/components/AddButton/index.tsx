@@ -1,6 +1,6 @@
 import React from 'react'
 import { useMedia } from 'hooks'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import {
   Collapse,
   Flex,
@@ -34,12 +34,11 @@ export const AddButton = () => {
       <Collapse in={collapse} animateOpacity>
         <VStack flexDir="column-reverse">
           <LinkChakra
-            as={Link}
             title="Add group"
             order={4}
             _hover={{ textDecoration: 'none' }}
           >
-            <VStack>
+            <VStack onClick={() => navigate('/groups/new-group')}>
               <Icon
                 as={MdGroupAdd}
                 w="3rem"

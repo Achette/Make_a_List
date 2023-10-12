@@ -6,7 +6,7 @@ import { ListDetailTopBarProps } from 'components/ListDetailTopBar'
 import { Button, Divider, Flex, HStack, Text, Avatar } from '@chakra-ui/react'
 
 
-export const GroupDetailTopBar = ({ name, shared, fetchList }: ListDetailTopBarProps) => {
+export const GroupDetailTopBar = ({ name, shared, fetchList, created_by }: ListDetailTopBarProps) => {
   const [modal, setModal] = React.useState<boolean>(false)
   const { isMobileOrTablet } = useMedia()
   const navigate = useNavigate()
