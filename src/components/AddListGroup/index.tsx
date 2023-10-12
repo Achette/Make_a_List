@@ -30,11 +30,12 @@ export const AddListGroup = ({ modal, setModal, fetchList }: AddListProps) => {
   const { onClose, onOpen } = useDisclosure()
   const { isDesktop } = useMedia()
   const { id } = useParams()
-  // const navigate = useNavigate()
 
   const { isMobileOrTablet } = useMedia()
 
   const [lists, setLists] = React.useState<ListsProps[]>()
+
+  const controller = new AbortController()
 
   const handleSelectList = async (item: ListsProps) => {
     try {
@@ -51,6 +52,8 @@ export const AddListGroup = ({ modal, setModal, fetchList }: AddListProps) => {
     getAll().then((res) => {
       setLists(res.data.list)
     })
+
+    return () => controller.abort()
   }, [])
 
   return (
@@ -81,12 +84,7 @@ export const AddListGroup = ({ modal, setModal, fetchList }: AddListProps) => {
                 />
               </Flex>
 
-              <Text
-                color="blue.900"
-                fontSize="1.0rem"
-                fontWeight={400}
-                onClick={onOpen}
-              >
+              <Text color="blue.900" fontSize="1.0rem" fontWeight={400}>
                 Selecione uma lista para adicionar ao grupo.
               </Text>
 

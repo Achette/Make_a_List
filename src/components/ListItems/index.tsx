@@ -2,7 +2,7 @@ import React from 'react'
 import { useMedia } from 'hooks'
 import { RiDeleteBin6Fill } from 'react-icons/ri'
 import { deleteProduct } from 'services/list-services'
-import { Checkbox, Flex, HStack, Icon, Text, VStack } from '@chakra-ui/react'
+import { Checkbox, Flex, HStack, Icon, Text, VStack, useToast } from '@chakra-ui/react'
 
 type ListItemsProps = {
   id: string
@@ -22,9 +22,21 @@ export const ListItems = ({
   fetchList,
 }: ListItemsProps) => {
   const { isMobileOrTablet } = useMedia()
+  const toast = useToast()
 
   const handleDeleteProduct = async (id: string) => {
-    await deleteProduct(id)
+    try {
+      await deleteProduct(id)
+    } catch (e: unknown) {
+      const errorMessage = (e as any).response?.data?.error || 'Ocorreu um erro desconhecido';
+      toast({
+        description: errorMessage,
+        status: 'error',
+        containerStyle: { color: 'white' },
+        position: isMobileOrTablet ? 'top' : 'bottom-right',
+        isClosable: true,
+      })
+    }
     fetchList()
   }
 

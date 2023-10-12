@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import React from 'react'
 import { HiDotsVertical } from 'react-icons/hi'
-import { deleteList } from 'services/list-services'
+import { moveToRecycleBin } from 'services/list-services'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import {
   Drawer,
@@ -12,6 +12,7 @@ import {
   useDisclosure,
   Link as LinkChakra,
   Text,
+  useToast,
 } from '@chakra-ui/react'
 import {
   MdContentCopy,
@@ -19,19 +20,29 @@ import {
   MdOutlineArchive,
   MdOutlineBookmarkAdd,
 } from 'react-icons/md'
+import { useMedia } from 'hooks'
 
 export const BottomDrawer = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
 
   const navigate = useNavigate()
   const { id } = useParams()
+  const { isMobileOrTablet } = useMedia()
+  const toast = useToast()
 
   const deleteListById = async (id: string) => {
     try {
-      await deleteList(id)
+      await moveToRecycleBin(id, true)
       navigate(-1)
-    } catch (e) {
-      console.error(e)
+    } catch (e: unknown) {
+      const errorMessage = (e as any).response?.data?.error ?? 'Ocorreu um erro desconhecido';
+      toast({
+        description: errorMessage,
+        status: 'error',
+        containerStyle: { color: 'white' },
+        position: isMobileOrTablet ? 'top' : 'bottom-right',
+        isClosable: true,
+      })
     }
   }
 

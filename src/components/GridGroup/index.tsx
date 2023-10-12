@@ -1,7 +1,7 @@
 import React from 'react'
 import { useMedia } from 'hooks'
 import { Link } from 'react-router-dom'
-import { IconType } from 'react-icons/lib'
+import { ListProps } from 'components/List'
 import {
   Box,
   Center,
@@ -12,15 +12,7 @@ import {
   Link as LinkChakra,
 } from '@chakra-ui/react'
 
-export type GroupsListProps = {
-  id: string
-  icon?: IconType
-  bgColor: string
-  name: string
-  shared?: { id: string; name: string; email: string }[]
-}
-
-export const GridGroup = ({ id, icon, bgColor, name, shared }: GroupsListProps) => {
+export const GridGroup = ({ id, icon, bgColor, name }: ListProps) => {
   const { isMobileOrTablet } = useMedia()
 
   return (
@@ -31,9 +23,9 @@ export const GridGroup = ({ id, icon, bgColor, name, shared }: GroupsListProps) 
       to={`/groups/${id}`}
       _hover={{ color: 'blue.400', stroke: 'blue.400' }}
     >
-      <Box bg='gray.100' height='12rem' borderRadius="1.2rem">
-        <Center h="100%" w="100%" color='white' >
-          <VStack spacing={4} direction='column'>
+      <Box bg="gray.100" height="12rem" borderRadius="1.2rem">
+        <Center h="100%" w="100%" color="white">
+          <VStack spacing={4} direction="column">
             <Flex
               h={isMobileOrTablet ? '4rem' : '4.5rem'}
               w={isMobileOrTablet ? '4rem' : '4.5rem'}
@@ -41,7 +33,6 @@ export const GridGroup = ({ id, icon, bgColor, name, shared }: GroupsListProps) 
               borderRadius="full"
               alignItems="center"
               justifyContent="center"
-
             >
               <Icon
                 as={icon}

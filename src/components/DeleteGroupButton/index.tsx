@@ -1,10 +1,41 @@
 import React from 'react'
-import { useMedia } from 'hooks'
+import { useNavigate } from 'react-router-dom'
 import { MdDeleteOutline } from 'react-icons/md'
-import { Flex, Icon, Link as LinkChakra, Text, VStack } from '@chakra-ui/react'
+import { deleteGroup } from 'services/group-services'
+import {
+  Flex,
+  Icon,
+  Link as LinkChakra,
+  Text,
+  VStack,
+  useToast,
+} from '@chakra-ui/react'
 
-export const DeleteGroupButton = () => {
-  const { isMobileOrTablet } = useMedia()
+export type ButtonProps = {
+  id: string
+  isMobileOrTablet: boolean
+}
+
+export const DeleteGroupButton = ({ id, isMobileOrTablet }: ButtonProps) => {
+  const toast = useToast()
+  const navigate = useNavigate()
+
+  const deleteGroupById = async () => {
+    try {
+      await deleteGroup(id)
+      navigate(-1)
+    } catch (e: unknown) {
+      const errorMessage =
+        (e as any).response?.data?.error ?? 'Ocorreu um erro desconhecido'
+      toast({
+        description: errorMessage,
+        status: 'error',
+        containerStyle: { color: 'white' },
+        position: isMobileOrTablet ? 'top' : 'bottom-right',
+        isClosable: true,
+      })
+    }
+  }
 
   return (
     <Flex
@@ -15,7 +46,7 @@ export const DeleteGroupButton = () => {
       overflow="hidden"
     >
       <LinkChakra title="Delete" order={3} _hover={{ textDecoration: 'none' }}>
-        <VStack onClick={() => null}>
+        <VStack onClick={() => deleteGroupById()}>
           <Icon
             as={MdDeleteOutline}
             w="3rem"
