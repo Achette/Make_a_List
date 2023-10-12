@@ -30,7 +30,7 @@ export const Dashboard = () => {
         padding={!collapse ? '1.5rem 1.5rem 0 1rem' : '1.5rem 1.5rem 0 1.5rem'}
         flexDirection="column"
         justifyContent="space-between"
-        borderRadius="0.5rem"
+        borderRadius={isMobileOrTablet ? '0 0.5rem 0.5rem 0' : '0.5rem'}
         mr="0.5rem"
         position={isMobileOrTablet ? 'absolute' : 'inherit'}
         display={isMobileOrTablet && !collapse ? 'none' : 'inherit'}

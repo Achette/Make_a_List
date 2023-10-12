@@ -46,7 +46,7 @@ export const GroupList = ({ idList, icon, bgColor, name, shared, fetchList }: Gr
   }
 
   return (
-    <Flex w="full" alignItems="center">
+    <Flex w="full" alignItems="center" justifyContent="center">
       <LinkChakra
         w={isMobileOrTablet ? '83%' : 'full'}
         h={isMobileOrTablet ? '3rem' : '4.25rem'}
@@ -122,6 +122,7 @@ export const GroupList = ({ idList, icon, bgColor, name, shared, fetchList }: Gr
           bg="red.200"
           color="red.600"
           borderRadius="full"
+          title="Remover lista do grupo"
         />
       </VStack>
     </Flex>
