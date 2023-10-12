@@ -80,6 +80,19 @@ export const updateDeleteList = async (id: string, destroy: boolean) => {
   return requestBackend(config)
 }
 
+export const sharedList = async (id: string, email: string) => {
+  const config: AxiosRequestConfig = {
+    method: 'PUT',
+    url: `/purchase-list/shared?id=${id}`,
+    signal: AbortSignal.timeout(5000),
+    data: {
+      email
+    },
+  }
+
+  return requestBackend(config)
+}
+
 export const deleteList = async (id: string) => {
   const config: AxiosRequestConfig = {
     method: 'DELETE',
@@ -89,3 +102,17 @@ export const deleteList = async (id: string) => {
 
   return requestBackend(config)
 }
+
+export const leaveList = async (id: string, shared_ids: string) => {
+  const config: AxiosRequestConfig = {
+    method: 'PUT',
+    url: `/purchase-list/leave-list?id=${id}`,
+    signal: AbortSignal.timeout(5000),
+    data: {
+      shared_ids
+    },
+  }
+
+  return requestBackend(config)
+}
+

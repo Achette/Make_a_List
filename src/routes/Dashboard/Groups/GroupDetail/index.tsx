@@ -99,6 +99,7 @@ export const GroupDetail = () => {
         name={groupDetails.name}
         shared={groupDetails.user_list}
         fetchList={fetchListDetails}
+        created_by={groupDetails.created_by}
       />
 
       <Box w="full" h="full">

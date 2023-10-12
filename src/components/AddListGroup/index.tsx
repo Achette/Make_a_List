@@ -30,7 +30,6 @@ export const AddListGroup = ({ modal, setModal, fetchList }: AddListProps) => {
   const { onClose, onOpen } = useDisclosure()
   const { isDesktop } = useMedia()
   const { id } = useParams()
-  // const navigate = useNavigate()
 
   const { isMobileOrTablet } = useMedia()
 
@@ -85,7 +84,6 @@ export const AddListGroup = ({ modal, setModal, fetchList }: AddListProps) => {
                 color="blue.900"
                 fontSize="1.0rem"
                 fontWeight={400}
-                onClick={onOpen}
               >
                 Selecione uma lista para adicionar ao grupo.
               </Text>

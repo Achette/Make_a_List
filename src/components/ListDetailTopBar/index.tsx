@@ -3,19 +3,23 @@ import { useMedia } from 'hooks'
 import { useNavigate } from 'react-router-dom'
 import { NewProduct } from 'components/NewProduct'
 import { Button, Divider, Flex, HStack, Text, Avatar } from '@chakra-ui/react'
+import { AddUserList } from 'components/AddUserList'
 
 export interface ListDetailTopBarProps {
   name: string
   shared?: { id: string; name: string; email: string }[]
+  created_by: { id: string; name: string; email: string }
   fetchList: () => Promise<void>
 }
 
 export const ListDetailTopBar = ({
   name,
   shared,
+  created_by,
   fetchList,
 }: ListDetailTopBarProps) => {
   const [modal, setModal] = React.useState<boolean>(false)
+  const [modalUser, setModalUser] = React.useState<boolean>(false)
   const { isMobileOrTablet } = useMedia()
   const navigate = useNavigate()
 
@@ -71,12 +75,16 @@ export const ListDetailTopBar = ({
         </HStack>
       </Flex>
 
+      <AddUserList modal={modalUser} setModal={setModalUser} shared={shared} fetchList={fetchList} created_by={created_by} />
+
       <Flex
         w="full"
         align="center"
         justifyContent="space-between"
         flexDirection="row"
         gap="0.5rem"
+        cursor='pointer'
+        onClick={() => setModalUser(true)}
       >
         <Text
           whiteSpace="nowrap"

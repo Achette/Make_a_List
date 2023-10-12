@@ -21,6 +21,16 @@ export const getGroupById = async (id?: string) => {
   return requestBackend(config)
 }
 
+export const newGroup = async (name?: string, color?: string, icon?: string) => {
+  const config: AxiosRequestConfig = {
+    method: 'POST',
+    url: '/groups',
+    signal: AbortSignal.timeout(5000),
+    data: { name, color, icon },
+  }
+  return requestBackend(config)
+}
+
 export const setList = async (id?: string, idList?: string) => {
   const config: AxiosRequestConfig = {
     method: 'PUT',

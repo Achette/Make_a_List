@@ -39,6 +39,7 @@ export const Login = () => {
       const response = await UserApi.login(data)
       accessTokenRepository.saveToken(response.token)
       accessTokenRepository.saveUser(response.user.name)
+      accessTokenRepository.saveUserId(response.user.id)
       toast({
         description: `Bem-vindo ${response.user.name}!`,
         containerStyle: { color: 'white' },

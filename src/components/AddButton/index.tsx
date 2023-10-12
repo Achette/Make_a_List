@@ -34,7 +34,6 @@ export const AddButton = () => {
       <Collapse in={collapse} animateOpacity>
         <VStack flexDir="column-reverse">
           <LinkChakra
-            as={Link}
             title="Add group"
             order={4}
             _hover={{ textDecoration: 'none' }}

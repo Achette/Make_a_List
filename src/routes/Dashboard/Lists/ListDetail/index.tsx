@@ -24,6 +24,7 @@ export type ListDetailProps = {
   name: string
   total: number
   shared: { id: string; name: string; email: string }[]
+  created_by: { id: string; name: string; email: string }
   productsList: {
     category: string
     products: {
@@ -47,6 +48,11 @@ export const ListDetail = () => {
     name: '',
     total: 0,
     shared: [],
+    created_by: {
+      id: '',
+      name: '',
+      email: ''
+    },
     productsList: [],
   })
 
@@ -102,6 +108,7 @@ export const ListDetail = () => {
       <ListDetailTopBar
         name={listDetails.name}
         shared={listDetails.shared}
+        created_by={listDetails.created_by}
         fetchList={fetchListDetails}
       />
 
