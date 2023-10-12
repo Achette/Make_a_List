@@ -3,7 +3,7 @@ import { stringToIcon } from 'utils'
 import { ListsProps } from '../Lists'
 import { getUser, useMedia } from 'hooks'
 import { getAll } from 'services/group-services'
-import { Box, SimpleGrid, Text } from '@chakra-ui/react'
+import { Box, Center, Flex, SimpleGrid, Text } from '@chakra-ui/react'
 import { AddButton, GridGroup, SearchBar } from 'components'
 
 export const Groups = () => {
@@ -30,6 +30,7 @@ export const Groups = () => {
         p={isMobileOrTablet ? '1rem' : '2rem'}
         columns={isMobileOrTablet ? 2 : 5}
         spacing={4}
+
       >
         {groups &&
           groups.map((item) => (

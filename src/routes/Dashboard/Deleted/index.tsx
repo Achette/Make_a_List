@@ -5,7 +5,7 @@ import { getUser, useMedia } from 'hooks'
 import { stringToIcon } from 'utils'
 import { IconType } from 'react-icons/lib'
 import { deleteList, getAllDeleted, updateDeleteList } from 'services/list-services'
-import { MdDeleteOutline, MdRestore } from 'react-icons/md'
+import {  MdRestore } from 'react-icons/md'
 
 export type DeleteListsProps = {
     id: string
@@ -41,7 +41,7 @@ export const Deleted = () => {
             const response = await getAllDeleted()
             const list = response.data.list
 
-            const newList = list.filter((item: { delete_at: string; id: string }) => {
+            const newList = list?.filter((item: { delete_at: string; id: string }) => {
                 if (isDeleteDateExpired(item.delete_at)) {
                     deleteList(item.id);
                     return false; // Remove o item da lista
@@ -49,11 +49,11 @@ export const Deleted = () => {
                 return true; // Mantém o item na lista
             });
 
-            setLists(newList)
+            setLists(newList ?? [])
         } catch (e) {
             console.error(e)
         }
-    }, [setLists])
+    }, [])
 
     React.useEffect(() => {
         fetchDeletedList()
