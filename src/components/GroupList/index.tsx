@@ -1,7 +1,9 @@
 import React from 'react'
 import { useMedia } from 'hooks'
-import { Link, useParams } from 'react-router-dom'
 import { IconType } from 'react-icons/lib'
+import { MdDeleteOutline } from 'react-icons/md'
+import { Link, useParams } from 'react-router-dom'
+import { removeList } from 'services/group-services'
 import {
   Avatar,
   Flex,
@@ -12,8 +14,6 @@ import {
   VStack,
   useToast,
 } from '@chakra-ui/react'
-import { MdDeleteOutline } from 'react-icons/md'
-import { removeList } from 'services/group-services'
 
 export type GroupListProps = {
   idList: string

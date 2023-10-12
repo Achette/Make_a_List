@@ -1,170 +1,122 @@
 import React from 'react'
-import { Box, Flex, HStack, Icon, Text, VStack, list, useToast } from '@chakra-ui/react'
-import { List, SearchBar } from 'components'
+import { ListsProps } from '../Lists'
+import { SearchBar } from 'components'
 import { getUser, useMedia } from 'hooks'
-import { stringToIcon } from 'utils'
-import { IconType } from 'react-icons/lib'
-import { deleteList, getAllDeleted, updateDeleteList } from 'services/list-services'
-import {  MdRestore } from 'react-icons/md'
-
-export type DeleteListsProps = {
-    id: string
-    color: string
-    icon: IconType | string
-    created_at: string
-    created_by: { id: string; name: string; email: string }
-    name: string
-    shared: { id: string; name: string; email: string }[]
-    total: number
-    updated_at: string
-}
+import { DeletedList } from 'components/DeletedList'
+import { Box, Flex, Text, useToast } from '@chakra-ui/react'
+import {
+  deleteList,
+  getAllDeleted,
+  moveToRecycleBin,
+} from 'services/list-services'
 
 export const Deleted = () => {
-    const { isMobileOrTablet } = useMedia()
+  const { isMobileOrTablet } = useMedia()
 
-    const user = getUser()
-    const [lists, setLists] = React.useState<DeleteListsProps[]>()
+  const user = getUser()
+  const [lists, setLists] = React.useState<ListsProps[]>()
 
-    const toast = useToast()
+  const toast = useToast()
 
-    function isDeleteDateExpired(deleteDate: string): boolean {
-        const deleteDateObj = new Date(deleteDate);
-        const currentDate = new Date();
-        const differenceInMilliseconds = currentDate.getTime() - deleteDateObj.getTime();
-        const differenceInDays = differenceInMilliseconds / (1000 * 60 * 60 * 24);
+  function isDeleteDateExpired(deleteDate: string): boolean {
+    const deleteDateObj = new Date(deleteDate)
+    const currentDate = new Date()
+    const differenceInMilliseconds =
+      currentDate.getTime() - deleteDateObj.getTime()
+    const differenceInDays = differenceInMilliseconds / (1000 * 60 * 60 * 24)
 
-        return differenceInDays > 7;
-    }
+    return differenceInDays > 7
+  }
 
-    const fetchDeletedList = React.useCallback(async () => {
-        try {
-            const response = await getAllDeleted()
-            const list = response.data.list
+  const fetchDeletedList = React.useCallback(async () => {
+    try {
+      const response = await getAllDeleted()
+      const list = response.data.list
 
-            const newList = list?.filter((item: { delete_at: string; id: string }) => {
-                if (isDeleteDateExpired(item.delete_at)) {
-                    deleteList(item.id);
-                    return false; // Remove o item da lista
-                }
-                return true; // Mantém o item na lista
-            });
-
-            setLists(newList ?? [])
-        } catch (e) {
-            console.error(e)
+      const newList = list?.filter(
+        (item: { delete_at: string; id: string }) => {
+          if (isDeleteDateExpired(item.delete_at)) {
+            deleteList(item.id)
+            return false
+          }
+          return true
         }
-    }, [])
+      )
 
-    React.useEffect(() => {
-        fetchDeletedList()
-    }, [])
-
-    const restoreListById = async (id: string) => {
-        try {
-            await updateDeleteList(id, false)
-            await fetchDeletedList()
-        } catch (e: unknown) {
-            const errorMessage = (e as any).response?.data?.error || 'Ocorreu um erro desconhecido';
-            toast({
-                description: errorMessage,
-                status: 'error',
-                containerStyle: { color: 'white' },
-                position: isMobileOrTablet ? 'top' : 'bottom-right',
-                isClosable: true,
-            })
-        }
+      setLists(newList ?? [])
+    } catch (e) {
+      console.error(e)
     }
+  }, [])
 
-    return (
-        <Box w="full" h="full">
-            <SearchBar user={user ?? ''} />
+  React.useEffect(() => {
+    fetchDeletedList()
+  }, [])
 
-            <Flex
-                mt="1rem"
-                maxH="calc(100% - 13vh)"
-                h="100%"
-                alignItems="center"
-                justifyContent={lists?.length ? '' : 'center'}
-                flexDir="column"
-                gap="0.75rem"
-                py="1.87rem"
-                px={isMobileOrTablet ? '0' : '4rem'}
-                overflow="auto"
-            >
-                <Text
-                    fontSize={isMobileOrTablet ? '0.75rem' : '1rem'}
-                    fontWeight={600}
-                    color="blue.900"
-                >
-                    As listas adicionadas a lixeira serão permanentemente excluidas após 7 dias
-                </Text>
+  const restoreListById = async (id: string) => {
+    try {
+      await moveToRecycleBin(id, false)
+      await fetchDeletedList()
+    } catch (e: any) {
+      const errorMessage =
+        e.response?.data?.error ?? 'Ocorreu um erro desconhecido'
+      toast({
+        description: errorMessage,
+        status: 'error',
+        containerStyle: { color: 'white' },
+        position: isMobileOrTablet ? 'top' : 'bottom-right',
+        isClosable: true,
+      })
+    }
+  }
 
-                {lists &&
-                    lists.map((item) => (
-                        <Flex key={item.id} w="full" alignItems="center">
-                            <HStack
-                                w="full"
-                                h={isMobileOrTablet ? '3rem' : '4.25rem'}
-                                bg="gray.100"
-                                borderRadius="62.5rem"
-                                p={isMobileOrTablet ? '1rem' : '2rem'}
-                                justifyContent="space-between"
-                            >
-                                <Flex alignItems="center">
-                                    <Flex
-                                        h={isMobileOrTablet ? '1.8rem' : '2.5rem'}
-                                        w={isMobileOrTablet ? '1.8rem' : '2.5rem'}
-                                        bg={item.color}
-                                        p=".75rem"
-                                        borderRadius="full"
-                                        alignItems="center"
-                                        justifyContent="center"
-                                    >
-                                        <Icon
-                                            as={stringToIcon(item.icon) ?? undefined}
-                                            h={isMobileOrTablet ? '1.15rem' : '1.5rem'}
-                                            w={isMobileOrTablet ? '1.15rem' : '1.5rem'}
-                                            color="whiteAlpha.900"
-                                        />
-                                    </Flex>
-                                    <Text
-                                        fontSize="1.0625rem"
-                                        fontWeight={500}
-                                        lineHeight="1.375rem"
-                                        letterSpacing="-0.02563rem"
-                                        color="blue.900"
-                                        ml="0.75rem"
-                                    >
-                                        {item.name}
-                                    </Text>
-                                </Flex>
-                            </HStack>
+  return (
+    <Box w="full" h="full">
+      <SearchBar user={user ?? ''} />
 
-                            <VStack paddingLeft='1rem' cursor='pointer' onClick={() => restoreListById(item.id)}>
-                                <Icon
-                                    as={MdRestore}
-                                    w="3rem"
-                                    h="3rem"
-                                    p="0.7rem"
-                                    bg="blue.200"
-                                    color="blue.600"
-                                    borderRadius="full"
-                                />
-                            </VStack>
-                        </Flex>
-                    ))}
+      <Flex
+        mt="1rem"
+        maxH="calc(100% - 13vh)"
+        h="100%"
+        alignItems="center"
+        justifyContent={lists?.length ? '' : 'center'}
+        flexDir="column"
+        gap="0.75rem"
+        py="1.87rem"
+        px={isMobileOrTablet ? '0' : '4rem'}
+        overflow="auto"
+      >
+        <Text
+          fontSize={isMobileOrTablet ? '0.75rem' : '1rem'}
+          fontWeight={600}
+          color="blue.900"
+        >
+          As listas adicionadas a lixeira serão permanentemente excluidas após 7
+          dias
+        </Text>
 
-                {!lists?.length && (
-                    <Text
-                        fontSize={isMobileOrTablet ? '0.75rem' : '1rem'}
-                        fontWeight={500}
-                        color="blue.50"
-                    >
-                        Sem Listas
-                    </Text>
-                )}
-            </Flex>
+        {lists &&
+          lists.map((item) => (
+            <DeletedList
+              key={item.id}
+              bgColor={item.color}
+              id={item.id}
+              name={item.name}
+              icon={item.icon}
+              restore={restoreListById}
+            />
+          ))}
 
-        </Box>
-    )
+        {!lists?.length && (
+          <Text
+            fontSize={isMobileOrTablet ? '0.75rem' : '1rem'}
+            fontWeight={500}
+            color="blue.50"
+          >
+            Sem Listas
+          </Text>
+        )}
+      </Flex>
+    </Box>
+  )
 }

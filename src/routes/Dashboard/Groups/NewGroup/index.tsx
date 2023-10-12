@@ -2,9 +2,9 @@ import React from 'react'
 import { useMedia } from 'hooks'
 import { iconToString } from 'utils'
 import { useNavigate } from 'react-router-dom'
+import { newGroup } from 'services/group-services'
 import { ColorSelect, IconSelect } from 'components'
 import { Box, Flex, Text, Input, Button } from '@chakra-ui/react'
-import { newGroup } from 'services/group-services'
 
 export const NewGroup = () => {
   const navigate = useNavigate()

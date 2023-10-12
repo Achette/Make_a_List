@@ -67,7 +67,7 @@ export const deleteProduct = async (id: string) => {
   return requestBackend(config)
 }
 
-export const updateDeleteList = async (id: string, destroy: boolean) => {
+export const moveToRecycleBin = async (id: string, destroy: boolean) => {
   const config: AxiosRequestConfig = {
     method: 'PUT',
     url: `/purchase-list?id=${id}`,

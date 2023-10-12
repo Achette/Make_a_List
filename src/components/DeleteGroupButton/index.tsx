@@ -1,9 +1,15 @@
 import React from 'react'
-import { MdDeleteOutline } from 'react-icons/md'
-import { Flex, Icon, Link as LinkChakra, Text, VStack, useToast } from '@chakra-ui/react'
-import { deleteGroup } from 'services/group-services'
 import { useNavigate } from 'react-router-dom'
-
+import { MdDeleteOutline } from 'react-icons/md'
+import { deleteGroup } from 'services/group-services'
+import {
+  Flex,
+  Icon,
+  Link as LinkChakra,
+  Text,
+  VStack,
+  useToast,
+} from '@chakra-ui/react'
 
 export type ButtonProps = {
   id: string
@@ -19,7 +25,8 @@ export const DeleteGroupButton = ({ id, isMobileOrTablet }: ButtonProps) => {
       await deleteGroup(id)
       navigate(-1)
     } catch (e: unknown) {
-      const errorMessage = (e as any).response?.data?.error ?? 'Ocorreu um erro desconhecido';
+      const errorMessage =
+        (e as any).response?.data?.error ?? 'Ocorreu um erro desconhecido'
       toast({
         description: errorMessage,
         status: 'error',

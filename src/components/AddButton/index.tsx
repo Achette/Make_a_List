@@ -1,6 +1,6 @@
 import React from 'react'
 import { useMedia } from 'hooks'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import {
   Collapse,
   Flex,

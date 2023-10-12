@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import React from 'react'
-import { updateDeleteList } from 'services/list-services'
+import { useMedia } from 'hooks'
 import { Link, useNavigate } from 'react-router-dom'
+import { moveToRecycleBin } from 'services/list-services'
 import { Flex, Icon, Link as LinkChakra, Text, useToast } from '@chakra-ui/react'
 import {
   MdContentCopy,
@@ -9,7 +10,6 @@ import {
   MdOutlineArchive,
   MdOutlineBookmarkAdd,
 } from 'react-icons/md'
-import { useMedia } from 'hooks'
 
 type BottomOptionsBarProps = {
   id?: string
@@ -18,13 +18,13 @@ type BottomOptionsBarProps = {
 export const BottomOptionsBar = React.memo(function BottomOptionsBar({
   id,
 }: BottomOptionsBarProps) {
+  const toast = useToast()
   const navigate = useNavigate()
   const { isMobileOrTablet } = useMedia()
-  const toast = useToast()
 
   const deleteListById = async (id: string) => {
     try {
-      await updateDeleteList(id, true)
+      await moveToRecycleBin(id, true)
       navigate(-1)
     } catch (e: unknown) {
       const errorMessage = (e as any).response?.data?.error ?? 'Ocorreu um erro desconhecido';

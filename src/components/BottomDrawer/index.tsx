@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import React from 'react'
 import { HiDotsVertical } from 'react-icons/hi'
-import { updateDeleteList } from 'services/list-services'
+import { moveToRecycleBin } from 'services/list-services'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import {
   Drawer,
@@ -32,7 +32,7 @@ export const BottomDrawer = () => {
 
   const deleteListById = async (id: string) => {
     try {
-      await updateDeleteList(id, true)
+      await moveToRecycleBin(id, true)
       navigate(-1)
     } catch (e: unknown) {
       const errorMessage = (e as any).response?.data?.error ?? 'Ocorreu um erro desconhecido';
