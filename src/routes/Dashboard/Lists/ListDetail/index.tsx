@@ -1,5 +1,6 @@
 import React from 'react'
 import { useMedia } from 'hooks'
+import { colorSelector } from 'utils'
 import { getListById } from 'services/list-services'
 import { MdOutlineArrowBackIos } from 'react-icons/md'
 import { Link, useNavigate, useParams } from 'react-router-dom'
@@ -19,6 +20,7 @@ import {
   Link as LinkChakra,
   Divider,
 } from '@chakra-ui/react'
+
 
 export type ListDetailProps = {
   name: string
@@ -51,7 +53,7 @@ export const ListDetail = () => {
     created_by: {
       id: '',
       name: '',
-      email: ''
+      email: '',
     },
     productsList: [],
   })
@@ -118,11 +120,53 @@ export const ListDetail = () => {
         overflow="auto"
         flexDir="column"
       >
+        <Flex w="full" justifyContent="space-between" alignItems="center">
+          <Text
+            color="red.400"
+            fontStyle="italic"
+            fontSize="1.0625rem"
+            fontWeight={300}
+            lineHeight="1.375rem"
+            letterSpacing="-0.02563rem"
+            ml="0.5rem"
+          >
+            Produtos
+          </Text>
+          <Text
+            color="red.400"
+            fontStyle="italic"
+            fontSize="0.75rem"
+            fontWeight={300}
+            lineHeight="1.375rem"
+          >
+            Preço
+          </Text>
+          <Text
+            color="red.400"
+            fontStyle="italic"
+            fontSize="0.75rem"
+            fontWeight={300}
+            lineHeight="1.375rem"
+            letterSpacing="-0.02563rem"
+            textAlign="center"
+          >
+            Qtd.
+          </Text>
+          <Text visibility="hidden">icon</Text>
+        </Flex>
+
         {listDetails.productsList &&
           listDetails.productsList.map((prod) => (
             <Box key={prod.category} p="0.5rem" mb="0.5rem">
-              <Text mb="0.5rem">{prod.category}</Text>
+              <Text
+                mb="0.5rem"
+                color={colorSelector(prod.category)}
+                fontWeight={500}
+              >
+                {prod.category}
+              </Text>
               <VStack alignItems="flex-start">
+                <Flex></Flex>
                 {prod.products.map((product) => (
                   <ListItems
                     key={product.id}
