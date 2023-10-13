@@ -160,7 +160,6 @@ export const ListDetail = () => {
               </Flex>
 
               <VStack alignItems="flex-start">
-                <Flex></Flex>
                 {prod.products.map((product) => (
                   <ListItems
                     key={product.id}
