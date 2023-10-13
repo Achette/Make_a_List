@@ -1,5 +1,6 @@
 import React from 'react'
 import { useMedia } from 'hooks'
+import { colorSelector } from 'utils'
 import { getListById } from 'services/list-services'
 import { MdOutlineArrowBackIos } from 'react-icons/md'
 import { Link, useNavigate, useParams } from 'react-router-dom'
@@ -51,7 +52,7 @@ export const ListDetail = () => {
     created_by: {
       id: '',
       name: '',
-      email: ''
+      email: '',
     },
     productsList: [],
   })
@@ -121,8 +122,45 @@ export const ListDetail = () => {
         {listDetails.productsList &&
           listDetails.productsList.map((prod) => (
             <Box key={prod.category} p="0.5rem" mb="0.5rem">
-              <Text mb="0.5rem">{prod.category}</Text>
+              <Flex w="full" justifyContent="space-between" alignItems="center">
+                <Text
+                  color={colorSelector(prod.category)}
+                  fontStyle="italic"
+                  fontSize="1.0625rem"
+                  fontWeight={500}
+                  lineHeight="1.375rem"
+                  letterSpacing="-0.02563rem"
+                  flex={isMobileOrTablet ? 3 : 'none'}
+                >
+                  {prod.category}
+                </Text>
+                <Text
+                  color={colorSelector(prod.category)}
+                  fontStyle="italic"
+                  fontSize="0.75rem"
+                  fontWeight={300}
+                  lineHeight="1.375rem"
+                  flex={isMobileOrTablet ? 1 : 'none'}
+                >
+                  Preço
+                </Text>
+                <Text
+                  color={colorSelector(prod.category)}
+                  fontStyle="italic"
+                  fontSize="0.75rem"
+                  fontWeight={300}
+                  lineHeight="1.375rem"
+                  letterSpacing="-0.02563rem"
+                  textAlign="center"
+                  flex={isMobileOrTablet ? 1 : 'none'}
+                >
+                  Qtd.
+                </Text>
+                <Text visibility="hidden" flex={isMobileOrTablet ? 1 : 'none'}>icon</Text>
+              </Flex>
+
               <VStack alignItems="flex-start">
+                <Flex></Flex>
                 {prod.products.map((product) => (
                   <ListItems
                     key={product.id}
