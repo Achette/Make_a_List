@@ -130,6 +130,7 @@ export const ListDetail = () => {
                   fontWeight={500}
                   lineHeight="1.375rem"
                   letterSpacing="-0.02563rem"
+                  flex={3}
                 >
                   {prod.category}
                 </Text>
@@ -139,6 +140,7 @@ export const ListDetail = () => {
                   fontSize="0.75rem"
                   fontWeight={300}
                   lineHeight="1.375rem"
+                  flex={1}
                 >
                   Preço
                 </Text>
@@ -150,10 +152,11 @@ export const ListDetail = () => {
                   lineHeight="1.375rem"
                   letterSpacing="-0.02563rem"
                   textAlign="center"
+                  flex={1}
                 >
                   Qtd.
                 </Text>
-                <Text visibility="hidden">icon</Text>
+                <Text visibility="hidden" flex={1}>icon</Text>
               </Flex>
 
               <VStack alignItems="flex-start">
