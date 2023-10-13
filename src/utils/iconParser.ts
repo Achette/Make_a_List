@@ -81,3 +81,25 @@ export const stringToIcon = (icon: string | IconType) => {
 
   return findIcon.icon
 }
+
+const categories = [
+  { name: 'Açougue', color: '#D23D33' },
+  { name: 'Hortifruti', color: '#047C52' },
+  { name: 'Congelados', color: '#27488F' },
+  { name: 'Mercearia', color: '#FF9F0A' },
+  { name: 'Laticínios', color: '#C8B100' },
+  { name: 'Padaria', color: '#C1A386' },
+  { name: 'Bebidas', color: '#55B3DA' },
+  { name: 'Perfumaria', color: '#BF5AF2' },
+  { name: 'Limpeza', color: '#00D689' },
+  { name: 'Pet Shop', color: '#E1289B' },
+  { name: 'Farmácia', color: '#6E7972' },
+  { name: 'Outros', color: '#734230' },
+]
+
+export const colorSelector = (category: string) => {
+  if (!category) return ''
+
+  const color = categories.find((c) => c.name === category)
+  return color?.color
+}
