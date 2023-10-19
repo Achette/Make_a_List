@@ -83,7 +83,7 @@ export const NewProduct = ({ modal, setModal, fetchList }: NewProductProps) => {
     <Modal onClose={onClose} size={isDesktop ? 'lg' : 'full'} isOpen={modal}>
       <ModalOverlay />
       <ModalContent backgroundColor="white">
-        <ModalBody border="1px solid teal">
+        <ModalBody>
           <Flex flexDirection="column">
             <Flex
               order={isDesktop ? 3 : 1}
