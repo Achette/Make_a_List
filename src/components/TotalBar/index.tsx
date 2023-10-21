@@ -41,7 +41,7 @@ export const TotalBar = ({ children }: TotalBarProps) => {
           letterSpacing="-0.02563rem"
           color="blue.900"
         >
-          ${children}
+          R${children}
         </Text>
       </Flex>
     </Box>
