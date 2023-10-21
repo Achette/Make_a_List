@@ -129,9 +129,9 @@ export const ListItems = ({
 
       <Modal blockScrollOnMount={false} isOpen={isOpen} onClose={onClose}>
         <ModalContent bgColor="white" w={isMobile ? '22rem' : ''}>
-          <ModalHeader>Excluir item?</ModalHeader>
+          <ModalHeader color="blue.900">Excluir item?</ModalHeader>
           <ModalBody>
-            <Text fontWeight="medium" mb="1rem">
+            <Text fontWeight="medium" mb="1rem" color="blue.900">
               Tem certeza que deseja excluir <strong>{productName}</strong> da
               sua lista de compra?
             </Text>
