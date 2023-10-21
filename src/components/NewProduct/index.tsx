@@ -15,6 +15,7 @@ import {
   ModalContent,
   ModalBody,
   Button,
+  useToast,
 } from '@chakra-ui/react'
 
 type NewProductProps = {
@@ -32,8 +33,9 @@ type InputsProps = {
 
 export const NewProduct = ({ modal, setModal, fetchList }: NewProductProps) => {
   const { onClose, onOpen } = useDisclosure()
-  const { isDesktop } = useMedia()
+  const { isDesktop, isMobileOrTablet } = useMedia()
   const { id } = useParams()
+  const toast = useToast()
   const navigate = useNavigate()
 
   const [category, setCategory] = React.useState<string>('')
@@ -63,6 +65,13 @@ export const NewProduct = ({ modal, setModal, fetchList }: NewProductProps) => {
         +newProduct.price,
         newProduct.place
       )
+
+      toast({
+        description: `Produto adicionado com sucesso!`,
+        containerStyle: { color: 'white' },
+        position: isMobileOrTablet ? 'top' : 'bottom-right',
+        isClosable: true,
+      })
 
       fetchList()
       setModal(false)
