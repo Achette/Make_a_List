@@ -57,7 +57,8 @@ export const NewList = () => {
           gap="0.625rem"
         >
           <Button
-            type="button"
+           
+            w={isDesktop ? '10rem' : 'auto'}
             bgColor="transparent"
             color="red.400"
             fontSize="1.0625rem"
@@ -70,9 +71,10 @@ export const NewList = () => {
             Cancelar
           </Button>{' '}
           <Button
-            type="button"
+           
             w={isDesktop ? '10rem' : 'auto'}
             bgColor={isDesktop ? 'blue.900' : 'transparent'}
+            _hover={{ bgColor: !isDesktop ? 'transparent' : 'blue.500' }}
             color={isDesktop ? 'whiteAlpha.900' : 'blue.900'}
             fontSize="1.0625rem"
             fontWeight={500}
