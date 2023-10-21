@@ -101,7 +101,7 @@ export const ListDetail = () => {
               </LinkChakra>
             </Flex>
 
-            <BottomDrawer />
+            <BottomDrawer listName={listDetails.name} />
           </Flex>
         )}
       </Flex>
@@ -196,7 +196,9 @@ export const ListDetail = () => {
       <Box pos="absolute" bottom="4.5rem" w="90%">
         <Divider orientation="horizontal" />
       </Box>
-      {!isMobileOrTablet && <BottomOptionsBar id={id} />}
+      {!isMobileOrTablet && (
+        <BottomOptionsBar id={id} listName={listDetails.name} />
+      )}
     </VStack>
   )
 }
