@@ -104,7 +104,7 @@ export const ListItems = ({
             lineHeight="1.375rem"
             letterSpacing="-0.02563"
           >
-            R${price}
+            R$ {price.toFixed(2).replace('.', ',')}
           </Text>
           <Text
             fontSize="1rem"

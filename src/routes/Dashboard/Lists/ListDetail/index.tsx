@@ -168,7 +168,7 @@ export const ListDetail = () => {
                     id={product.id}
                     productName={product.name}
                     place={product.place}
-                    price={Number(product.price.toFixed(2))}
+                    price={+product.price}
                     quantity={product.quantity}
                     fetchList={fetchListDetails}
                   />
