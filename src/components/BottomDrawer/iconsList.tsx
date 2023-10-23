@@ -3,7 +3,20 @@ import React from 'react'
 import { useMedia } from 'hooks'
 import { Link, useNavigate } from 'react-router-dom'
 import { moveToRecycleBin } from 'services/list-services'
-import { Flex, Icon, Link as LinkChakra, Text, useToast } from '@chakra-ui/react'
+import {
+  Button,
+  Flex,
+  Icon,
+  Link as LinkChakra,
+  Modal,
+  ModalBody,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  Text,
+  useDisclosure,
+  useToast,
+} from '@chakra-ui/react'
 import {
   MdContentCopy,
   MdDeleteOutline,
@@ -13,21 +26,34 @@ import {
 
 type BottomOptionsBarProps = {
   id?: string
+  listName: string
 }
 
 export const BottomOptionsBar = React.memo(function BottomOptionsBar({
   id,
+  listName,
 }: BottomOptionsBarProps) {
   const toast = useToast()
   const navigate = useNavigate()
-  const { isMobileOrTablet } = useMedia()
+  const { isMobileOrTablet, isMobile } = useMedia()
+  const { isOpen, onOpen, onClose } = useDisclosure()
 
   const deleteListById = async (id: string) => {
     try {
       await moveToRecycleBin(id, true)
+
+      toast({
+        description: `A lista ${listName} foi excluída com sucesso!`,
+        containerStyle: { color: 'white' },
+        position: isMobileOrTablet ? 'top' : 'bottom-right',
+        isClosable: true,
+      })
+
+      onClose()
       navigate(-1)
     } catch (e: unknown) {
-      const errorMessage = (e as any).response?.data?.error ?? 'Ocorreu um erro desconhecido';
+      const errorMessage =
+        (e as any).response?.data?.error ?? 'Ocorreu um erro desconhecido'
       toast({
         description: errorMessage,
         status: 'error',
@@ -42,7 +68,7 @@ export const BottomOptionsBar = React.memo(function BottomOptionsBar({
     <>
       <Flex w="full" position="absolute" bottom="1rem">
         <Flex w="full" alignItems="center" justifyContent="space-around">
-          <Flex onClick={() => deleteListById(id!)}>
+          <Flex onClick={() => onOpen()}>
             <Icon as={MdDeleteOutline} w="2rem" h="1.5rem" color="blue.900" />
             <LinkChakra
               as={Link}
@@ -120,6 +146,30 @@ export const BottomOptionsBar = React.memo(function BottomOptionsBar({
           </Flex>
         </Flex>
       </Flex>
+
+      <Modal blockScrollOnMount={false} isOpen={isOpen} onClose={onClose}>
+        <ModalContent bgColor="white" w={isMobile ? '22rem' : ''}>
+          <ModalHeader color="blue.900">Excluir lista?</ModalHeader>
+          <ModalBody>
+            <Text fontWeight="medium" mb="1rem" color="blue.900">
+              Tem certeza que deseja excluir a lista <strong>{listName}</strong>
+              ?
+            </Text>
+          </ModalBody>
+          <ModalFooter>
+            <Button
+              colorScheme="blue"
+              mr={3}
+              onClick={() => deleteListById(id!)}
+            >
+              Confirmar exclusão
+            </Button>
+            <Button variant="ghost" color="red.400" onClick={onClose}>
+              Cancelar
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
     </>
   )
 })
