@@ -84,7 +84,13 @@ export const NewProduct = ({ modal, setModal, fetchList }: NewProductProps) => {
         quantity: '',
       })
     } catch (e) {
-      console.error(e)
+      toast({
+        description: "Preencha todos os campos!",
+        status: 'warning',
+        containerStyle: { color: 'white' },
+        position: isMobileOrTablet ? 'top' : 'bottom-right',
+        isClosable: true,
+      })
     }
   }
 
