@@ -116,7 +116,7 @@ export const AddUserList = ({ modal, setModal, fetchList, shared, created_by }: 
     <Modal onClose={onClose} size={isDesktop ? 'lg' : 'full'} isOpen={modal}>
       <ModalOverlay />
       <ModalContent backgroundColor="white">
-        <ModalBody border="1px solid teal">
+        <ModalBody>
           <Flex flexDirection="column">
             <Box p="0.5rem" order={isDesktop ? 1 : 2}>
               <Flex w="full" justifyContent="space-between" alignItems="center">
