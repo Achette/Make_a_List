@@ -23,7 +23,7 @@ export const AboutMe = () => {
   }, [])
 
   return (
-    <Box w="full" p="1rem">
+    <Box w="full" p="0.5rem">
       <AboutMeBar name={user.name} email={user.email} />
       <ChangePassword />
     </Box>
