@@ -52,7 +52,7 @@ export const ListDetail = () => {
     created_by: {
       id: '',
       name: '',
-      email: '',
+      email: ''
     },
     productsList: [],
   })
@@ -101,7 +101,7 @@ export const ListDetail = () => {
               </LinkChakra>
             </Flex>
 
-            <BottomDrawer />
+            <BottomDrawer listName={listDetails.name} />
           </Flex>
         )}
       </Flex>
@@ -156,7 +156,9 @@ export const ListDetail = () => {
                 >
                   Qtd.
                 </Text>
-                <Text visibility="hidden" flex={isMobileOrTablet ? 1 : 'none'}>icon</Text>
+                <Text visibility="hidden" flex={isMobileOrTablet ? 1 : 'none'}>
+                  icon
+                </Text>
               </Flex>
 
               <VStack alignItems="flex-start">
@@ -166,7 +168,7 @@ export const ListDetail = () => {
                     id={product.id}
                     productName={product.name}
                     place={product.place}
-                    price={Number(product.price.toFixed(2))}
+                    price={+product.price}
                     quantity={product.quantity}
                     fetchList={fetchListDetails}
                   />
@@ -188,13 +190,15 @@ export const ListDetail = () => {
       </Flex>
 
       {listDetails.productsList.length && (
-        <TotalBar>{listDetails.total.toFixed(2)}</TotalBar>
+        <TotalBar>{listDetails.total.toFixed(2).replace('.', ',')}</TotalBar>
       )}
 
       <Box pos="absolute" bottom="4.5rem" w="90%">
         <Divider orientation="horizontal" />
       </Box>
-      {!isMobileOrTablet && <BottomOptionsBar id={id} />}
+      {!isMobileOrTablet && (
+        <BottomOptionsBar id={id} listName={listDetails.name} />
+      )}
     </VStack>
   )
 }

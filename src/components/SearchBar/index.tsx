@@ -1,8 +1,9 @@
 import React from 'react'
+import { useMedia } from 'hooks'
 import { MdMenu } from 'react-icons/md'
 import { SidebarContext } from 'contexts'
+import { useNavigate } from 'react-router-dom'
 import { Avatar, Flex, HStack, IconButton, Input } from '@chakra-ui/react'
-import { useMedia } from 'hooks'
 
 type SearchBarProps = {
   user: string
@@ -10,6 +11,8 @@ type SearchBarProps = {
 
 export const SearchBar = ({ user }: SearchBarProps) => {
   const { collapse, setCollapse } = React.useContext(SidebarContext)
+
+  const navigate = useNavigate()
 
   const { isMobileOrTablet } = useMedia()
 
@@ -46,7 +49,14 @@ export const SearchBar = ({ user }: SearchBarProps) => {
           }}
           focusBorderColor="transparent"
         />
-        <Avatar name={user} w="1.75rem" h="1.75rem" color="white" />
+        <Avatar
+          name={user}
+          w="1.75rem"
+          h="1.75rem"
+          color="white"
+          cursor="pointer"
+          onClick={() => navigate('/about-me')}
+        />
       </HStack>
     </Flex>
   )

@@ -2,10 +2,10 @@ import React from 'react'
 import { useMedia } from '../../hooks'
 import { Link } from 'react-router-dom'
 import { Logo, BenefitsSlider } from '../../components'
-import { Box, Button, HStack, Text, VStack } from '@chakra-ui/react'
+import { Box, Button, Flex, HStack, Text, VStack } from '@chakra-ui/react'
 
 export const Home = () => {
-  const { isDesktop } = useMedia()
+  const { isDesktop, isMobile, isTablet } = useMedia()
 
   return (
     <Box
@@ -28,10 +28,15 @@ export const Home = () => {
           O jeito fácil de compartilhar listas
         </Text>
 
-        <HStack>
+        <Flex
+          flexDir={isMobile ? 'column' : 'row'}
+          maxW="20rem"
+          w="full"
+          gap="0.5rem"
+        >
           <Link to="/account/signin">
             <Button
-              w={40}
+              w={isMobile ? 'full' : 40}
               borderRadius="0.625rem"
               color="blue.900"
               fontSize="md"
@@ -45,7 +50,7 @@ export const Home = () => {
 
           <Link to="/account">
             <Button
-              w={40}
+              w={isMobile ? 'full' : 40}
               borderRadius="0.625rem"
               color="blue.900"
               fontSize="md"
@@ -56,10 +61,10 @@ export const Home = () => {
               Entrar
             </Button>
           </Link>
-        </HStack>
+        </Flex>
         <Text
           color="gray.100"
-          mt={isDesktop ? '13.5rem' : '10.75rem'}
+          mt={isDesktop || isTablet ? '13.5rem' : '7.75rem'}
           mb="-1.75rem"
           fontSize="0.8125rem"
           fontWeight={500}
