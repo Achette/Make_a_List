@@ -14,7 +14,8 @@ import {
   Groups,
   GroupDetail,
   Deleted,
-  NewGroup
+  NewGroup,
+  AboutMe,
 } from 'routes'
 
 function App() {
@@ -42,6 +43,9 @@ function App() {
           </Route>
           <Route path="/deleted" element={<Dashboard />}>
             <Route index element={<Deleted />} />
+          </Route>
+          <Route path="/about-me" element={<Dashboard />}>
+            <Route index element={<AboutMe />} />
           </Route>
         </Routes>
       </BrowserRouter>
