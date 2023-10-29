@@ -1,7 +1,6 @@
 import React from 'react'
 import { useMedia } from 'hooks'
 import { colorSelector } from 'utils'
-import { colorSelector } from 'utils'
 import { getListById } from 'services/list-services'
 import { MdOutlineArrowBackIos } from 'react-icons/md'
 import { Link, useNavigate, useParams } from 'react-router-dom'
@@ -53,8 +52,7 @@ export const ListDetail = () => {
     created_by: {
       id: '',
       name: '',
-      email: '',
-      email: '',
+      email: ''
     },
     productsList: [],
   })
