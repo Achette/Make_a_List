@@ -1,5 +1,5 @@
-//export const BASE_URL = 'https://odd-lime-sockeye-hose.cyclic.app'
-export const BASE_URL = 'https://make-a-list-back.onrender.com'
+export const BASE_URL = 'https://odd-lime-sockeye-hose.cyclic.app'
+//export const BASE_URL = 'https://make-a-list-back.onrender.com'
 
 
 /**
