@@ -67,7 +67,7 @@ export const NewProduct = ({ modal, setModal, fetchList }: NewProductProps) => {
       )
 
       toast({
-        description: `Produto adicionado à sua lista!`,
+        description: `${newProduct.name} foi adicionado à sua lista!`,
         containerStyle: { color: 'white' },
         position: isMobileOrTablet ? 'top' : 'bottom-right',
         isClosable: true,
