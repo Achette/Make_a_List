@@ -115,7 +115,7 @@ export const ListDetail = () => {
 
       <Flex
         w="full"
-        h={isMobileOrTablet ? '63vh' : '50vh'}
+        h={isMobileOrTablet ? 'calc(100% - 13rem)' : '50vh'}
         overflow="auto"
         flexDir="column"
       >
