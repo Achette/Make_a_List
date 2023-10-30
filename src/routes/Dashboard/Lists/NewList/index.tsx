@@ -4,10 +4,11 @@ import { iconToString } from 'utils'
 import { useNavigate } from 'react-router-dom'
 import { newList } from 'services/list-services'
 import { ColorSelect, IconSelect } from 'components'
-import { Box, Flex, Text, Input, Button, Divider } from '@chakra-ui/react'
+import { Box, Flex, Text, Input, Button, Divider, useToast } from '@chakra-ui/react'
 
 export const NewList = () => {
   const navigate = useNavigate()
+  const toast = useToast()
   const { isDesktop, isMobileOrTablet, isTablet } = useMedia()
 
   const [name, setListName] = React.useState<string>('')
@@ -26,9 +27,23 @@ export const NewList = () => {
   const handleCreateList = async () => {
     try {
       await newList(name, color, icon)
+
+      toast({
+        description: `Lista ${name} criada com sucesso!`,
+        containerStyle: { color: 'white' },
+        position: isMobileOrTablet ? 'top' : 'bottom-right',
+        isClosable: true,
+      })
+
       navigate('/lists')
     } catch (e) {
-      console.error(e)
+      toast({
+        description: "Preencha todos os campos!",
+        status: 'warning',
+        containerStyle: { color: 'white' },
+        position: isMobileOrTablet ? 'top' : 'bottom-right',
+        isClosable: true,
+      })
     }
   }
 

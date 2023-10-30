@@ -35,7 +35,7 @@ export const SearchBar = ({ user }: SearchBarProps) => {
           onClick={() => setCollapse(!collapse)}
         />
         <Input
-          maxW={isMobileOrTablet ? '14rem' : '36rem'}
+          w="14rem"
           border="none"
           placeholder="Procurar nas suas listas"
           outline="none"
