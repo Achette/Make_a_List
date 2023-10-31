@@ -57,6 +57,13 @@ export const Deleted = () => {
     try {
       await moveToRecycleBin(id, false)
       await fetchDeletedList()
+
+      toast({
+        description: `Lista restaurada com sucesso!`,
+        containerStyle: { color: 'white' },
+        position: isMobileOrTablet ? 'top' : 'bottom-right',
+        isClosable: true,
+      })
     } catch (e: any) {
       const errorMessage =
         e.response?.data?.error ?? 'Ocorreu um erro desconhecido'
