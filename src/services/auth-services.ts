@@ -13,10 +13,10 @@ export const UserApi = {
     const response = await axios.post(`${BASE_URL}/signin`, data)
     return response.data
   },
-  findMe: async () => {
+  findMe: async (id: string) => {
     const config: AxiosRequestConfig = {
       method: 'GET',
-      url: '/users',
+      url: `/users?id=${id}`,
       signal: AbortSignal.timeout(5000),
     }
   
