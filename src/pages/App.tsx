@@ -16,7 +16,7 @@ import {
   Deleted,
   NewGroup,
   AboutMe,
-  Configurations
+  Settings,
 } from 'routes'
 
 function App() {
@@ -49,7 +49,7 @@ function App() {
             <Route index element={<AboutMe />} />
           </Route>
           <Route path="/settings" element={<Dashboard />}>
-            <Route index element={<Configurations />} />
+            <Route index element={<Settings />} />
           </Route>
         </Routes>
       </BrowserRouter>
