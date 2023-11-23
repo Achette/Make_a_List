@@ -4,10 +4,12 @@ import { useNavigate } from 'react-router-dom'
 import { AddListGroup } from 'components/AddListGroup'
 import { ListDetailTopBarProps } from 'components/ListDetailTopBar'
 import { Button, Divider, Flex, HStack, Text, Avatar } from '@chakra-ui/react'
+import { AddUserGroup } from 'components/AddUserGroup'
 
 
 export const GroupDetailTopBar = ({ name, shared, fetchList, created_by }: ListDetailTopBarProps) => {
   const [modal, setModal] = React.useState<boolean>(false)
+  const [modalUser, setModalUser] = React.useState<boolean>(false)
   const { isMobileOrTablet } = useMedia()
   const navigate = useNavigate()
 
@@ -63,12 +65,16 @@ export const GroupDetailTopBar = ({ name, shared, fetchList, created_by }: ListD
         </HStack>
       </Flex>
 
+      <AddUserGroup modal={modalUser} setModal={setModalUser} shared={shared} fetchList={fetchList} created_by={created_by} />
+
       <Flex
         w="full"
         align="center"
         justifyContent="space-between"
         flexDirection="row"
         gap="0.5rem"
+        cursor='pointer'
+        onClick={() => setModalUser(true)}
       >
         <Text
           whiteSpace="nowrap"
