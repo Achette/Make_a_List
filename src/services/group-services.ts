@@ -53,6 +53,32 @@ export const removeList = async (id?: string, idList?: string) => {
   return requestBackend(config)
 }
 
+export const addUser = async (id: string, email: string) => {
+  const config: AxiosRequestConfig = {
+    method: 'PUT',
+    url: `/groups/add-users?id=${id}`,
+    signal: AbortSignal.timeout(5000),
+    data: {
+      email
+    },
+  }
+
+  return requestBackend(config)
+}
+
+export const removeUser = async (id: string, user_id: string) => {
+  const config: AxiosRequestConfig = {
+    method: 'PUT',
+    url: `/groups/remove-users?id=${id}`,
+    signal: AbortSignal.timeout(5000),
+    data: {
+      user_id
+    },
+  }
+
+  return requestBackend(config)
+}
+
 export const deleteGroup = async (id: string) => {
   const config: AxiosRequestConfig = {
     method: 'DELETE',
@@ -61,3 +87,4 @@ export const deleteGroup = async (id: string) => {
   }
   return requestBackend(config)
 }
+
