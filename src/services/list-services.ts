@@ -73,7 +73,7 @@ export const moveToRecycleBin = async (id: string, destroy: boolean) => {
     url: `/purchase-list?id=${id}`,
     signal: AbortSignal.timeout(5000),
     data: {
-      delete: destroy
+      delete: destroy,
     },
   }
 
@@ -86,7 +86,7 @@ export const sharedList = async (id: string, email: string) => {
     url: `/purchase-list/shared?id=${id}`,
     signal: AbortSignal.timeout(5000),
     data: {
-      email
+      email,
     },
   }
 
@@ -109,10 +109,9 @@ export const leaveList = async (id: string, shared_ids: string) => {
     url: `/purchase-list/leave-list?id=${id}`,
     signal: AbortSignal.timeout(5000),
     data: {
-      shared_ids
+      shared_ids,
     },
   }
 
   return requestBackend(config)
 }
-

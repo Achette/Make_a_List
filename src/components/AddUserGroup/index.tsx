@@ -1,6 +1,8 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { getUserId, useMedia } from 'hooks'
 import { MdClose, MdSend } from 'react-icons/md'
+import { useNavigate, useParams } from 'react-router-dom'
+import { addUser, removeUser } from 'services/group-services'
 import {
   Box,
   Flex,
@@ -18,9 +20,6 @@ import {
   useToast,
 } from '@chakra-ui/react'
 
-import { useNavigate, useParams } from 'react-router-dom'
-import { addUser, removeUser } from 'services/group-services'
-
 type AddUserListProps = {
   modal: boolean
   setModal: (arg: boolean) => void
@@ -29,18 +28,20 @@ type AddUserListProps = {
   fetchList: () => Promise<void>
 }
 
-export const AddUserGroup = ({ modal, setModal, fetchList, shared, created_by }: AddUserListProps) => {
+export const AddUserGroup = ({
+  modal,
+  setModal,
+  fetchList,
+  shared,
+  created_by,
+}: AddUserListProps) => {
   const { onClose, onOpen } = useDisclosure()
-  const [email, setEmail] = useState<string>('');
-  const { isDesktop } = useMedia()
-  const { id } = useParams()
-  const navigate = useNavigate()
-
-  const { isMobileOrTablet } = useMedia()
-
-  const userId = getUserId()
-
+  const [email, setEmail] = React.useState<string>('')
+  const { isDesktop, isMobileOrTablet } = useMedia()
   const toast = useToast()
+  const { id } = useParams()
+  const userId = getUserId()
+  const navigate = useNavigate()
 
   const handleExitGroup = async () => {
     try {
@@ -54,8 +55,9 @@ export const AddUserGroup = ({ modal, setModal, fetchList, shared, created_by }:
         position: isMobileOrTablet ? 'top' : 'bottom-right',
         isClosable: true,
       })
-    } catch (e) {
-      const errorMessage = (e as any).response?.data?.error ?? 'Ocorreu um erro desconhecido';
+    } catch (e: unknown) {
+      const errorMessage =
+        (e as any).response?.data?.error ?? 'Ocorreu um erro desconhecido'
       toast({
         description: errorMessage,
         status: 'error',
@@ -78,7 +80,8 @@ export const AddUserGroup = ({ modal, setModal, fetchList, shared, created_by }:
         isClosable: true,
       })
     } catch (e) {
-      const errorMessage = (e as any).response?.data?.error ?? 'Ocorreu um erro desconhecido';
+      const errorMessage =
+        (e as any).response?.data?.error ?? 'Ocorreu um erro desconhecido'
       toast({
         description: errorMessage,
         status: 'error',
@@ -102,7 +105,8 @@ export const AddUserGroup = ({ modal, setModal, fetchList, shared, created_by }:
         isClosable: true,
       })
     } catch (e) {
-      const errorMessage = (e as any).response?.data?.error ?? 'Ocorreu um erro desconhecido';
+      const errorMessage =
+        (e as any).response?.data?.error ?? 'Ocorreu um erro desconhecido'
       toast({
         description: errorMessage,
         status: 'error',
@@ -141,7 +145,7 @@ export const AddUserGroup = ({ modal, setModal, fetchList, shared, created_by }:
                 />
               </Flex>
 
-              <Flex p="0.5rem" align='center'>
+              <Flex p="0.5rem" align="center">
                 <Input
                   w="full"
                   h="3rem"
@@ -150,11 +154,17 @@ export const AddUserGroup = ({ modal, setModal, fetchList, shared, created_by }:
                   color="black.600"
                   _placeholder={{ color: 'blue.900' }}
                   value={email}
-                  onChange={e => setEmail(e.target.value)}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
-                <Icon as={MdSend} w="2rem" h="1.5rem" color="blue.900" cursor='pointer' onClick={() => handleShared()} />
+                <Icon
+                  as={MdSend}
+                  w="2rem"
+                  h="1.5rem"
+                  color="blue.900"
+                  cursor="pointer"
+                  onClick={() => handleShared()}
+                />
               </Flex>
-
 
               <HStack
                 w="full"
@@ -234,32 +244,35 @@ export const AddUserGroup = ({ modal, setModal, fetchList, shared, created_by }:
 
                     <Spacer></Spacer>
 
-                    {userId === item.id && <Text
-                      fontSize="0.75rem"
-                      fontWeight={600}
-                      lineHeight="1.375rem"
-                      letterSpacing="-0.026rem"
-                      color="red.500"
-                      ml="0.75rem"
-                      cursor='pointer'
-                      onClick={() => handleExitGroup()}
-                    >
-                      Sair da lista
-                    </Text>}
+                    {userId === item.id && (
+                      <Text
+                        fontSize="0.75rem"
+                        fontWeight={600}
+                        lineHeight="1.375rem"
+                        letterSpacing="-0.026rem"
+                        color="red.500"
+                        ml="0.75rem"
+                        cursor="pointer"
+                        onClick={() => handleExitGroup()}
+                      >
+                        Sair da lista
+                      </Text>
+                    )}
 
-                    {userId === created_by.id && <Text
-                      fontSize="0.75rem"
-                      fontWeight={600}
-                      lineHeight="1.375rem"
-                      letterSpacing="-0.026rem"
-                      color="red.500"
-                      ml="0.75rem"
-                      cursor='pointer'
-                      onClick={() => handleLeaveUsers(item.id)}
-                    >
-                      remover
-                    </Text>}
-
+                    {userId === created_by.id && (
+                      <Text
+                        fontSize="0.75rem"
+                        fontWeight={600}
+                        lineHeight="1.375rem"
+                        letterSpacing="-0.026rem"
+                        color="red.500"
+                        ml="0.75rem"
+                        cursor="pointer"
+                        onClick={() => handleLeaveUsers(item.id)}
+                      >
+                        remover
+                      </Text>
+                    )}
                   </HStack>
                 ))}
             </Box>
