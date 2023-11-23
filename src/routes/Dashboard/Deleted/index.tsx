@@ -9,6 +9,7 @@ import {
   getAllDeleted,
   moveToRecycleBin,
 } from 'services/list-services'
+import axios, { AxiosError } from 'axios'
 
 export const Deleted = () => {
   const { isMobileOrTablet } = useMedia()
@@ -64,9 +65,10 @@ export const Deleted = () => {
         position: isMobileOrTablet ? 'top' : 'bottom-right',
         isClosable: true,
       })
-    } catch (e: any) {
-      const errorMessage =
-        e.response?.data?.error ?? 'Ocorreu um erro desconhecido'
+    } catch (e: unknown | AxiosError) {
+      const errorMessage = axios.isAxiosError(e)
+        ? e.response?.data?.error
+        : 'Ocorreu um erro desconhecido'
       toast({
         description: errorMessage,
         status: 'error',
