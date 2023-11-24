@@ -4,9 +4,10 @@ import { iconToString } from 'utils'
 import { useNavigate } from 'react-router-dom'
 import { newGroup } from 'services/group-services'
 import { ColorSelect, IconSelect } from 'components'
-import { Box, Flex, Text, Input, Button } from '@chakra-ui/react'
+import { Box, Flex, Text, Input, Button, useToast } from '@chakra-ui/react'
 
 export const NewGroup = () => {
+  const toast = useToast()
   const navigate = useNavigate()
   const { isDesktop, isMobileOrTablet, isTablet } = useMedia()
 
@@ -26,9 +27,22 @@ export const NewGroup = () => {
   const handleCreateGroup = async () => {
     try {
       await newGroup(name, color, icon)
+      toast({
+        description: `Grupo ${name} foi criado com sucesso!`,
+        status: 'success',
+        containerStyle: { color: 'white' },
+        position: isMobileOrTablet ? 'top' : 'bottom-right',
+        isClosable: true,
+      })
       navigate('/groups')
     } catch (e) {
-      console.error(e)
+      toast({
+        description: 'Não foi possível criar o grupo.',
+        status: 'error',
+        containerStyle: { color: 'white' },
+        position: isMobileOrTablet ? 'top' : 'bottom-right',
+        isClosable: true,
+      })
     }
   }
 
@@ -57,7 +71,7 @@ export const NewGroup = () => {
           gap="0.625rem"
         >
           <Button
-            type="button"
+            w={isDesktop ? '10rem' : 'auto'}
             bgColor="transparent"
             color="red.400"
             fontSize="1.0625rem"
@@ -70,7 +84,6 @@ export const NewGroup = () => {
             Cancelar
           </Button>{' '}
           <Button
-            type="button"
             w={isDesktop ? '10rem' : 'auto'}
             bgColor={isDesktop ? 'blue.900' : 'transparent'}
             color={isDesktop ? 'whiteAlpha.900' : 'blue.900'}
@@ -79,6 +92,9 @@ export const NewGroup = () => {
             lineHeight="1.375rem"
             letterSpacing="-0.02563rem"
             px="0"
+            _hover={{
+              bgColor: isMobileOrTablet ? 'transparent' : 'blue.500',
+            }}
             onClick={() => handleCreateGroup()}
           >
             Criar grupo

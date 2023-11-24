@@ -19,6 +19,7 @@ import {
   VStack,
   Link as LinkChakra,
   Divider,
+  useToast,
 } from '@chakra-ui/react'
 
 export type ListDetailProps = {
@@ -41,6 +42,7 @@ export type ListDetailProps = {
 export const ListDetail = () => {
   const { id } = useParams()
 
+  const toast = useToast()
   const navigate = useNavigate()
 
   const { isMobileOrTablet } = useMedia()
@@ -52,7 +54,7 @@ export const ListDetail = () => {
     created_by: {
       id: '',
       name: '',
-      email: ''
+      email: '',
     },
     productsList: [],
   })
@@ -64,7 +66,13 @@ export const ListDetail = () => {
       const list = await data.list
       setListDetails(list)
     } catch (e) {
-      console.error(e)
+      toast({
+        description: 'Não foi possível carregar os itens da lista.',
+        status: 'error',
+        containerStyle: { color: 'white' },
+        position: isMobileOrTablet ? 'top' : 'bottom-right',
+        isClosable: true,
+      })
     }
   }, [setListDetails])
 
@@ -115,7 +123,7 @@ export const ListDetail = () => {
 
       <Flex
         w="full"
-        h={isMobileOrTablet ? 'calc(100% - 13rem)' : '50vh'}
+        h={isMobileOrTablet ? 'calc(100% - 13rem)' : 'calc(100% - 17rem)'}
         overflow="auto"
         flexDir="column"
       >
