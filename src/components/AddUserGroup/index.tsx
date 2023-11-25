@@ -1,4 +1,6 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import React from 'react'
+import axios from 'axios'
 import { getUserId, useMedia } from 'hooks'
 import { MdClose, MdSend } from 'react-icons/md'
 import { useNavigate, useParams } from 'react-router-dom'
@@ -46,18 +48,19 @@ export const AddUserGroup = ({
   const handleExitGroup = async () => {
     try {
       await removeUser(id!, userId!)
-
-      navigate('/lists')
-
+      
       toast({
         description: `Sucesso ao sair da lista.`,
         containerStyle: { color: 'white' },
         position: isMobileOrTablet ? 'top' : 'bottom-right',
         isClosable: true,
       })
+      navigate('/lists')
+      
     } catch (e: unknown) {
-      const errorMessage =
-        (e as any).response?.data?.error ?? 'Ocorreu um erro desconhecido'
+      const errorMessage = axios.isAxiosError(e)
+        ? e.response?.data?.error
+        : 'Ocorreu um erro desconhecido'
       toast({
         description: errorMessage,
         status: 'error',
@@ -79,9 +82,10 @@ export const AddUserGroup = ({
         position: isMobileOrTablet ? 'top' : 'bottom-right',
         isClosable: true,
       })
-    } catch (e) {
-      const errorMessage =
-        (e as any).response?.data?.error ?? 'Ocorreu um erro desconhecido'
+    } catch (e: unknown) {
+      const errorMessage = axios.isAxiosError(e)
+        ? e.response?.data?.error
+        : 'Ocorreu um erro desconhecido'
       toast({
         description: errorMessage,
         status: 'error',
@@ -104,9 +108,10 @@ export const AddUserGroup = ({
         position: isMobileOrTablet ? 'top' : 'bottom-right',
         isClosable: true,
       })
-    } catch (e) {
-      const errorMessage =
-        (e as any).response?.data?.error ?? 'Ocorreu um erro desconhecido'
+    } catch (e: unknown) {
+      const errorMessage = axios.isAxiosError(e)
+        ? e.response?.data?.error
+        : 'Ocorreu um erro desconhecido'
       toast({
         description: errorMessage,
         status: 'error',

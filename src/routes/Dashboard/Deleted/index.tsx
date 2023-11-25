@@ -1,4 +1,5 @@
 import React from 'react'
+import axios from 'axios'
 import { ListsProps } from '../Lists'
 import { SearchBar } from 'components'
 import { getUser, useMedia } from 'hooks'
@@ -9,7 +10,6 @@ import {
   getAllDeleted,
   moveToRecycleBin,
 } from 'services/list-services'
-import axios, { AxiosError } from 'axios'
 
 export const Deleted = () => {
   const { isMobileOrTablet } = useMedia()
@@ -46,7 +46,16 @@ export const Deleted = () => {
 
       setLists(newList ?? [])
     } catch (e) {
-      console.error(e)
+      const errorMessage = axios.isAxiosError(e)
+        ? e.response?.data?.error
+        : 'Ops! Ocorreu um erro desconhecido.'
+      toast({
+        description: errorMessage,
+        status: 'error',
+        containerStyle: { color: 'white' },
+        position: isMobileOrTablet ? 'top' : 'bottom-right',
+        isClosable: true,
+      })
     }
   }, [])
 
@@ -65,10 +74,10 @@ export const Deleted = () => {
         position: isMobileOrTablet ? 'top' : 'bottom-right',
         isClosable: true,
       })
-    } catch (e: unknown | AxiosError) {
+    } catch (e: unknown) {
       const errorMessage = axios.isAxiosError(e)
         ? e.response?.data?.error
-        : 'Ocorreu um erro desconhecido'
+        : 'ERRO! Não foi possível restaurar a lista.'
       toast({
         description: errorMessage,
         status: 'error',

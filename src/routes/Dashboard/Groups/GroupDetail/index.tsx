@@ -1,14 +1,11 @@
 import React from 'react'
+import axios from 'axios'
 import { useMedia } from 'hooks'
 import { stringToIcon } from 'utils'
 import { getGroupById } from 'services/group-services'
 import { MdOutlineArrowBackIos } from 'react-icons/md'
 import { Link, useNavigate, useParams } from 'react-router-dom'
-import {
-  GroupList,
-  GroupDetailTopBar,
-  DeleteGroupButton,
-} from 'components'
+import { GroupList, GroupDetailTopBar, DeleteGroupButton } from 'components'
 import {
   Flex,
   Icon,
@@ -16,6 +13,7 @@ import {
   Link as LinkChakra,
   Text,
   Box,
+  useToast,
 } from '@chakra-ui/react'
 
 type GroupDetailProps = {
@@ -39,6 +37,7 @@ export const GroupDetail = () => {
 
   const { isMobileOrTablet } = useMedia()
   const navigate = useNavigate()
+  const toast = useToast()
 
   const [groupDetails, setGroupDetails] = React.useState<GroupDetailProps>({
     name: '',
@@ -59,7 +58,16 @@ export const GroupDetail = () => {
       const group = response.data.group[0]
       setGroupDetails(group)
     } catch (e) {
-      console.error(e)
+      const errorMessage = axios.isAxiosError(e)
+        ? e.response?.data?.error
+        : 'Ocorreu um erro desconhecido'
+      toast({
+        description: errorMessage,
+        status: 'error',
+        containerStyle: { color: 'white' },
+        position: isMobileOrTablet ? 'top' : 'bottom-right',
+        isClosable: true,
+      })
     }
   }, [])
 

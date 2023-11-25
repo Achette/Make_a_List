@@ -1,4 +1,5 @@
 import React from 'react'
+import axios from 'axios'
 import { useMedia } from 'hooks'
 import { UserApi } from 'services/auth-services'
 import { Link, useNavigate } from 'react-router-dom'
@@ -47,7 +48,9 @@ export const SignIn = () => {
         navigate('/account')
       }
     } catch (e: unknown) {
-      const errorMessage = (e as any).response?.data?.error ?? 'E-mail ou senha incorretos!';
+      const errorMessage = axios.isAxiosError(e)
+        ? e.response?.data?.error
+        : 'E-mail ou senha incorretos!'
 
       toast({
         description: errorMessage,
