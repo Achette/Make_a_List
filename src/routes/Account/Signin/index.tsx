@@ -13,6 +13,8 @@ import {
   VStack,
   Link as LinkChakra,
   useToast,
+  Box,
+  Spinner,
 } from '@chakra-ui/react'
 
 export type NewUserProps = {
@@ -25,8 +27,9 @@ export type NewUserProps = {
 export const SignIn = () => {
   const navigate = useNavigate()
   const toast = useToast()
-
   const { isMobileOrTablet } = useMedia()
+
+  const [isLoading, setIsLoading] = React.useState<boolean>(false)
 
   const {
     register,
@@ -36,6 +39,7 @@ export const SignIn = () => {
 
   const onSubmit: SubmitHandler<NewUserProps> = async (data) => {
     try {
+      setIsLoading(true)
       const response = await UserApi.newUser(data)
 
       if (response.success) {
@@ -59,6 +63,8 @@ export const SignIn = () => {
         position: isMobileOrTablet ? 'top' : 'bottom-right',
         isClosable: true,
       })
+    } finally {
+      setIsLoading(false)
     }
   }
 
@@ -163,20 +169,39 @@ export const SignIn = () => {
             Confirmação de senha é obrigatório
           </Text>
 
-          <Button
-            w="21.5rem"
-            h="3rem"
-            mt="0.75rem"
-            borderRadius="0.625rem"
-            color="blue.900"
-            fontSize="md"
-            fontWeight={500}
-            lineHeight="1.375rem"
-            letterSpacing="-0.41px"
-            type="submit"
-          >
-            Criar Conta
-          </Button>
+          {isLoading ? (
+            <Box
+              w="21.5rem"
+              h="3rem"
+              borderRadius="0.625rem"
+              bgColor="white.400"
+              display="flex"
+              justifyContent="center"
+              alignItems="center"
+            >
+              <Spinner
+                thickness="3px"
+                speed="0.65s"
+                emptyColor="gray.200"
+                color="blue.900"
+                size="lg"
+              />
+            </Box>
+          ) : (
+            <Button
+              w="21.5rem"
+              h="3rem"
+              borderRadius="0.625rem"
+              color="blue.900"
+              fontSize="md"
+              fontWeight={500}
+              lineHeight="1.375rem"
+              letterSpacing="-0.41px"
+              type="submit"
+            >
+              Criar conta
+            </Button>
+          )}
         </VStack>
       </FormControl>
 
