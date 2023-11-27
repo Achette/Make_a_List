@@ -16,6 +16,7 @@ import {
   VStack,
   Link as LinkChakra,
   useToast,
+  Spinner,
 } from '@chakra-ui/react'
 
 export type UserProps = {
@@ -26,8 +27,9 @@ export type UserProps = {
 export const Login = () => {
   const navigate = useNavigate()
   const toast = useToast()
-
   const { isMobileOrTablet } = useMedia()
+
+  const [isLoading, setIsLoading] = React.useState<boolean>(false)
 
   const {
     register,
@@ -37,6 +39,7 @@ export const Login = () => {
 
   const onSubmit: SubmitHandler<UserProps> = async (data) => {
     try {
+      setIsLoading(true)
       const response = await UserApi.login(data)
       accessTokenRepository.saveToken(response.token)
       accessTokenRepository.saveUser(response.user.name)
@@ -60,6 +63,8 @@ export const Login = () => {
         position: isMobileOrTablet ? 'top' : 'bottom-right',
         isClosable: true,
       })
+    } finally {
+      setIsLoading(false)
     }
   }
 
@@ -141,19 +146,39 @@ export const Login = () => {
             </Text>
           </Flex>
 
-          <Button
-            w="21.5rem"
-            h="3rem"
-            borderRadius="0.625rem"
-            color="blue.900"
-            fontSize="md"
-            fontWeight={500}
-            lineHeight="1.375rem"
-            letterSpacing="-0.41px"
-            type="submit"
-          >
-            Entrar
-          </Button>
+          {isLoading ? (
+            <Box
+              w="21.5rem"
+              h="3rem"
+              borderRadius="0.625rem"
+              bgColor="white.400"
+              display="flex"
+              justifyContent="center"
+              alignItems="center"
+            >
+              <Spinner
+                thickness="3px"
+                speed="0.65s"
+                emptyColor="gray.200"
+                color="blue.900"
+                size="lg"
+              />
+            </Box>
+          ) : (
+            <Button
+              w="21.5rem"
+              h="3rem"
+              borderRadius="0.625rem"
+              color="blue.900"
+              fontSize="md"
+              fontWeight={500}
+              lineHeight="1.375rem"
+              letterSpacing="-0.41px"
+              type="submit"
+            >
+              Entrar
+            </Button>
+          )}
 
           <Text
             m="1.5rem 0 0 0"
