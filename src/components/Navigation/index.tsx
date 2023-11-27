@@ -30,13 +30,13 @@ const items = [
     type: 'link',
     label: 'Modelos',
     icon: MdBookmarkBorder,
-    path: '/models',
+    path: '',
   },
   {
     type: 'link',
     label: 'Arquivadas',
     icon: MdOutlineArchive,
-    path: '/archived',
+    path: '',
   },
   {
     type: 'link',
@@ -48,7 +48,7 @@ const items = [
     type: 'link',
     label: 'Ajuda e Feedback',
     icon: MdHelpOutline,
-    path: '/feedback',
+    path: '',
   },
   {
     type: 'link',
