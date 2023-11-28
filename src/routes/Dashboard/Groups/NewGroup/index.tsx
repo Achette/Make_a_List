@@ -5,10 +5,8 @@ import { useNavigate } from 'react-router-dom'
 import { newGroup } from 'services/group-services'
 import { ColorSelect, IconSelect } from 'components'
 import { Box, Flex, Text, Input, Button, useToast } from '@chakra-ui/react'
-import { Box, Flex, Text, Input, Button, useToast } from '@chakra-ui/react'
 
 export const NewGroup = () => {
-  const toast = useToast()
   const toast = useToast()
   const navigate = useNavigate()
   const { isDesktop, isMobileOrTablet, isTablet } = useMedia()
@@ -30,7 +28,7 @@ export const NewGroup = () => {
     try {
       await newGroup(name, color, icon)
       toast({
-        description: `Grupo ${name} foi criado com sucesso!`,        
+        description: `Grupo ${name} foi criado com sucesso!`,
         containerStyle: { color: 'white' },
         position: isMobileOrTablet ? 'top' : 'bottom-right',
         isClosable: true,
@@ -80,7 +78,6 @@ export const NewGroup = () => {
         >
           <Button
             w={isDesktop ? '10rem' : 'auto'}
-            w={isDesktop ? '10rem' : 'auto'}
             bgColor="transparent"
             color="red.400"
             fontSize="1.0625rem"
@@ -101,9 +98,6 @@ export const NewGroup = () => {
             lineHeight="1.375rem"
             letterSpacing="-0.02563rem"
             px="0"
-            _hover={{
-              bgColor: isMobileOrTablet ? 'transparent' : 'blue.500',
-            }}
             _hover={{
               bgColor: isMobileOrTablet ? 'transparent' : 'blue.500',
             }}
