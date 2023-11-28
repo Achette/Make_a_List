@@ -29,13 +29,19 @@ export const NewGroup = () => {
       await newGroup(name, color, icon)
       toast({
         description: `Grupo ${name} foi criado com sucesso!`,
-        status: 'success',
         containerStyle: { color: 'white' },
         position: isMobileOrTablet ? 'top' : 'bottom-right',
         isClosable: true,
       })
       navigate('/groups')
     } catch (e) {
+      toast({
+        description: 'Não foi possível criar o grupo.',
+        status: 'error',
+        containerStyle: { color: 'white' },
+        position: isMobileOrTablet ? 'top' : 'bottom-right',
+        isClosable: true,
+      })
       toast({
         description: 'Não foi possível criar o grupo.',
         status: 'error',
