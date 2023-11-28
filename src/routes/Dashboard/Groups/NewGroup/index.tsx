@@ -28,8 +28,7 @@ export const NewGroup = () => {
     try {
       await newGroup(name, color, icon)
       toast({
-        description: `Grupo ${name} foi criado com sucesso!`,
-        status: 'success',
+        description: `Grupo ${name} foi criado com sucesso!`,        
         containerStyle: { color: 'white' },
         position: isMobileOrTablet ? 'top' : 'bottom-right',
         isClosable: true,

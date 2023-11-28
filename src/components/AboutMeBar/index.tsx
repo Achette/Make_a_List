@@ -97,7 +97,7 @@ export const AboutMeBar = ({ name, email }: AboutMeProps) => {
       )}
 
       <VStack p="2.5rem">
-        <Avatar name="Igor Achete" size="xl" bgColor="blue.900" color="white" />
+        <Avatar name={name} size="xl" bgColor="blue.900" color="white" />
 
         <VStack h="3.25rem">
           <Text color="blue.900" fontSize="1.5rem" fontWeight={500} margin="0">
