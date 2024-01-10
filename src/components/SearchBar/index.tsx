@@ -1,7 +1,6 @@
 import React from 'react'
-import { useMedia } from 'hooks'
 import { MdMenu } from 'react-icons/md'
-import { SidebarContext } from 'contexts'
+import { useSidebarCollapse } from 'contexts'
 import { useNavigate } from 'react-router-dom'
 import { Avatar, Flex, HStack, IconButton, Input } from '@chakra-ui/react'
 
@@ -10,11 +9,9 @@ type SearchBarProps = {
 }
 
 export const SearchBar = ({ user }: SearchBarProps) => {
-  const { collapse, setCollapse } = React.useContext(SidebarContext)
+  const { collapse, setCollapse } = useSidebarCollapse()
 
   const navigate = useNavigate()
-
-  const { isMobileOrTablet } = useMedia()
 
   return (
     <Flex w="full" h="3.5rem" flexDir="row">

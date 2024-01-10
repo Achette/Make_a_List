@@ -1,13 +1,13 @@
 import React from 'react'
 import { useMedia } from 'hooks'
-import { SidebarContext } from 'contexts'
 import { Outlet } from 'react-router-dom'
+import { useSidebarCollapse } from 'contexts'
 import { MdArrowBack } from 'react-icons/md'
 import { Flex, Icon, VStack } from '@chakra-ui/react'
 import { CollapsedLogo, FooterNavigation, Logo, Sidebar } from 'components'
 
 export const Dashboard = () => {
-  const { collapse, setCollapse } = React.useContext(SidebarContext)
+  const { collapse, setCollapse } = useSidebarCollapse()
 
   const { isMobileOrTablet } = useMedia()
 

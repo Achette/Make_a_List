@@ -1,5 +1,5 @@
 import React from 'react'
-import { SidebarContext } from 'contexts'
+import { SidebarProvider } from 'contexts'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import {
   Home,
@@ -20,10 +20,8 @@ import {
 } from 'routes'
 
 function App() {
-  const [collapse, setCollapse] = React.useState<boolean>(false)
-
   return (
-    <SidebarContext.Provider value={{ collapse, setCollapse }}>
+    <SidebarProvider>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -53,7 +51,7 @@ function App() {
           </Route>
         </Routes>
       </BrowserRouter>
-    </SidebarContext.Provider>
+    </SidebarProvider>
   )
 }
 
