@@ -23,7 +23,5 @@ export function SidebarProvider({ children }: SidebarProviderProps) {
   )
 }
 
-export const useSidebarCollapse = () => {
-  const context = React.useContext<SidebarContextProps>(SidebarContext)
-  return context
-}
+export const useSidebarCollapse = () =>
+  React.useContext<SidebarContextProps>(SidebarContext)
