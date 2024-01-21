@@ -2,7 +2,6 @@ import React from 'react'
 import { getUser } from 'hooks'
 import { MdMenu } from 'react-icons/md'
 import { useSidebarCollapse } from 'contexts'
-import { useSidebarCollapse } from 'contexts'
 import { useNavigate } from 'react-router-dom'
 import { Avatar, Flex, HStack, IconButton, Input } from '@chakra-ui/react'
 
