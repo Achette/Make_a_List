@@ -1,18 +1,15 @@
 import React from 'react'
+import { useMedia } from 'hooks'
 import { stringToIcon } from 'utils'
 import { ListsProps } from '../Lists'
-import { getUser, useMedia } from 'hooks'
 import { getAll } from 'services/group-services'
 import { AddButton, GridGroup, SearchBar } from 'components'
 import { Box, Flex, SimpleGrid, Text } from '@chakra-ui/react'
 
 export const Groups = () => {
   const { isMobileOrTablet } = useMedia()
-
   const [groups, setGroups] = React.useState<ListsProps[]>()
   const controller = new AbortController()
-
-  const user = getUser()
 
   React.useEffect(() => {
     getAll().then((res) => {
@@ -24,7 +21,7 @@ export const Groups = () => {
 
   return (
     <Box w="full" h="full">
-      <SearchBar user={user ?? ''} />
+      <SearchBar />
 
       <Flex mt="1rem" maxH="calc(100% - 13vh)" h="auto" overflow="auto">
         <SimpleGrid

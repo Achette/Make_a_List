@@ -1,8 +1,8 @@
 import React from 'react'
 import axios from 'axios'
+import { useMedia } from 'hooks'
 import { ListsProps } from '../Lists'
 import { SearchBar } from 'components'
-import { getUser, useMedia } from 'hooks'
 import { DeletedList } from 'components/DeletedList'
 import { Box, Flex, Text, useToast } from '@chakra-ui/react'
 import {
@@ -14,7 +14,6 @@ import {
 export const Deleted = () => {
   const { isMobileOrTablet } = useMedia()
 
-  const user = getUser()
   const [lists, setLists] = React.useState<ListsProps[]>()
 
   const toast = useToast()
@@ -90,7 +89,7 @@ export const Deleted = () => {
 
   return (
     <Box w="full" h="full">
-      <SearchBar user={user ?? ''} />
+      <SearchBar />
 
       <Flex
         mt="1rem"

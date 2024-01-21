@@ -1,17 +1,20 @@
 import React from 'react'
+import { getUser } from 'hooks'
 import { MdMenu } from 'react-icons/md'
 import { useSidebarCollapse } from 'contexts'
 import { useNavigate } from 'react-router-dom'
 import { Avatar, Flex, HStack, IconButton, Input } from '@chakra-ui/react'
 
-type SearchBarProps = {
-  user: string
-}
+export const SearchBar = () => {
+  const navigate = useNavigate()
 
-export const SearchBar = ({ user }: SearchBarProps) => {
+  const [user, setUser] = React.useState<string>()
+
   const { collapse, setCollapse } = useSidebarCollapse()
 
-  const navigate = useNavigate()
+  React.useEffect(() => {
+    setUser(getUser() ?? '')
+  }, [])
 
   return (
     <Flex w="full" h="3.5rem" flexDir="row">

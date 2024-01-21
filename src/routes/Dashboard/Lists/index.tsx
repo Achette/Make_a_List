@@ -1,6 +1,6 @@
 import React from 'react'
+import { useMedia } from 'hooks'
 import { stringToIcon } from 'utils'
-import { getUser, useMedia } from 'hooks'
 import { IconType } from 'react-icons/lib'
 import { getAll } from 'services/list-services'
 import { Box, Flex, Text } from '@chakra-ui/react'
@@ -22,9 +22,8 @@ export const Lists = () => {
   const { isMobileOrTablet } = useMedia()
 
   const [lists, setLists] = React.useState<ListsProps[]>()
-  const controller = new AbortController()
 
-  const user = getUser()
+  const controller = new AbortController()
 
   React.useEffect(() => {
     getAll().then((res) => {
@@ -36,7 +35,7 @@ export const Lists = () => {
 
   return (
     <Box w="full" h="full">
-      <SearchBar user={user ?? ''} />
+      <SearchBar />
       <Flex
         mt="1rem"
         maxH="calc(100% - 13vh)"
