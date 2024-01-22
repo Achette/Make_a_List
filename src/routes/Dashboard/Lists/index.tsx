@@ -25,10 +25,14 @@ export const Lists = () => {
 
   const controller = new AbortController()
 
-  React.useEffect(() => {
+  const fetchLists = React.useCallback(async () => {
     getAll().then((res) => {
       setLists(res.data.list)
     })
+  }, [])
+
+  React.useEffect(() => {
+    fetchLists()
 
     return () => controller.abort()
   }, [])

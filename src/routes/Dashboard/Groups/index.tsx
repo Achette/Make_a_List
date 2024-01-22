@@ -11,10 +11,14 @@ export const Groups = () => {
   const [groups, setGroups] = React.useState<ListsProps[]>()
   const controller = new AbortController()
 
-  React.useEffect(() => {
+  const fetchGroups = React.useCallback(async () => {
     getAll().then((res) => {
       setGroups(res.data.group)
     })
+  }, [])
+
+  React.useEffect(() => {
+    fetchGroups()
 
     return () => controller.abort()
   }, [])
