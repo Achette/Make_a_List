@@ -1,8 +1,8 @@
 import React from 'react'
-import { useMedia } from '../../hooks'
+import { useMedia } from 'hooks'
 import { Link } from 'react-router-dom'
-import { Logo, BenefitsSlider } from '../../components'
-import { Box, Button, Flex, HStack, Text, VStack } from '@chakra-ui/react'
+import { BenefitsSlider, Logo } from 'components'
+import { Box, Button, Flex, Text, VStack } from '@chakra-ui/react'
 
 export const Home = () => {
   const { isDesktop, isMobile, isTablet } = useMedia()
