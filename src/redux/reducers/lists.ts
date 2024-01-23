@@ -1,7 +1,7 @@
-import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit'
 import { IconType } from 'react-icons'
-import { ListsProps } from 'routes'
+import { RootState } from 'redux/store'
 import { getAll } from 'services/list-services'
+import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit'
 
 type Lists = {
   id: string
@@ -15,23 +15,7 @@ type Lists = {
   updated_at: string
 }[]
 
-const initialState: Lists = [
-  {
-    id: '',
-    color: '',
-    icon: '',
-    created_at: '',
-    created_by: {
-      id: '',
-      name: '',
-      email: '',
-    },
-    name: '',
-    shared: [],
-    total: 0,
-    updated_at: '',
-  },
-]
+const initialState: Lists | [] = []
 
 const listSlice = createSlice({
   name: 'Lists',
@@ -40,7 +24,7 @@ const listSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(
       fetchListas.fulfilled,
-      (state, action: PayloadAction<Lists>) => {
+      (state, action: PayloadAction<Lists | []>) => {
         return action.payload
       }
     )
@@ -53,3 +37,5 @@ export const fetchListas = createAsyncThunk('fetch/lists', async () => {
 })
 
 export default listSlice.reducer
+
+export const useLists = (state: RootState) => state.lists
