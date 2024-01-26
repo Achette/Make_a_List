@@ -1,7 +1,10 @@
 import React from 'react'
 import { NavItem } from './NavItem'
+import { useDispatch } from 'react-redux'
 import * as accessTokenRepository from 'hooks'
+import { AppDispatch } from '../../redux/store'
 import { List, ListItem } from '@chakra-ui/react'
+import { resetLists } from '../../redux/reducers/lists'
 import {
   MdBookmarkBorder,
   MdDeleteOutline,
@@ -78,12 +81,16 @@ export const Navigation = () => {
 }
 
 export const FooterNavigation = () => {
+  const dispatch = useDispatch<AppDispatch>()
+
   return (
     <List w="full">
       <ListItem
         onClick={() => {
+          dispatch(resetLists())
           accessTokenRepository.removeToken()
           accessTokenRepository.removeUser()
+          accessTokenRepository.removeUserId()
         }}
       >
         <NavItem item={footer} isActive={false} />

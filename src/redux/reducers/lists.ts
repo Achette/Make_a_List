@@ -3,29 +3,51 @@ import { RootState } from 'redux/store'
 import { getAll } from 'services/list-services'
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit'
 
-type Lists = {
+interface CreatedBy {
+  id: string
+  name: string
+  email: string
+}
+
+interface Shared {
+  id: string
+  name: string
+  email: string
+}
+
+interface ListItem {
   id: string
   color: string
   icon: IconType | string
   created_at: string
-  created_by: { id: string; name: string; email: string }
+  created_by: CreatedBy
   name: string
-  shared: { id: string; name: string; email: string }[]
+  shared: Shared[]
   total: number
   updated_at: string
-}[]
+}
 
-const initialState: Lists | [] = []
+interface Lists {
+  userLists: ListItem[] | []
+}
+
+const initialState: Lists = {
+  userLists: [],
+}
 
 const listSlice = createSlice({
   name: 'Lists',
   initialState,
-  reducers: {},
+  reducers: {
+    resetLists: (state) => {
+      state.userLists = []
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(
       fetchListas.fulfilled,
-      (state, action: PayloadAction<Lists | []>) => {
-        return action.payload
+      (state, action: PayloadAction<ListItem[] | []>) => {
+        state.userLists = action.payload
       }
     )
   },
@@ -37,5 +59,6 @@ export const fetchListas = createAsyncThunk('fetch/lists', async () => {
 })
 
 export default listSlice.reducer
+export const { resetLists } = listSlice.actions
 
-export const useLists = (state: RootState) => state.lists
+export const getUserLists = (state: RootState) => state.lists.userLists

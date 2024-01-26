@@ -7,8 +7,8 @@ import { Box, Flex, Text } from '@chakra-ui/react'
 import { SearchBar, List, AddButton } from 'components'
 import { useSelector } from 'react-redux'
 import { AppDispatch } from 'redux/store'
-import { fetchListas, useLists } from '../../../redux/reducers/lists'
 import { useDispatch } from 'react-redux'
+import { fetchListas, getUserLists } from '../../../redux/reducers/lists'
 
 export type ListsProps = {
   id: string
@@ -29,7 +29,7 @@ export const Lists = () => {
 
  // const controller = new AbortController()
 
-  const listas = useSelector(useLists)
+  const listas = useSelector(getUserLists)
   dispatch(fetchListas())
 
  
