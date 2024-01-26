@@ -1,13 +1,13 @@
 import React from 'react'
 import { useMedia } from 'hooks'
 import { stringToIcon } from 'utils'
+import { useSelector } from 'react-redux'
+import { AppDispatch } from 'redux/store'
+import { useDispatch } from 'react-redux'
 import { IconType } from 'react-icons/lib'
 import { getAll } from 'services/list-services'
 import { Box, Flex, Text } from '@chakra-ui/react'
 import { SearchBar, List, AddButton } from 'components'
-import { useSelector } from 'react-redux'
-import { AppDispatch } from 'redux/store'
-import { useDispatch } from 'react-redux'
 import { fetchListas, getUserLists } from '../../../redux/reducers/lists'
 
 export type ListsProps = {
@@ -25,26 +25,24 @@ export type ListsProps = {
 export const Lists = () => {
   const { isMobileOrTablet } = useMedia()
   const dispatch = useDispatch<AppDispatch>()
- // const [lists, setLists] = React.useState<ListsProps[]>()
+  // const [lists, setLists] = React.useState<ListsProps[]>()
 
- // const controller = new AbortController()
+  const controller = new AbortController()
 
   const listas = useSelector(getUserLists)
-  dispatch(fetchListas())
 
- 
-
-/*   const fetchLists = React.useCallback(async () => {
-    getAll().then((res) => {
-      setLists(res.data.list)
-    })
+  const fetchLists = React.useCallback(async () => {
+    // getAll().then((res) => {
+    //   setLists(res.data.list)
+    // })
+    dispatch(fetchListas())
   }, [])
 
   React.useEffect(() => {
     fetchLists()
 
     return () => controller.abort()
-  }, []) */
+  }, [])
 
   return (
     <Box w="full" h="full">
