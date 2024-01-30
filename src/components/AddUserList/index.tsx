@@ -1,6 +1,9 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import React, { useState } from 'react'
 import { getUserId, useMedia } from 'hooks'
 import { MdClose, MdSend } from 'react-icons/md'
+import { useNavigate, useParams } from 'react-router-dom'
+import { leaveList, sharedList } from 'services/list-services'
 import {
   Box,
   Flex,
@@ -17,8 +20,6 @@ import {
   Input,
   useToast,
 } from '@chakra-ui/react'
-import { leaveList, sharedList } from 'services/list-services'
-import { useNavigate, useParams } from 'react-router-dom'
 
 type AddUserListProps = {
   modal: boolean

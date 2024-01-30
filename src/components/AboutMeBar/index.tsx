@@ -1,7 +1,9 @@
 import React from 'react'
 import { useMedia } from 'hooks'
+import { useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import { MdOutlineArrowBackIos } from 'react-icons/md'
+import { getAboutUser } from '../../redux/reducers/user'
 import {
   Flex,
   HStack,
@@ -13,14 +15,14 @@ import {
   Button,
 } from '@chakra-ui/react'
 
-type AboutMeProps = {
-  name: string
-  email: string
-}
-
-export const AboutMeBar = ({ name, email }: AboutMeProps) => {
+export const AboutMeBar = () => {
   const navigate = useNavigate()
+
   const { isMobileOrTablet } = useMedia()
+
+  const aboutUser = useSelector(getAboutUser)
+  const { name, email } = aboutUser
+
   return (
     <>
       {isMobileOrTablet ? (

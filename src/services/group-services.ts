@@ -21,7 +21,11 @@ export const getGroupById = async (id?: string) => {
   return requestBackend(config)
 }
 
-export const newGroup = async (name?: string, color?: string, icon?: string) => {
+export const newGroup = async (
+  name?: string,
+  color?: string,
+  icon?: string
+) => {
   const config: AxiosRequestConfig = {
     method: 'POST',
     url: '/groups',
@@ -59,7 +63,7 @@ export const addUser = async (id: string, email: string) => {
     url: `/groups/add-users?id=${id}`,
     signal: AbortSignal.timeout(5000),
     data: {
-      email
+      email,
     },
   }
 
@@ -72,7 +76,7 @@ export const removeUser = async (id: string, user_id: string) => {
     url: `/groups/remove-users?id=${id}`,
     signal: AbortSignal.timeout(5000),
     data: {
-      user_id
+      user_id,
     },
   }
 
@@ -87,4 +91,3 @@ export const deleteGroup = async (id: string) => {
   }
   return requestBackend(config)
 }
-

@@ -43,9 +43,12 @@ export const ListDetail = () => {
   const { id } = useParams()
 
   const toast = useToast()
+
   const navigate = useNavigate()
 
   const { isMobileOrTablet } = useMedia()
+
+  const controller = new AbortController()
 
   const [listDetails, setListDetails] = React.useState<ListDetailProps>({
     name: '',
@@ -76,13 +79,11 @@ export const ListDetail = () => {
     }
   }, [setListDetails])
 
-  const controller = new AbortController()
-
   React.useEffect(() => {
     fetchListDetails()
 
     return () => controller.abort()
-  }, [fetchListDetails])
+  }, [])
 
   return (
     <VStack w="full" px={isMobileOrTablet ? '' : '3rem'}>
