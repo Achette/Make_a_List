@@ -58,6 +58,7 @@ export const ListDetail = () => {
 
     return () => controller.abort()
   }, [])
+  }, [])
 
   return (
     <VStack w="full" px={isMobileOrTablet ? '' : '3rem'}>
