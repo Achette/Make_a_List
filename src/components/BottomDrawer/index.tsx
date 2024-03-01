@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import React from 'react'
+import { useMedia } from 'hooks'
 import { HiDotsVertical } from 'react-icons/hi'
 import { moveToRecycleBin } from 'services/list-services'
 import { Link, useNavigate, useParams } from 'react-router-dom'
@@ -26,7 +27,6 @@ import {
   MdOutlineArchive,
   MdOutlineBookmarkAdd,
 } from 'react-icons/md'
-import { useMedia } from 'hooks'
 
 type BottomDrawerProps = {
   listName: string
