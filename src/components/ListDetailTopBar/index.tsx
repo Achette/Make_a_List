@@ -1,9 +1,11 @@
 import React from 'react'
 import { useMedia } from 'hooks'
+import { useLoading } from 'contexts'
 import { useNavigate } from 'react-router-dom'
 import { NewProduct } from 'components/NewProduct'
-import { Button, Divider, Flex, HStack, Text, Avatar } from '@chakra-ui/react'
+import { TextSkeleton } from 'components/Skeleton'
 import { AddUserList } from 'components/AddUserList'
+import { Button, Divider, Flex, HStack, Text, Avatar } from '@chakra-ui/react'
 
 export interface ListDetailTopBarProps {
   name: string
@@ -22,19 +24,24 @@ export const ListDetailTopBar = ({
   const [modalUser, setModalUser] = React.useState<boolean>(false)
   const { isMobileOrTablet } = useMedia()
   const navigate = useNavigate()
+  const { isLoading } = useLoading()
 
   return (
     <>
       <Flex w="full" justifyContent="space-between">
-        <Text
-          fontSize="2.125rem"
-          fontWeight={700}
-          lineHeight="2.5625rem"
-          letterSpacing="0.025rem"
-          color="blue.900"
-        >
-          {name}
-        </Text>
+        {isLoading ? (
+          <TextSkeleton />
+        ) : (
+          <Text
+            fontSize="2.125rem"
+            fontWeight={700}
+            lineHeight="2.5625rem"
+            letterSpacing="0.025rem"
+            color="blue.900"
+          >
+            {name}
+          </Text>
+        )}
 
         <HStack
           w="fit-content"
@@ -75,7 +82,13 @@ export const ListDetailTopBar = ({
         </HStack>
       </Flex>
 
-      <AddUserList modal={modalUser} setModal={setModalUser} shared={shared} fetchList={fetchList} created_by={created_by} />
+      <AddUserList
+        modal={modalUser}
+        setModal={setModalUser}
+        shared={shared}
+        fetchList={fetchList}
+        created_by={created_by}
+      />
 
       <Flex
         w="full"
@@ -83,7 +96,7 @@ export const ListDetailTopBar = ({
         justifyContent="space-between"
         flexDirection="row"
         gap="0.5rem"
-        cursor='pointer'
+        cursor="pointer"
         onClick={() => setModalUser(true)}
       >
         <Text
