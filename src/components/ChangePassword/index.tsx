@@ -1,4 +1,5 @@
 import React from 'react'
+import { useMedia } from 'hooks'
 import {
   Box,
   Divider,
@@ -10,10 +11,8 @@ import {
   Text,
   VStack,
 } from '@chakra-ui/react'
-import { useMedia } from 'hooks'
 
 export const ChangePassword = () => {
-
   const { isDesktop } = useMedia()
 
   return (
@@ -23,7 +22,7 @@ export const ChangePassword = () => {
         w="100%"
         justifyContent="space-between"
         alignItems="center"
-        px={isDesktop ? "4rem" : "0"}
+        px={isDesktop ? '4rem' : '0'}
       >
         <Text color="blue.900" fontSize="1.5rem" fontWeight={500} margin="0">
           Alterar senha
@@ -45,7 +44,7 @@ export const ChangePassword = () => {
           <Flex w="full" alignItems="flex-start" justifyContent="flex-start">
             <InputGroup>
               <InputLeftAddon
-               w="40%"
+                w="40%"
                 bgColor="transparent"
                 border="none"
                 color="blue.900"
@@ -75,7 +74,7 @@ export const ChangePassword = () => {
           <Flex w="full" alignItems="flex-start" justifyContent="flex-start">
             <InputGroup mt="1rem">
               <InputLeftAddon
-               w="40%"
+                w="40%"
                 bgColor="transparent"
                 border="none"
                 color="blue.900"
@@ -104,7 +103,7 @@ export const ChangePassword = () => {
           <Flex w="full" alignItems="flex-start" justifyContent="flex-start">
             <InputGroup mt="1rem">
               <InputLeftAddon
-              w="40%"
+                w="40%"
                 bgColor="transparent"
                 border="none"
                 color="blue.900"
