@@ -15,5 +15,5 @@ export const ListSkeletons = () => {
 }
 
 export const TextSkeleton = () => {
-  return <SkeletonText noOfLines={1} skeletonHeight="10" width="16rem" />
+  return <SkeletonText noOfLines={1} skeletonHeight="10" width="12rem" />
 }
