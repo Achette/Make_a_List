@@ -33,32 +33,34 @@ export const ListDetail = () => {
     productsList: [],
   })
 
-  const fetchListDetails = React.useCallback(async () => {
-    try {
-      setIsLoading(true)
-      const response = await getListById(id)
-      const data = await response.data
-      const list = await data.list
-      setListDetails(list)
-    } catch (e) {
-      toast({
-        description: 'Não foi possível carregar os itens da lista.',
-        status: 'error',
-        containerStyle: { color: 'white' },
-        position: isMobileOrTablet ? 'top' : 'bottom-right',
-        isClosable: true,
-      })
-    } finally {
-      setIsLoading(false)
-    }
-  }, [setListDetails])
+  const fetchListDetails = React.useCallback(
+    async (loading?: boolean) => {
+      try {
+        setIsLoading(loading ?? true)
+        const response = await getListById(id)
+        const data = await response.data
+        const list = await data.list
+        setListDetails(list)
+      } catch (e) {
+        toast({
+          description: 'Não foi possível carregar os itens da lista.',
+          status: 'error',
+          containerStyle: { color: 'white' },
+          position: isMobileOrTablet ? 'top' : 'bottom-right',
+          isClosable: true,
+        })
+      } finally {
+        setIsLoading(false)
+      }
+    },
+    [setListDetails]
+  )
 
   React.useEffect(() => {
     fetchListDetails()
 
     return () => controller.abort()
   }, [])
-  
 
   return (
     <VStack w="full" px={isMobileOrTablet ? '' : '3rem'}>

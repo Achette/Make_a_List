@@ -21,7 +21,7 @@ import {
 type NewProductProps = {
   modal: boolean
   setModal: (arg: boolean) => void
-  fetchList: () => Promise<void>
+  fetchList: (arg?: boolean) => Promise<void>
 }
 
 type InputsProps = {
@@ -73,8 +73,8 @@ export const NewProduct = ({ modal, setModal, fetchList }: NewProductProps) => {
         isClosable: true,
       })
 
-      fetchList()
       setModal(false)
+      fetchList(false)
       navigate(`/lists/${id}`)
 
       setNewProduct({
@@ -85,7 +85,7 @@ export const NewProduct = ({ modal, setModal, fetchList }: NewProductProps) => {
       })
     } catch (e) {
       toast({
-        description: "Preencha todos os campos!",
+        description: 'Preencha todos os campos!',
         status: 'warning',
         containerStyle: { color: 'white' },
         position: isMobileOrTablet ? 'top' : 'bottom-right',
