@@ -25,7 +25,7 @@ type ListItemsProps = {
   price: number
   place: string
   quantity: number
-  fetchList: () => Promise<void>
+  fetchList: (arg?: boolean) => Promise<void>
 }
 
 export const ListItems = ({
@@ -64,7 +64,7 @@ export const ListItems = ({
       })
     }
     onClose()
-    fetchList()
+    fetchList(false)
   }
 
   return (
